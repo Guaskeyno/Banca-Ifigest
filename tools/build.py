@@ -283,25 +283,39 @@ def contacts():
 
 
 def footer():
-    links = "".join(f'<li><a href="{h}">{escape(l)}</a></li>' for l, h in FOOTER_LINKS)
+    # Struttura come il footer del riferimento: logo | link orizzontali | social + copyright
+    rows = [FOOTER_LINKS[:3], FOOTER_LINKS[3:]]
+    items = []
+    for n, row in enumerate(rows):
+        for i, (l, h) in enumerate(row):
+            sep = ' class="no-separator"' if i == len(row) - 1 else ""
+            items.append(f'<li{sep}><a href="{h}">{escape(l)}</a></li>')
+        if n < len(rows) - 1:
+            items.append('<li class="force-break" aria-hidden="true"></li>')
     return f"""
 <footer class="tm-footer">
-  <div class="uk-container uk-container-large">
-    <div class="uk-grid-large uk-child-width-1-2@m" uk-grid>
-      <div>
-        <p>Banca Ifigest S.p.A.</p>
-        <p>P.za Santa Maria Soprarno, 1<br>50125 Firenze</p>
-        <p><a href="tel:+3905521631">+39 055 21631</a><br>
-          <a href="mailto:segreteria.ifigest@legalmail.it">segreteria.ifigest@legalmail.it</a><br>
-          <a href="{LINKEDIN_URL}" class="tm-footer-social" target="_blank" rel="noopener"><span uk-icon="icon: linkedin; ratio: .9"></span> LinkedIn</a></p>
+  <div class="uk-container uk-container-expand">
+    <div class="uk-grid tm-footer-grid" uk-grid>
+      <div class="uk-width-1-4@m uk-flex uk-flex-middle">
+        <div>
+          <a href="index.html" aria-label="{SITE} - Torna alla Home"><img src="assets/img/logo-ifigest-footer.svg" width="134" height="32" alt="{SITE} - Gruppo Bancario"></a>
+          <p class="tm-footer-small">Banca Ifigest S.p.A.<br>P.za Santa Maria Soprarno, 1 - 50125 Firenze<br>
+            <a href="tel:+3905521631">+39 055 21631</a><br>
+            <a href="mailto:segreteria.ifigest@legalmail.it">segreteria.ifigest@legalmail.it</a></p>
+        </div>
       </div>
-      <div>
-        <ul class="uk-list tm-footer-links">{links}</ul>
+      <div class="uk-width-1-2@m uk-flex uk-flex-middle">
+        <nav class="tm-footer-small uk-width-1-1" aria-label="Link utili">
+          <ul class="tm-list-horizontal">{"".join(items)}</ul>
+          <p class="tm-footer-legal">Capitale sociale euro 37.554.277,00 i.v. | Albo delle Banche n. 5485 | Albo dei Gruppi Bancari n. 3185</p>
+        </nav>
       </div>
-    </div>
-    <div class="tm-footer-bottom">
-      <a href="index.html" aria-label="{SITE} - Torna alla Home"><img src="assets/img/logo-ifigest-footer.svg" width="134" height="32" alt="{SITE} - Gruppo Bancario"></a>
-      <p class="tm-footer-legal">&copy; Banca Ifigest S.p.A. &middot; Capitale sociale euro 37.554.277,00 i.v. &middot; Albo delle Banche n. 5485 &middot; Albo dei Gruppi Bancari n. 3185</p>
+      <div class="uk-width-1-4@m uk-flex uk-flex-middle">
+        <div class="uk-width-1-1 uk-text-right@m">
+          <a href="{LINKEDIN_URL}" class="tm-footer-social" target="_blank" rel="noopener" aria-label="Banca Ifigest su LinkedIn"><span uk-icon="icon: linkedin; ratio: 1.6"></span></a>
+          <p class="tm-footer-small">&copy;2026</p>
+        </div>
+      </div>
     </div>
   </div>
 </footer>"""
