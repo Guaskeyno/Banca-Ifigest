@@ -55,7 +55,8 @@ NAV = [
     },
 ]
 
-BANCA_ONLINE_URL = "#"  # TODO: URL dell'home banking
+BANCA_ONLINE_URL = "https://areariservata.bancaifigest.it/CBL-MITO-WA-2.0/?v=451#!/access/login"
+LINKEDIN_URL = "https://www.linkedin.com/company/banca-ifigest/"
 
 FOOTER_LINKS = [
     ("Lavora con noi", "#"),
@@ -169,7 +170,7 @@ def header(slug):
               <li><a href="#contatti" uk-scroll="offset: 96">Contatti</a></li>
             </ul>
             <div class="uk-navbar-item">
-              <a class="uk-button tm-button-online" href="{BANCA_ONLINE_URL}"><span uk-icon="icon: lock; ratio: .8"></span> Banca Online</a>
+              <a class="uk-button tm-button-online" href="{BANCA_ONLINE_URL}" target="_blank" rel="noopener"><span uk-icon="icon: lock; ratio: .8"></span> Banca Online</a>
             </div>
             <a class="uk-navbar-toggle tm-search-toggle" href="#" uk-search-icon aria-label="Cerca"></a>
             <div class="uk-navbar-dropdown tm-search-drop" uk-drop="mode: click; pos: bottom-right; target-y: !.uk-navbar-container">
@@ -209,7 +210,7 @@ def header(slug):
         {mobile}
         <li><a href="#contatti" class="tm-offcanvas-contatti">Contatti</a></li>
       </ul>
-      <a class="uk-button tm-button-online uk-width-1-1 uk-margin-medium-top" href="{BANCA_ONLINE_URL}"><span uk-icon="icon: lock; ratio: .8"></span> Banca Online</a>
+      <a class="uk-button tm-button-online uk-width-1-1 uk-margin-medium-top" href="{BANCA_ONLINE_URL}" target="_blank" rel="noopener"><span uk-icon="icon: lock; ratio: .8"></span> Banca Online</a>
       <form class="uk-search uk-search-default uk-width-1-1 uk-margin-top" action="cerca.html" method="get" role="search">
         <span uk-search-icon></span>
         <input class="uk-search-input" type="search" name="q" placeholder="Cerca" aria-label="Cerca nel sito" required>
@@ -292,7 +293,7 @@ def footer():
         <p>P.za Santa Maria Soprarno, 1<br>50125 Firenze</p>
         <p><a href="tel:+3905521631">+39 055 21631</a><br>
           <a href="mailto:segreteria.ifigest@legalmail.it">segreteria.ifigest@legalmail.it</a><br>
-          <a href="#" class="tm-footer-social"><span uk-icon="icon: linkedin; ratio: .9"></span> LinkedIn</a></p>
+          <a href="{LINKEDIN_URL}" class="tm-footer-social" target="_blank" rel="noopener"><span uk-icon="icon: linkedin; ratio: .9"></span> LinkedIn</a></p>
       </div>
       <div>
         <ul class="uk-list tm-footer-links">{links}</ul>

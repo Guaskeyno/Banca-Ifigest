@@ -35,5 +35,5 @@ Poi apri http://localhost:8000.
 ## Segnaposto da completare
 
 - Immagini: tutte le immagini sono segnaposto (`.tm-placeholder`).
-- Link senza destinazione (`#`): Banca Online, Lavora con noi, LinkedIn, documenti PDF, segnalazione interna whistleblowing, schede prodotto MIFID II.
+- Link senza destinazione (`#`): Lavora con noi, documenti PDF, segnalazione interna whistleblowing, schede prodotto MIFID II.
 - Pagine senza testi definiti: Consulenza Finanziaria, Finanza Strutturata, Lombard Loans, Debt Advisory, Sostenibilità, Area Soci, Trasparenza, Dichiarazione di Accessibilità, Disconoscimento operazioni.
