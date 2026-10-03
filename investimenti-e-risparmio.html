@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Investimenti e Risparmio – Banca Ifigest</title>
+  <meta name="description" content="Soluzioni costruite sugli obiettivi della nostra clientela.">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;500;700&display=swap">
+  <link rel="preload" href="assets/fonts/meghana-webfont.woff2" as="font" type="font/woff2" crossorigin>
+  <!-- Libreria: UIkit (MIT) -->
+  <link rel="stylesheet" href="assets/vendor/uikit/css/uikit.min.css">
+  <!-- Tema Banca Ifigest -->
+  <link rel="stylesheet" href="assets/css/theme.css">
+</head>
+<body class="page-investimenti-e-risparmio">
+
+<a class="tm-skip-link" href="#main">Vai al contenuto</a>
+<header class="tm-header uk-visible@l">
+  <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
+    <div class="uk-navbar-container">
+      <div class="uk-container uk-container-expand">
+        <nav class="uk-navbar" aria-label="Navigazione principale" uk-navbar="align: left; dropbar: true; dropbar-anchor: !.uk-navbar-container; target-y: !.uk-navbar-container; delay-hide: 200">
+          <div class="uk-navbar-left">
+            <a href="index.html" class="uk-navbar-item uk-logo" aria-label="Banca Ifigest - Torna alla Home">
+              <img src="assets/img/logo-ifigest.svg" width="160" height="64" alt="Banca Ifigest - Gruppo Bancario">
+            </a>
+          </div>
+          <div class="uk-navbar-right">
+            <ul class="uk-navbar-nav">
+              <li class="uk-parent uk-active"><a href="private-banking.html">Private Banking <span uk-navbar-parent-icon></span></a><div class="uk-navbar-dropdown"><ul class="uk-nav uk-navbar-dropdown-nav"><li><a href="servizi-bancari.html">Servizi Bancari</a></li><li class="uk-active"><a href="investimenti-e-risparmio.html">Investimenti e Risparmio</a></li><li><a href="wealth-management.html">Wealth Management</a></li><li><a href="collocamento.html">Collocamento</a></li><li><a href="consulenza-finanziaria.html">Consulenza Finanziaria</a></li></ul></div></li><li class="uk-parent"><a href="investment-banking.html">Investment Banking <span uk-navbar-parent-icon></span></a><div class="uk-navbar-dropdown"><ul class="uk-nav uk-navbar-dropdown-nav"><li><a href="finanza-strutturata.html">Finanza Strutturata</a></li><li><a href="lombard-loans.html">Lombard Loans</a></li><li><a href="debt-advisory.html">Debt Advisory</a></li></ul></div></li><li class="uk-parent"><a href="il-gruppo.html">Il Gruppo <span uk-navbar-parent-icon></span></a><div class="uk-navbar-dropdown"><ul class="uk-nav uk-navbar-dropdown-nav"><li><a href="chi-siamo.html">Chi Siamo</a></li><li><a href="governance.html">Governance</a></li><li><a href="info-prodotti.html">Info Prodotti</a></li><li><a href="sostenibilita.html">Sostenibilità</a></li><li><a href="area-soci.html">Area Soci</a></li><li><a href="whistleblowing.html">Whistleblowing</a></li></ul></div></li>
+              <li><a href="#contatti" uk-scroll="offset: 96">Contatti</a></li>
+            </ul>
+            <div class="uk-navbar-item">
+              <a class="uk-button tm-button-online" href="#"><span uk-icon="icon: lock; ratio: .8"></span> Banca Online</a>
+            </div>
+            <a class="uk-navbar-toggle tm-search-toggle" href="#" uk-search-icon aria-label="Cerca"></a>
+            <div class="uk-navbar-dropdown tm-search-drop" uk-drop="mode: click; pos: bottom-right; target-y: !.uk-navbar-container">
+              <form class="uk-search uk-search-default uk-width-1-1" action="cerca.html" method="get" role="search">
+                <span uk-search-icon></span>
+                <input class="uk-search-input" type="search" name="q" placeholder="Cerca" aria-label="Cerca nel sito" required autofocus>
+              </form>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<header class="tm-header-mobile uk-hidden@l">
+  <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
+    <div class="uk-navbar-container">
+      <div class="uk-container uk-container-expand">
+        <nav class="uk-navbar" aria-label="Navigazione mobile" uk-navbar>
+          <div class="uk-navbar-left">
+            <a href="index.html" class="uk-navbar-item uk-logo" aria-label="Banca Ifigest - Torna alla Home">
+              <img src="assets/img/logo-ifigest.svg" width="120" height="48" alt="Banca Ifigest - Gruppo Bancario">
+            </a>
+          </div>
+          <div class="uk-navbar-right">
+            <a class="uk-navbar-toggle" href="#tm-offcanvas" uk-toggle aria-label="Apri il menu"><span uk-navbar-toggle-icon></span></a>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <div id="tm-offcanvas" uk-offcanvas="flip: true; overlay: true">
+    <div class="uk-offcanvas-bar">
+      <button class="uk-offcanvas-close" type="button" uk-close aria-label="Chiudi il menu"></button>
+      <ul class="uk-nav uk-nav-default" uk-nav="multiple: false">
+        <li class="uk-parent uk-open"><a href="#">Private Banking <span uk-nav-parent-icon></span></a><ul class="uk-nav-sub"><li><a href="private-banking.html">Panoramica</a></li><li><a href="servizi-bancari.html">Servizi Bancari</a></li><li class="uk-active"><a href="investimenti-e-risparmio.html">Investimenti e Risparmio</a></li><li><a href="wealth-management.html">Wealth Management</a></li><li><a href="collocamento.html">Collocamento</a></li><li><a href="consulenza-finanziaria.html">Consulenza Finanziaria</a></li></ul></li><li class="uk-parent"><a href="#">Investment Banking <span uk-nav-parent-icon></span></a><ul class="uk-nav-sub"><li><a href="investment-banking.html">Panoramica</a></li><li><a href="finanza-strutturata.html">Finanza Strutturata</a></li><li><a href="lombard-loans.html">Lombard Loans</a></li><li><a href="debt-advisory.html">Debt Advisory</a></li></ul></li><li class="uk-parent"><a href="#">Il Gruppo <span uk-nav-parent-icon></span></a><ul class="uk-nav-sub"><li><a href="il-gruppo.html">Panoramica</a></li><li><a href="chi-siamo.html">Chi Siamo</a></li><li><a href="governance.html">Governance</a></li><li><a href="info-prodotti.html">Info Prodotti</a></li><li><a href="sostenibilita.html">Sostenibilità</a></li><li><a href="area-soci.html">Area Soci</a></li><li><a href="whistleblowing.html">Whistleblowing</a></li></ul></li>
+        <li><a href="#contatti" class="tm-offcanvas-contatti">Contatti</a></li>
+      </ul>
+      <a class="uk-button tm-button-online uk-width-1-1 uk-margin-medium-top" href="#"><span uk-icon="icon: lock; ratio: .8"></span> Banca Online</a>
+      <form class="uk-search uk-search-default uk-width-1-1 uk-margin-top" action="cerca.html" method="get" role="search">
+        <span uk-search-icon></span>
+        <input class="uk-search-input" type="search" name="q" placeholder="Cerca" aria-label="Cerca nel sito" required>
+      </form>
+    </div>
+  </div>
+</header>
+
+
+<nav class="tm-subnav" aria-label="Private Banking">
+  <div class="uk-container uk-container-large">
+    <ul class="tm-subnav-list"><li><a href="servizi-bancari.html">Servizi Bancari</a></li><li class="uk-active"><a href="investimenti-e-risparmio.html" aria-current="page">Investimenti e Risparmio</a></li><li><a href="wealth-management.html">Wealth Management</a></li><li><a href="collocamento.html">Collocamento</a></li><li><a href="consulenza-finanziaria.html">Consulenza Finanziaria</a></li></ul>
+  </div>
+</nav>
+<main id="main">
+
+<section class="tm-hero">
+  <div class="tm-hero-media"><div class="tm-placeholder tm-placeholder-cover" role="img" aria-label="Immagine segnaposto"><span uk-icon="icon: image; ratio: 2"></span></div><svg class="tm-stripes" viewBox="0 0 274 400" preserveAspectRatio="none" aria-hidden="true" focusable="false"><rect x="0" y="0" width="2" height="400"/><rect x="6" y="0" width="4" height="400"/><rect x="18" y="0" width="8" height="400"/><rect x="36" y="0" width="10" height="400"/><rect x="58" y="0" width="12" height="400"/><rect x="84" y="0" width="14" height="400"/><rect x="114" y="0" width="16" height="400"/><rect x="154" y="0" width="24" height="400"/><rect x="202" y="0" width="24" height="400"/><rect x="250" y="0" width="24" height="400"/></svg></div>
+  <div class="tm-hero-title">
+    <div class="uk-container uk-container-large" uk-scrollspy="cls: uk-animation-fade; delay: 150">
+      <h1 class="tm-hero-heading">Investimenti e Risparmio</h1>
+      <p class="tm-hero-subtitle">Soluzioni costruite sugli obiettivi della nostra clientela</p>
+    </div>
+  </div>
+</section>
+<section class="uk-section tm-section-lead">
+  <div class="uk-container uk-container-large">
+    <div class="tm-lead tm-lead-primary"><p>L'attività di investimento di Banca Ifigest è focalizzata sulla ricerca della rivalutazione del capitale nel medio-lungo periodo, attraverso strategie di gestione attiva, diversificazione e un'offerta aperta ai migliori strumenti del mercato.</p></div>
+  </div>
+</section>
+<section class="uk-section tm-section-split" id="gestioni-patrimoniali">
+  <div class="uk-container uk-container-large">
+    <div class="tm-split"><div class="tm-split-content"><div class="tm-block"><h2 class="tm-block-title">Gestioni Patrimoniali</h2><p>Le Gestioni Patrimoniali di Banca Ifigest non replicano passivamente la struttura del benchmark, ma operano in modo attivo sulla base di strategie di investimento globali e diversificate sulle principali asset class, con ottimizzazione dei portafogli e utilizzo di tutti gli strumenti del mercato finanziario.</p><p>Il team di gestione opera dai desk di Milano, Firenze e Roma, con competenze in analisi dei mercati finanziari, selezione di obbligazioni governative e societarie e stock picking azionario.</p><p>In virtù degli obiettivi di investimento del cliente, sono altresì disponibili linee di investimento flessibili e personalizzabili con le specifiche esigenze di ogni investitore.</p><p>Grazie alle competenze del proprio team di gestione, Banca Ifigest fornisce altresì consulenza e servizi di asset management per alcune primarie Società di gestione estere, attive su Fondi comuni e SICAV dedicati sia a clientela privata che istituzionale.</p></div></div><div class="tm-split-media"><div class="tm-placeholder tm-placeholder-square" role="img" aria-label="Immagine segnaposto"><span uk-icon="icon: image; ratio: 2"></span></div></div></div>
+  </div>
+</section>
+<section class="uk-section tm-section-split" id="consulenza-evoluta">
+  <div class="uk-container uk-container-large">
+    <div class="tm-split tm-split-reverse"><div class="tm-split-media"><div class="tm-placeholder tm-placeholder-square" role="img" aria-label="Immagine segnaposto"><span uk-icon="icon: image; ratio: 2"></span></div></div><div class="tm-split-content"><div class="tm-block"><h2 class="tm-block-title">Consulenza Evoluta</h2><p>In sintonia con il profilo e con gli obiettivi di investimento del cliente, il servizio di consulenza di Banca Ifigest fornisce raccomandazioni personalizzate su tutti i principali strumenti finanziari. Un servizio costruito sulla conoscenza approfondita del cliente, libero da condizionamenti di prodotto grazie all'architettura aperta della banca.</p></div><div class="tm-block tm-block-small"><h3 class="tm-block-title">Piani Individuali di Risparmio (PIR)</h3></div><div class="tm-block tm-block-small"><h3 class="tm-block-title">Piani di Accumulo del Capitale (PAC)</h3></div></div></div>
+  </div>
+</section>
+<section class="uk-section tm-section-split" id="trading">
+  <div class="uk-container uk-container-large">
+    <div class="tm-split"><div class="tm-split-content"><div class="tm-block"><h2 class="tm-block-title">Trading e Negoziazione Titoli</h2></div></div><div class="tm-split-media"><div class="tm-placeholder tm-placeholder-square" role="img" aria-label="Immagine segnaposto"><span uk-icon="icon: image; ratio: 2"></span></div></div></div>
+  </div>
+</section>
+</main>
+
+<section id="contatti" class="tm-contacts" aria-labelledby="contatti-title">
+  <div class="uk-container uk-container-large">
+    <h2 id="contatti-title" class="tm-contacts-title">Sedi e Contatti</h2>
+    <div class="uk-grid-medium uk-child-width-1-2@s uk-child-width-1-4@m" uk-grid>
+      <div><div class="tm-city"><h3 class="tm-city-name">Firenze</h3><p class="tm-office"><strong>Sede Legale e Direzionale</strong><br>Piazza Santa Maria Soprarno, 1<br>50125 Firenze<br>Tel: <a href="tel:+3905524631">055.24631</a><br><a href="mailto:firenze@bancaifigest.it">firenze@bancaifigest.it</a></p><p class="tm-office"><strong>Filiale S. Trinità</strong><br>Piazza Santa Trinita, 1<br>50123 Firenze<br>Tel: <a href="tel:+39055277331">055.277331</a></p><p class="tm-office"><strong>Filiale V. Giacomini</strong><br>Via Giacomini, 22 24 26<br>50132 Firenze<br>Tel: <a href="tel:+3905540491">055.40491</a></p></div></div><div><div class="tm-city"><h3 class="tm-city-name">Milano</h3><p class="tm-office">Via Durini, 27<br>20122 Milano (MI)<br>Tel: <a href="tel:+39027788011">02.7788011</a><br><a href="mailto:milano@bancaifigest.it">milano@bancaifigest.it</a></p></div><div class="tm-city"><h3 class="tm-city-name">Roma</h3><p class="tm-office">Via Lima, 10<br>00198 Roma<br>Tel: <a href="tel:+39068535951">06.8535951</a><br><a href="mailto:roma@bancaifigest.it">roma@bancaifigest.it</a></p></div></div><div><div class="tm-city"><h3 class="tm-city-name">Torino</h3><p class="tm-office">Piazza San Carlo, 183<br>10123 Torino (TO)<br>Tel: <a href="tel:+3901155141">011.55141</a><br><a href="mailto:torino@bancaifigest.it">torino@bancaifigest.it</a></p></div><div class="tm-city"><h3 class="tm-city-name">Prato</h3><p class="tm-office">Via Valentini, 7<br>59100 Prato (PO)<br>Tel: <a href="tel:+390574402711">0574.402711</a><br><a href="mailto:prato@bancaifigest.it">prato@bancaifigest.it</a></p></div></div><div><div class="tm-city"><h3 class="tm-city-name">Genova</h3><p class="tm-office">Via XX Settembre, 37 interno 1<br>16121 Genova (GE)<br>Tel: <a href="tel:+39010553741">010.553741</a><br><a href="mailto:genova@bancaifigest.it">genova@bancaifigest.it</a></p></div></div>
+    </div>
+  </div>
+</section>
+
+<footer class="tm-footer">
+  <div class="uk-container uk-container-large">
+    <div class="uk-grid-large uk-child-width-1-2@m" uk-grid>
+      <div>
+        <p>Banca Ifigest S.p.A.</p>
+        <p>P.za Santa Maria Soprarno, 1<br>50125 Firenze</p>
+        <p><a href="tel:+3905521631">+39 055 21631</a><br>
+          <a href="mailto:segreteria.ifigest@legalmail.it">segreteria.ifigest@legalmail.it</a><br>
+          <a href="#" class="tm-footer-social"><span uk-icon="icon: linkedin; ratio: .9"></span> LinkedIn</a></p>
+      </div>
+      <div>
+        <ul class="uk-list tm-footer-links"><li><a href="#">Lavora con noi</a></li><li><a href="info-prodotti.html#schede-prodotto">Schede Prodotto</a></li><li><a href="trasparenza.html">Trasparenza</a></li><li><a href="whistleblowing.html">Whistleblowing</a></li><li><a href="dichiarazione-accessibilita.html">Dichiarazione di Accessibilità</a></li><li><a href="disconoscimento-operazioni.html">Disconoscimento operazioni</a></li></ul>
+      </div>
+    </div>
+    <div class="tm-footer-bottom">
+      <a href="index.html" aria-label="Banca Ifigest - Torna alla Home"><img src="assets/img/logo-ifigest-footer.svg" width="134" height="32" alt="Banca Ifigest - Gruppo Bancario"></a>
+      <p class="tm-footer-legal">&copy; Banca Ifigest S.p.A. &middot; Capitale sociale euro 37.554.277,00 i.v. &middot; Albo delle Banche n. 5485 &middot; Albo dei Gruppi Bancari n. 3185</p>
+    </div>
+  </div>
+</footer>
+<!-- Libreria: UIkit (MIT) -->
+<script src="assets/vendor/uikit/js/uikit.min.js"></script>
+<script src="assets/vendor/uikit/js/uikit-icons.min.js"></script>
+<!-- Script del sito -->
+<script src="assets/js/search-index.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
