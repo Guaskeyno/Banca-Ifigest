@@ -95,6 +95,10 @@ h1, h2, h3, h4, h5, h6,
   .uk-section-xsmall { padding-top: 24px; padding-bottom: 24px; }
 }
 
+/* l'ultima sezione compatta prima del footer mantiene il respiro standard */
+#main > .uk-section-xsmall:last-child { padding-bottom: 56px; }
+@media (min-width: 960px) { #main > .uk-section-xsmall:last-child { padding-bottom: 80px; } }
+
 /* BUTTONS (pill, come il riferimento) */
 
 .uk-button {
@@ -729,37 +733,6 @@ h1, h2, h3, h4, h5, h6,
 .tm-search-results a { font-family: var(--ifg-font-display); text-transform: uppercase; font-size: 20px; color: var(--ifg-dark); }
 .tm-search-results a:hover { color: var(--ifg-primary); }
 .tm-search-results p { margin: 4px 0 0; font-size: 16px; }
-
-/* ==========================================================================
-   SEDI E CONTATTI
-   ========================================================================== */
-
-.tm-contacts {
-  background: var(--ifg-primary);
-  color: var(--ifg-white);
-  padding: 64px 0;
-  scroll-margin-top: var(--ifg-header-height);
-}
-@media (min-width: 960px) { .tm-contacts { padding: 80px 0; } }
-@media (min-width: 1200px) { .tm-contacts .uk-container { padding-left: 80px; padding-right: 80px; } }
-
-.tm-contacts-title { margin: 0 0 40px; color: var(--ifg-white); font-size: 28px; }
-@media (min-width: 960px) { .tm-contacts-title { font-size: 32px; } }
-
-.tm-city + .tm-city { margin-top: 32px; }
-.tm-city-name {
-  margin: 0 0 12px;
-  font-family: var(--ifg-font-body);
-  font-weight: 700;
-  font-size: 17px;
-  text-transform: none;
-  letter-spacing: 0;
-  color: var(--ifg-white);
-}
-.tm-office { margin: 0 0 20px; font-size: 14px; line-height: 1.4; }
-.tm-office a { color: var(--ifg-white); }
-.tm-office a[href^="mailto"] { text-decoration: underline; }
-.tm-office a:hover { color: var(--ifg-white); opacity: 0.8; }
 
 /* ==========================================================================
    FOOTER

@@ -2,8 +2,6 @@
 (function () {
   'use strict';
 
-  var HEADER_OFFSET = 96;
-
   /* Offcanvas accessibile: focus sul primo link, Esc gestito da UIkit, focus restituito al trigger */
   function initOffcanvasFocus() {
     var offcanvas = document.getElementById('tm-offcanvas');
@@ -85,20 +83,8 @@
       .join('');
   }
 
-  /* Su pagine con hash (#contatti) caricate da un'altra pagina, compensa l'header fisso */
-  function initHashOffset() {
-    if (window.location.hash !== '#contatti') return;
-    var target = document.getElementById('contatti');
-    if (!target) return;
-    window.addEventListener('load', function () {
-      var top = target.getBoundingClientRect().top + window.pageYOffset - HEADER_OFFSET;
-      window.scrollTo(0, top);
-    });
-  }
-
   document.addEventListener('DOMContentLoaded', function () {
     initOffcanvasFocus();
     initSearchPage();
-    initHashOffset();
   });
 })();

@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """Static page generator for the Banca Ifigest website.
 
-Every page shares the same header, sub-navigation, "Sedi e Contatti" section
-and footer. Edit the content below and run:
+Every page shares the same header, sub-navigation and footer. Edit the content below and run:
 
     python3 tools/build.py
 
@@ -254,34 +253,6 @@ def hero(title, subtitle="", image=True):
 </section>"""
 
 
-def contacts():
-    cols = []
-    for col in SEDI:
-        blocks = []
-        for city, offices in col:
-            items = []
-            for o in offices:
-                name = f'<strong>{escape(o["name"])}</strong><br>' if o.get("name") else ""
-                lines = "<br>".join(escape(l) for l in o["lines"])
-                email = (
-                    f'<br><a href="mailto:{o["email"]}">{o["email"]}</a>' if o.get("email") else ""
-                )
-                items.append(
-                    f'<p class="tm-office">{name}{lines}<br>Tel: <a href="{tel_href(o["tel"])}">{o["tel"]}</a>{email}</p>'
-                )
-            blocks.append(f'<div class="tm-city"><h3 class="tm-city-name">{city}</h3>{"".join(items)}</div>')
-        cols.append(f'<div>{"".join(blocks)}</div>')
-    return f"""
-<section id="contatti" class="tm-contacts" aria-labelledby="contatti-title">
-  <div class="uk-container uk-container-large">
-    <h2 id="contatti-title" class="tm-contacts-title">Sedi e Contatti</h2>
-    <div class="uk-grid-medium uk-child-width-1-2@s uk-child-width-1-4@m" uk-grid>
-      {"".join(cols)}
-    </div>
-  </div>
-</section>"""
-
-
 def footer():
     # Struttura come il footer del riferimento: logo | link orizzontali | social + copyright
     rows = [FOOTER_LINKS[:3], FOOTER_LINKS[3:]]
@@ -346,7 +317,6 @@ def page(slug, title, description, body):
 <main id="main">
 {body}
 </main>
-{"" if slug == "contatti.html" else contacts()}
 {footer()}
 <!-- Libreria: UIkit (MIT) -->
 <script src="assets/vendor/uikit/js/uikit.min.js"></script>
@@ -529,13 +499,13 @@ add(
         "Conto Corrente",
         "Il Conto Remunerato di Banca Ifigest offre la possibilità di far fruttare la liquidità disponibile, con condizioni trasparenti e competitive, mantenendo la piena disponibilità delle somme depositate.",
         "Apri il conto Ifigest",
-        "#contatti",
+        "contatti.html",
     )
     + feature(
         "Carta Ifigest",
         "La carta di credito Banca Ifigest, in partnership con Nexi, offre i massimi livelli di sicurezza e flessibilità per i pagamenti quotidiani e online, con le funzionalità Apple Pay per i pagamenti contactless. Disponibile nelle versioni individuale, aziendale e Black.",
         "Contatta una filiale",
-        "#contatti",
+        "contatti.html",
         media_first=False,
     )
     + f"""
@@ -616,7 +586,7 @@ add(
         "Valore di Gruppo",
         "Operando all'interno del Gruppo Bancario, Sevian Fiduciaria unisce la propria specializzazione alle competenze bancarie, di gestione e di consulenza della banca.",
         "Parla con un referente",
-        "#contatti",
+        "contatti.html",
     ),
     "sevian fiduciaria intestazione fiduciaria amministrazione patrimoni pianificazione successoria family office",
 )
@@ -628,7 +598,7 @@ CNP = (
     "Apprezzati dai mercati globali per il miglior rating ESG nel settore assicurativo (AAA fonte MSCI) e un rating finanziario: Fitch A+, Standard &amp; Poor's A+ e Moody's A1. "
     "L'Italia rappresenta un mercato strategico per il Gruppo, dove opera da oltre 20 anni ed è oggi il 5° player nel business Vita.</p>"
 )
-CTA_CONSULENZA = button("Richiedi una consulenza", "#contatti")
+CTA_CONSULENZA = button("Richiedi una consulenza", "contatti.html")
 
 add(
     "collocamento.html",
