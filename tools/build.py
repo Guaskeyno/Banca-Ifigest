@@ -517,7 +517,6 @@ add(
     + f"""
 <section class="uk-section uk-section-xsmall">
   <div class="uk-container uk-container-large">
-    {placeholder("tm-placeholder-wide")}
     <p class="tm-note">Consulta i fogli informativi relativi ai conti correnti e alle carte <a href="info-prodotti.html#trasparenza">qui</a>.</p>
   </div>
 </section>""",

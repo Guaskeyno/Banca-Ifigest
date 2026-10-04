@@ -338,7 +338,6 @@ h1, h2, h3, h4, h5, h6,
 }
 .tm-placeholder-cover { height: 100%; }
 .tm-placeholder-square { aspect-ratio: 1 / 1; }
-.tm-placeholder-wide { aspect-ratio: 1312 / 409; min-height: 220px; }
 
 /* ==========================================================================
    HERO
