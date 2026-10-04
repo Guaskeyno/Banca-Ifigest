@@ -335,7 +335,6 @@ h1, h2, h3, h4, h5, h6,
 .tm-placeholder-cover { height: 100%; }
 .tm-placeholder-square { aspect-ratio: 1 / 1; }
 .tm-placeholder-wide { aspect-ratio: 1312 / 409; min-height: 220px; }
-.tm-placeholder-timeline { aspect-ratio: 310 / 180; }
 
 /* ==========================================================================
    HERO
@@ -581,7 +580,7 @@ h1, h2, h3, h4, h5, h6,
 .tm-timeline-year {
   position: relative;
   z-index: 0;
-  margin: 20px 0 0;
+  margin: 0;
   padding-left: 6px;
   font-size: 24px;
   line-height: 1.3;

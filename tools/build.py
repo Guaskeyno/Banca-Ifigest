@@ -705,7 +705,7 @@ TIMELINE = [
     ("2012", "Costituzione di Sevian Fiduciaria, lancio di Fundstore e costituzione di Soprarno SGR, completando il Gruppo Bancario."),
 ]
 timeline_items = "".join(
-    f'<li class="uk-width-1-1 uk-width-1-3@m uk-flex"><div class="tm-timeline-item uk-width-1-1">{placeholder("tm-placeholder-timeline")}<h3 class="tm-timeline-year">{y}</h3><p>{t}</p></div></li>'
+    f'<li class="uk-width-1-1 uk-width-1-3@m uk-flex"><div class="tm-timeline-item uk-width-1-1"><h3 class="tm-timeline-year">{y}</h3><p>{t}</p></div></li>'
     for y, t in TIMELINE
 )
 # Righe verticali decrescenti, come "lines-blue.svg" del riferimento (147x490)
