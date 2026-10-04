@@ -365,11 +365,11 @@ def cards(items, extra=""):
 </section>"""
 
 
-def lead(html, color="primary", extra=""):
+def lead(html, color="primary", extra="", full=True):
     return f"""
 <section class="uk-section tm-section-lead{extra}">
   <div class="uk-container uk-container-large">
-    <div class="tm-lead tm-lead-{color}">{html}</div>
+    <div class="tm-lead tm-lead-{color}{' tm-lead-full' if full else ''}">{html}</div>
   </div>
 </section>"""
 
@@ -889,6 +889,7 @@ add(
     + lead(
         "<p>A tal fine, il Gruppo si è dotato della necessaria organizzazione per definire criteri e modalità per la ricezione, l'analisi e il trattamento delle segnalazioni di violazioni, assicurando un'adeguata riservatezza e protezione dei dati personali del soggetto che effettua la segnalazione e del soggetto segnalato. Sono stabilite le precauzioni adottate a tutela del segnalante, quali la tutela dell'anonimato e il contrasto a ogni possibile discriminazione o ritorsione.</p>",
         "dark",
+        full=False,
     )
     + f"""
 <section class="uk-section">
