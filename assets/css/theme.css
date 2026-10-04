@@ -614,6 +614,42 @@ h1, h2, h3, h4, h5, h6,
 .tm-slidenav:hover,
 .tm-slidenav:focus { background-color: var(--ifg-primary); color: var(--ifg-white); }
 
+/* Pagina Contatti (come il riferimento) */
+
+.tm-column-title {
+  position: relative;
+  margin: 0 0 20px;
+  padding: 0 0 6px 20px;
+  border-bottom: 1px solid var(--ifg-dark);
+  font-family: var(--ifg-font-body);
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.4;
+  text-transform: none;
+  letter-spacing: 0;
+}
+.tm-column-title::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 84%;
+  background-color: var(--ifg-primary);
+}
+
+.tm-dl { margin: 0 0 20px; font-size: 16px; line-height: 1.6; }
+.tm-dl dt { font-weight: 700; }
+.tm-dl dd { margin: 0; }
+.tm-dl dd + dt { margin-top: 10px; }
+
+.tm-map { display: block; border: 0; background: var(--ifg-placeholder); }
+
+.tm-contact-row { margin-top: 64px; }
+
+.tm-section-muted { background: var(--ifg-muted); }
+.tm-section-muted p { max-width: 900px; font-size: 16px; line-height: 1.75; }
+
 /* Governance / documenti */
 
 .tm-doc-section + .tm-doc-section { margin-top: 64px; }

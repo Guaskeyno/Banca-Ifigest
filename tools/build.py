@@ -167,7 +167,7 @@ def header(slug):
           <div class="uk-navbar-right">
             <ul class="uk-navbar-nav">
               {desktop}
-              <li><a href="#contatti" uk-scroll="offset: 96">Contatti</a></li>
+              <li{ACTIVE if slug == "contatti.html" else ""}><a href="contatti.html">Contatti</a></li>
             </ul>
             <div class="uk-navbar-item">
               <a class="uk-button tm-button-online" href="{BANCA_ONLINE_URL}" target="_blank" rel="noopener"><span uk-icon="icon: lock; ratio: .8"></span> Banca Online</a>
@@ -208,7 +208,7 @@ def header(slug):
       <button class="uk-offcanvas-close" type="button" uk-close aria-label="Chiudi il menu"></button>
       <ul class="uk-nav uk-nav-default" uk-nav="multiple: false">
         {mobile}
-        <li><a href="#contatti" class="tm-offcanvas-contatti">Contatti</a></li>
+        <li{ACTIVE if slug == "contatti.html" else ""}><a href="contatti.html">Contatti</a></li>
       </ul>
       <a class="uk-button tm-button-online uk-width-1-1 uk-margin-medium-top" href="{BANCA_ONLINE_URL}" target="_blank" rel="noopener"><span uk-icon="icon: lock; ratio: .8"></span> Banca Online</a>
       <form class="uk-search uk-search-default uk-width-1-1 uk-margin-top" action="cerca.html" method="get" role="search">
@@ -346,7 +346,7 @@ def page(slug, title, description, body):
 <main id="main">
 {body}
 </main>
-{contacts()}
+{"" if slug == "contatti.html" else contacts()}
 {footer()}
 <!-- Libreria: UIkit (MIT) -->
 <script src="assets/vendor/uikit/js/uikit.min.js"></script>
@@ -942,6 +942,85 @@ add(
 add("trasparenza.html", "Trasparenza", "Trasparenza Banca Ifigest.", hero("Trasparenza", image=False), "trasparenza")
 add("dichiarazione-accessibilita.html", "Dichiarazione di Accessibilità", "Dichiarazione di accessibilità del sito Banca Ifigest.", hero("Dichiarazione di Accessibilità", image=False), "accessibilità")
 add("disconoscimento-operazioni.html", "Disconoscimento delle operazioni di pagamento", "Disconoscimento delle operazioni di pagamento.", hero("Disconoscimento delle operazioni di pagamento", image=False), "disconoscimento pagamento")
+
+# Contatti -------------------------------------------------------------------
+# Pagina costruita come quella del riferimento: colonne con titolo a barra,
+# indirizzo e telefono, mappa Google; in fondo i dati societari.
+def map_embed(address, label):
+    from urllib.parse import quote_plus
+    return (
+        f'<iframe class="tm-map" src="https://www.google.com/maps?q={quote_plus(address)}&amp;output=embed" '
+        f'width="100%" height="450" loading="lazy" referrerpolicy="no-referrer-when-downgrade" '
+        f'title="Mappa {escape(label)}" allowfullscreen></iframe>'
+    )
+
+
+def office_dl(o, label="Indirizzo"):
+    email = f'<br><a href="mailto:{o["email"]}">{o["email"]}</a>' if o.get("email") else ""
+    return (
+        f'<dl class="tm-dl"><dt>{escape(o.get("name", label))}:</dt>'
+        f'<dd>{" &ndash; ".join(escape(l) for l in o["lines"])}<br>'
+        f'Tel. <a href="{tel_href(o["tel"])}">{o["tel"]}</a>{email}</dd></dl>'
+    )
+
+
+def office_column(title, offices, width, city):
+    inner = "".join(
+        f'<div>{office_dl(o, "Filiale")}{map_embed(", ".join(o["lines"]) + ", Italia", o.get("name", city))}</div>'
+        for o in offices
+    )
+    if len(offices) > 1:
+        inner = f'<div class="uk-grid-medium uk-child-width-1-2@m" uk-grid>{inner}</div>'
+    return f'<div class="{width}"><h2 class="tm-column-title">{title}</h2>{inner}</div>'
+
+
+def contact_page():
+    offices = {c: o for col in SEDI for c, o in col}
+    sede, *filiali_fi = offices["Firenze"]
+    others = ["Milano", "Roma", "Torino", "Prato", "Genova"]
+    row1 = (
+        office_column("Sede Legale", [sede], "uk-width-1-4@m", "Firenze")
+        + office_column("Filiali di Firenze", filiali_fi, "uk-width-1-2@m", "Firenze")
+        + '<div class="uk-width-1-4@m"><h2 class="tm-column-title">Segreteria</h2>'
+        '<dl class="tm-dl"><dt>Telefono:</dt><dd><a href="tel:+3905521631">+39 055 21631</a></dd>'
+        '<dt>PEC:</dt><dd><a href="mailto:segreteria.ifigest@legalmail.it">segreteria.ifigest@legalmail.it</a></dd>'
+        f'<dt>Banca Online:</dt><dd><a href="{BANCA_ONLINE_URL}" target="_blank" rel="noopener">Accedi all\'area riservata</a></dd></dl></div>'
+    )
+    row2 = "".join(
+        office_column(f"Filiale di {c}", offices[c], "", c) for c in others
+    )
+    return (
+        hero("Contatti", "Tutti i riferimenti utili per entrare in contatto con noi in modo semplice e diretto.")
+        + f"""
+<section class="uk-section tm-section-contact">
+  <div class="uk-container uk-container-large">
+    <div class="uk-grid-large" uk-grid>{row1}</div>
+    <div class="uk-grid-large uk-child-width-1-3@m tm-contact-row" uk-grid>{row2}</div>
+  </div>
+</section>
+<section class="uk-section tm-section-muted" id="dati-societari" aria-labelledby="dati-societari-title">
+  <div class="uk-container uk-container-large">
+    <h2 id="dati-societari-title" class="tm-section-title">Dati societari</h2>
+    <p><strong>Banca Ifigest S.p.A.</strong></p>
+    <p>Sede Legale e Direzionale:<br>Piazza Santa Maria Soprarno, 1 &ndash; 50125 Firenze<br>
+      Tel. <a href="{tel_href("055.24631")}">055.24631</a><br>
+      PEC <a href="mailto:segreteria.ifigest@legalmail.it">segreteria.ifigest@legalmail.it</a><br>
+      Capitale sociale euro 37.554.277,00 i.v.<br>
+      Iscritta all'Albo delle Banche al Num. 5485 e all'Albo dei Gruppi Bancari al num. 3185.<br>
+      Aderente al Fondo Interbancario di tutela dei depositi e al Fondo Nazionale di Garanzia.<br>
+      Soggetta al controllo di Banca d'Italia.</p>
+  </div>
+</section>"""
+    )
+
+
+add(
+    "contatti.html",
+    "Contatti",
+    "Tutti i riferimenti utili per entrare in contatto con Banca Ifigest: sede, filiali, telefoni, email e dati societari.",
+    contact_page(),
+    "contatti sede filiali telefono email pec indirizzo firenze milano roma torino prato genova dati societari",
+)
 
 # Search --------------------------------------------------------------------
 add(

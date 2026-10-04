@@ -4,22 +4,6 @@
 
   var HEADER_OFFSET = 96;
 
-  /* Menu mobile: "Contatti" chiude l'offcanvas e scorre alla sezione Sedi e Contatti */
-  function initOffcanvasContacts() {
-    var link = document.querySelector('.tm-offcanvas-contatti');
-    var offcanvas = document.getElementById('tm-offcanvas');
-    var target = document.getElementById('contatti');
-    if (!link || !offcanvas || !target || typeof UIkit === 'undefined') return;
-
-    link.addEventListener('click', function (e) {
-      e.preventDefault();
-      UIkit.util.once(offcanvas, 'hidden', function () {
-        UIkit.scroll(link, { offset: 72 }).scrollTo(target);
-      });
-      UIkit.offcanvas(offcanvas).hide();
-    });
-  }
-
   /* Offcanvas accessibile: focus sul primo link, Esc gestito da UIkit, focus restituito al trigger */
   function initOffcanvasFocus() {
     var offcanvas = document.getElementById('tm-offcanvas');
@@ -113,7 +97,6 @@
   }
 
   document.addEventListener('DOMContentLoaded', function () {
-    initOffcanvasContacts();
     initOffcanvasFocus();
     initSearchPage();
     initHashOffset();
