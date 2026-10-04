@@ -396,17 +396,19 @@ h1, h2, h3, h4, h5, h6,
    SEZIONI DI CONTENUTO
    ========================================================================== */
 
-/* Intro (home) */
+/* Intro (home): titolo a tutta larghezza, testo, CTA centrata (come il riferimento) */
 
 .tm-intro-heading {
-  margin: 0;
-  max-width: 550px;
-  font-size: 22px;
-  line-height: 1.4;
+  margin: 0 0 24px;
+  font-size: 26px;
+  line-height: 1.3;
 }
-@media (min-width: 960px) { .tm-intro-heading { font-size: 24px; } }
+@media (min-width: 960px) { .tm-intro-heading { font-size: 36px; margin-bottom: 32px; } }
 
-.tm-section-intro p { font-size: 17px; line-height: 1.5; }
+.tm-intro-text p { margin: 0; font-size: 17px; line-height: 1.75; }
+.tm-intro-text p + p { margin-top: 1em; }
+.tm-intro-cta { margin-top: 48px; }
+@media (min-width: 960px) { .tm-intro-cta { margin-top: 70px; } }
 
 /* Lead */
 

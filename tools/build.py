@@ -435,17 +435,15 @@ add(
         "Dal 1987, offriamo una relazione di fiducia per chi cerca una banca su misura, non di serie",
     )
     + """
-<section class="uk-section uk-section-large tm-section-intro">
+<section class="uk-section tm-section-intro">
   <div class="uk-container uk-container-large">
-    <div class="uk-grid-large uk-child-width-1-2@m" uk-grid>
-      <div>
-        <h2 class="tm-intro-heading">Per noi il patrimonio è molto più di un numero: è il riflesso di una vita di scelte, di un'azienda costruita, di una famiglia da proteggere.</h2>
-      </div>
-      <div>
-        <p>Per questo da quasi quarant'anni lavoriamo nel modo opposto a come si è sviluppata gran parte della finanza italiana: niente call center, niente prodotti standardizzati, niente conflitti d'interesse legati a una casa madre.</p>
-        <p>Ogni cliente ha un private banker che lo conosce, a cui risponde personalmente, e che lo accompagna nelle sue decisioni patrimoniali. Questo è il Gruppo Bancario Ifigest: la solidità di un grande gruppo bancario, e la prossimità di un rapporto personale.</p>
-        <a class="uk-button uk-button-primary uk-margin-top" href="il-gruppo.html">Scopri il Gruppo</a>
-      </div>
+    <h2 class="tm-intro-heading">Per noi il patrimonio è molto più di un numero: è il riflesso di una vita di scelte, di un'azienda costruita, di una famiglia da proteggere.</h2>
+    <div class="tm-intro-text">
+      <p>Per questo da quasi quarant'anni lavoriamo nel modo opposto a come si è sviluppata gran parte della finanza italiana: <strong>niente call center, niente prodotti standardizzati, niente conflitti d'interesse</strong> legati a una casa madre.</p>
+      <p>Ogni cliente ha un private banker che lo conosce, a cui risponde personalmente, e che lo accompagna nelle sue decisioni patrimoniali. Questo è il Gruppo Bancario Ifigest: <strong>la solidità di un grande gruppo bancario, e la prossimità di un rapporto personale.</strong></p>
+    </div>
+    <div class="uk-text-center tm-intro-cta">
+      <a class="uk-button uk-button-primary" href="il-gruppo.html">Scopri il Gruppo</a>
     </div>
   </div>
 </section>"""
