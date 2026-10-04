@@ -292,6 +292,14 @@ def footer():
 </footer>"""
 
 
+
+def asset(path):
+    """Percorso dell'asset con versione basata sul contenuto, per invalidare la cache del browser."""
+    import hashlib
+    digest = hashlib.md5((ROOT / path).read_bytes()).hexdigest()[:8]
+    return f"{path}?v={digest}"
+
+
 def page(slug, title, description, body):
     full_title = SITE if slug == "index.html" else f"{title} – {SITE}"
     return f"""<!doctype html>
@@ -307,9 +315,9 @@ def page(slug, title, description, body):
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;500;700&display=swap">
   <link rel="preload" href="assets/fonts/meghana-webfont.woff2" as="font" type="font/woff2" crossorigin>
   <!-- Libreria: UIkit (MIT) -->
-  <link rel="stylesheet" href="assets/vendor/uikit/css/uikit.min.css">
+  <link rel="stylesheet" href="{asset("assets/vendor/uikit/css/uikit.min.css")}">
   <!-- Tema Banca Ifigest -->
-  <link rel="stylesheet" href="assets/css/theme.css">
+  <link rel="stylesheet" href="{asset("assets/css/theme.css")}">
 </head>
 <body class="page-{slug.replace('.html', '')}">
 {header(slug)}
@@ -319,11 +327,11 @@ def page(slug, title, description, body):
 </main>
 {footer()}
 <!-- Libreria: UIkit (MIT) -->
-<script src="assets/vendor/uikit/js/uikit.min.js"></script>
-<script src="assets/vendor/uikit/js/uikit-icons.min.js"></script>
+<script src="{asset("assets/vendor/uikit/js/uikit.min.js")}"></script>
+<script src="{asset("assets/vendor/uikit/js/uikit-icons.min.js")}"></script>
 <!-- Script del sito -->
-<script src="assets/js/search-index.js"></script>
-<script src="assets/js/main.js"></script>
+<script src="{asset("assets/js/search-index.js")}"></script>
+<script src="{asset("assets/js/main.js")}"></script>
 </body>
 </html>
 """
@@ -1019,16 +1027,18 @@ def text_of(html):
 
 
 def main():
-    index = []
-    for slug, title, description, body, keywords in PAGES:
-        (ROOT / slug).write_text(page(slug, title, description, body), encoding="utf-8")
-        if slug != "cerca.html":
-            index.append({"url": slug, "title": title, "description": description, "text": f"{keywords} {text_of(body)}"})
+    index = [
+        {"url": slug, "title": title, "description": description, "text": f"{keywords} {text_of(body)}"}
+        for slug, title, description, body, keywords in PAGES
+        if slug != "cerca.html"
+    ]
     (ROOT / "assets/js/search-index.js").write_text(
         "/* Generato da tools/build.py: non modificare a mano. */\n"
         "window.IFIGEST_SEARCH_INDEX = " + json.dumps(index, ensure_ascii=False, indent=1) + ";\n",
         encoding="utf-8",
     )
+    for slug, title, description, body, keywords in PAGES:
+        (ROOT / slug).write_text(page(slug, title, description, body), encoding="utf-8")
     print(f"Built {len(PAGES)} pages")
 
 
