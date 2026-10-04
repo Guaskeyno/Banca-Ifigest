@@ -653,8 +653,8 @@ add("debt-advisory.html", "Debt Advisory", "Debt Advisory Banca Ifigest.", hero(
 add(
     "il-gruppo.html",
     "Il Gruppo",
-    "Gruppo Bancario Ifigest: dal cuore di Firenze, un nuovo movimento finanziario.",
-    hero("Gruppo Bancario Ifigest", "Dal cuore di Firenze, un nuovo movimento finanziario")
+    "Gruppo Bancario Ifigest: un nuovo movimento finanziario.",
+    hero("Gruppo Bancario Ifigest", "Un nuovo movimento finanziario")
     + lead(
         "<p>Il Gruppo Bancario Ifigest, espressione autentica di esperienza e professionalità, nasce per costruire servizi evoluti e interconnessi e generare soluzioni innovative, in grado di rispondere alla complessità dei mercati contemporanei.</p>"
         "<p>Un unico hub al servizio di aziende, famiglie imprenditoriali e privati caratterizzato da un servizio globale in-house a 360° che unisce competenze diversificate per un'offerta su misura di ogni esigenza.</p>",
