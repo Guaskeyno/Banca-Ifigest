@@ -978,16 +978,17 @@ def contact_page():
     offices = {c: o for col in SEDI for c, o in col}
     sede, *filiali_fi = offices["Firenze"]
     others = ["Milano", "Roma", "Torino", "Prato", "Genova"]
+    # Riga 1: Sede Legale + Segreteria. Sotto: tutte le filiali su griglia a 3 colonne
+    # (le due filiali di Firenze occupano 2/3, così ogni mappa ha la stessa larghezza).
     row1 = (
-        office_column("Sede Legale", [sede], "uk-width-1-4@m", "Firenze")
-        + office_column("Filiali di Firenze", filiali_fi, "uk-width-1-2@m", "Firenze")
-        + '<div class="uk-width-1-4@m"><h2 class="tm-column-title">Segreteria</h2>'
+        office_column("Sede Legale", [sede], "uk-width-1-2@m", "Firenze")
+        + '<div class="uk-width-1-2@m"><h2 class="tm-column-title">Segreteria</h2>'
         '<dl class="tm-dl"><dt>Telefono:</dt><dd><a href="tel:+3905521631">+39 055 21631</a></dd>'
         '<dt>PEC:</dt><dd><a href="mailto:segreteria.ifigest@legalmail.it">segreteria.ifigest@legalmail.it</a></dd>'
         f'<dt>Banca Online:</dt><dd><a href="{BANCA_ONLINE_URL}" target="_blank" rel="noopener">Accedi all\'area riservata</a></dd></dl></div>'
     )
-    row2 = "".join(
-        office_column(f"Filiale di {c}", offices[c], "", c) for c in others
+    row2 = office_column("Filiali di Firenze", filiali_fi, "uk-width-2-3@m", "Firenze") + "".join(
+        office_column(f"Filiale di {c}", offices[c], "uk-width-1-3@m", c) for c in others
     )
     return (
         hero("Contatti", "Tutti i riferimenti utili per entrare in contatto con noi in modo semplice e diretto.")
@@ -995,7 +996,7 @@ def contact_page():
 <section class="uk-section tm-section-contact">
   <div class="uk-container uk-container-large">
     <div class="uk-grid-large" uk-grid>{row1}</div>
-    <div class="uk-grid-large uk-child-width-1-3@m tm-contact-row" uk-grid>{row2}</div>
+    <div class="uk-grid-large tm-contact-row" uk-grid>{row2}</div>
   </div>
 </section>
 <section class="uk-section tm-section-muted" id="dati-societari" aria-labelledby="dati-societari-title">
