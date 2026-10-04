@@ -374,6 +374,14 @@ def lead(html, color="primary", extra=""):
 </section>"""
 
 
+def text_section(content, sid="", extra=""):
+    id_attr = f' id="{sid}"' if sid else ""
+    return f"""
+<section class="uk-section tm-section-text{extra}"{id_attr}>
+  <div class="uk-container uk-container-large">{content}</div>
+</section>"""
+
+
 def split(content, media_first=False, sid="", extra=""):
     media = f'<div class="tm-split-media">{placeholder("tm-placeholder-square")}</div>'
     text = f'<div class="tm-split-content">{content}</div>'
@@ -723,7 +731,7 @@ add(
     </div>
   </div>
 </section>"""
-    + split(
+    + text_section(
         block(
             "Filosofia di Gestione",
             "<p>Banca Ifigest, da sempre caratterizzata da una ricerca del \"ritorno assoluto\", si pone come obiettivo primario la crescita dei capitali nel tempo e la tutela dell'investitore dal rischio di perdite. L'attività di gestione è focalizzata sulla ricerca della rivalutazione del capitale investito nel medio-lungo periodo, comparando costantemente il rapporto tra rischio e rendimento ed effettuando un continuo monitoraggio dell'andamento dei mercati.</p>"
@@ -733,7 +741,6 @@ add(
             "Architettura Aperta",
             "<p>Banca Ifigest opera in un contesto di architettura aperta: la propria indipendenza da grandi gruppi finanziari consente di selezionare, senza condizionamenti, i migliori strumenti e le migliori soluzioni disponibili sul mercato per ogni esigenza del cliente. Dalla scelta dei fondi collocati tramite Fundstore alla selezione degli strumenti obbligazionari e azionari nelle gestioni patrimoniali, la preferenza va sempre al prodotto più adatto agli obiettivi del cliente.</p>",
         ),
-        media_first=True,
         sid="filosofia",
     ),
     "storia 1987 filosofia di gestione architettura aperta indipendente firenze",
