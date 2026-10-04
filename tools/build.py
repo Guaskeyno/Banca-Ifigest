@@ -705,8 +705,14 @@ TIMELINE = [
     ("2012", "Costituzione di Sevian Fiduciaria, lancio di Fundstore e costituzione di Soprarno SGR, completando il Gruppo Bancario."),
 ]
 timeline_items = "".join(
-    f'<li><div class="tm-timeline-item">{placeholder("tm-placeholder-timeline")}<h3 class="tm-timeline-year">{y}</h3><p>{t}</p></div></li>'
+    f'<li class="uk-width-1-1 uk-width-1-3@m uk-flex"><div class="tm-timeline-item uk-width-1-1">{placeholder("tm-placeholder-timeline")}<h3 class="tm-timeline-year">{y}</h3><p>{t}</p></div></li>'
     for y, t in TIMELINE
+)
+# Righe verticali decrescenti, come "lines-blue.svg" del riferimento (147x490)
+TIMELINE_LINES = (
+    '<svg class="tm-timeline-lines" viewBox="0 0 146.5 490" aria-hidden="true" focusable="false">'
+    + "".join(f'<rect x="{x}" width="{w}" height="490"/>' for x, w in [(0, 7.41), (28.48, 6.75), (56.96, 6.09), (85.44, 5.43), (113.92, 4.77), (142.39, 4.11)])
+    + "</svg>"
 )
 
 add(
@@ -721,20 +727,22 @@ add(
         extra=" tm-section-split-center",
     )
     + f"""
-<section class="uk-section tm-section-timeline" id="storia" aria-labelledby="storia-title">
+<section class="uk-section tm-section-timeline-title" id="storia" aria-labelledby="storia-title">
   <div class="uk-container uk-container-large">
     <h2 id="storia-title" class="tm-section-title">La nostra storia</h2>
   </div>
-  <div class="tm-timeline">
-    {STRIPES.replace('tm-stripes', 'tm-stripes tm-stripes-left')}
-    <div class="uk-container uk-container-large">
-      <div class="uk-slider" uk-slider="finite: true">
-        <div class="uk-slider-container">
-          <ul class="uk-slider-items uk-grid uk-grid-collapse uk-child-width-1-1 uk-child-width-1-2@s uk-child-width-1-3@m">{timeline_items}</ul>
-        </div>
-        <div class="tm-slider-nav">
-          <a href="#" class="tm-slider-arrow" uk-slider-item="previous" aria-label="Precedente"><span uk-icon="chevron-left"></span></a>
-          <a href="#" class="tm-slider-arrow" uk-slider-item="next" aria-label="Successivo"><span uk-icon="chevron-right"></span></a>
+</section>
+<section class="tm-section-timeline" aria-label="La nostra storia, cronologia">
+  <div class="uk-grid uk-grid-collapse" uk-grid>
+    <div class="tm-timeline-lines-col uk-visible@m">{TIMELINE_LINES}</div>
+    <div class="uk-width-expand@m">
+      <div class="uk-slider-container tm-timeline" uk-slider>
+        <div class="uk-position-relative">
+          <ul class="uk-slider-items uk-grid uk-grid-divider">{timeline_items}</ul>
+          <div class="uk-slidenav-container tm-timeline-nav">
+            <a class="tm-slidenav" href="#" uk-slider-item="previous" aria-label="Precedente"><span uk-icon="chevron-left"></span></a>
+            <a class="tm-slidenav" href="#" uk-slider-item="next" aria-label="Successivo"><span uk-icon="chevron-right"></span></a>
+          </div>
         </div>
       </div>
     </div>
