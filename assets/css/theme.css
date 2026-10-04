@@ -415,12 +415,10 @@ h1, h2, h3, h4, h5, h6,
 .tm-section-lead + .tm-section-lead { padding-top: 32px; }
 
 .tm-lead {
-  max-width: 672px;
   font-size: 20px;
   line-height: 1.4;
 }
 @media (min-width: 960px) { .tm-lead { font-size: 24px; } }
-.tm-lead-full { max-width: none; }
 .tm-lead p { margin: 0; }
 .tm-lead p + p { margin-top: 1em; }
 .tm-lead-primary { color: var(--ifg-primary); }
