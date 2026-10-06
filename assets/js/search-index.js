@@ -52,19 +52,19 @@ window.IFIGEST_SEARCH_INDEX = [
   "url": "finanza-strutturata.html",
   "title": "Finanza Strutturata",
   "description": "Finanza strutturata Banca Ifigest.",
-  "text": "project finance acquisition finance Finanza Strutturata"
+  "text": "project finance acquisition finance Finanza Strutturata Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Richiedi una consulenza Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Richiedi una consulenza"
  },
  {
   "url": "lombard-loans.html",
   "title": "Lombard Loans",
   "description": "Lombard Loans Banca Ifigest.",
-  "text": "finanziamento garantito Lombard Loans"
+  "text": "finanziamento garantito Lombard Loans Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Richiedi una consulenza Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Richiedi una consulenza"
  },
  {
   "url": "debt-advisory.html",
   "title": "Debt Advisory",
   "description": "Debt Advisory Banca Ifigest.",
-  "text": "struttura finanziaria Debt Advisory"
+  "text": "struttura finanziaria Debt Advisory Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Richiedi una consulenza Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Richiedi una consulenza"
  },
  {
   "url": "il-gruppo.html",
@@ -94,7 +94,7 @@ window.IFIGEST_SEARCH_INDEX = [
   "url": "sostenibilita.html",
   "title": "Sostenibilità",
   "description": "Crediamo nella sostenibilità come fattore di creazione di valore nel lungo periodo per clienti, azionisti e comunità.",
-  "text": "esg sostenibilità Sostenibilità Crediamo nella sostenibilità come fattore di creazione di valore nel lungo periodo per clienti, azionisti e comunità"
+  "text": "esg sostenibilità Sostenibilità Crediamo nella sostenibilità come fattore di creazione di valore nel lungo periodo per clienti, azionisti e comunità Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Richiedi una consulenza Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Richiedi una consulenza"
  },
  {
   "url": "area-soci.html",
@@ -112,19 +112,19 @@ window.IFIGEST_SEARCH_INDEX = [
   "url": "trasparenza.html",
   "title": "Trasparenza",
   "description": "Trasparenza Banca Ifigest.",
-  "text": "trasparenza Trasparenza"
+  "text": "trasparenza Trasparenza Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Richiedi una consulenza Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Richiedi una consulenza"
  },
  {
   "url": "dichiarazione-accessibilita.html",
   "title": "Dichiarazione di Accessibilità",
   "description": "Dichiarazione di accessibilità del sito Banca Ifigest.",
-  "text": "accessibilità Dichiarazione di Accessibilità"
+  "text": "accessibilità Dichiarazione di Accessibilità Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Richiedi una consulenza Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Richiedi una consulenza"
  },
  {
   "url": "disconoscimento-operazioni.html",
   "title": "Disconoscimento delle operazioni di pagamento",
   "description": "Disconoscimento delle operazioni di pagamento.",
-  "text": "disconoscimento pagamento Disconoscimento delle operazioni di pagamento"
+  "text": "disconoscimento pagamento Disconoscimento delle operazioni di pagamento Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Richiedi una consulenza Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Richiedi una consulenza"
  },
  {
   "url": "contatti.html",

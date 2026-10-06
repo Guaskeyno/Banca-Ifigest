@@ -614,6 +614,13 @@ CNP = (
 LOREM = "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>"  # TODO: testo definitivo
 CTA_CONSULENZA = button("Richiedi una consulenza", "contatti.html")
 
+
+def placeholder_blocks(prefix):
+    """Due blocchi immagine + testo provvisorio, alternati (come Collocamento). TODO: testi definitivi."""
+    return split(block("Lorem ipsum", LOREM + CTA_CONSULENZA), sid=f"{prefix}-1", extra=" tm-section-split-first") + split(
+        block("Lorem ipsum", LOREM + CTA_CONSULENZA), media_first=True, sid=f"{prefix}-2"
+    )
+
 add(
     "collocamento.html",
     "Collocamento",
@@ -631,10 +638,7 @@ add(
     "gestioni-patrimoniali.html",
     "Gestioni Patrimoniali",
     "Gestioni Patrimoniali Banca Ifigest.",
-    hero("Gestioni Patrimoniali")
-    # TODO: testi definitivi
-    + split(block("Lorem ipsum", LOREM + CTA_CONSULENZA), sid="gestioni-1", extra=" tm-section-split-first")
-    + split(block("Lorem ipsum", LOREM + CTA_CONSULENZA), media_first=True, sid="gestioni-2"),
+    hero("Gestioni Patrimoniali") + placeholder_blocks("gestioni"),
     "gestioni patrimoniali linee di gestione",
 )
 
@@ -657,9 +661,9 @@ add(
     ),
     "business imprese finanza strutturata lombard debt advisory",
 )
-add("finanza-strutturata.html", "Finanza Strutturata", "Finanza strutturata Banca Ifigest.", hero("Finanza Strutturata"), "project finance acquisition finance")
-add("lombard-loans.html", "Lombard Loans", "Lombard Loans Banca Ifigest.", hero("Lombard Loans"), "finanziamento garantito")
-add("debt-advisory.html", "Debt Advisory", "Debt Advisory Banca Ifigest.", hero("Debt Advisory"), "struttura finanziaria")
+add("finanza-strutturata.html", "Finanza Strutturata", "Finanza strutturata Banca Ifigest.", hero("Finanza Strutturata") + placeholder_blocks("finanza-strutturata"), "project finance acquisition finance")
+add("lombard-loans.html", "Lombard Loans", "Lombard Loans Banca Ifigest.", hero("Lombard Loans") + placeholder_blocks("lombard-loans"), "finanziamento garantito")
+add("debt-advisory.html", "Debt Advisory", "Debt Advisory Banca Ifigest.", hero("Debt Advisory") + placeholder_blocks("debt-advisory"), "struttura finanziaria")
 
 # Il Gruppo -----------------------------------------------------------------
 add(
@@ -887,7 +891,8 @@ add(
     "sostenibilita.html",
     "Sostenibilità",
     "Crediamo nella sostenibilità come fattore di creazione di valore nel lungo periodo per clienti, azionisti e comunità.",
-    hero("Sostenibilità", "Crediamo nella sostenibilità come fattore di creazione di valore nel lungo periodo per clienti, azionisti e comunità"),
+    hero("Sostenibilità", "Crediamo nella sostenibilità come fattore di creazione di valore nel lungo periodo per clienti, azionisti e comunità")
+    + placeholder_blocks("sostenibilita"),
     "esg sostenibilità",
 )
 add("area-soci.html", "Area Soci", "Area Soci Banca Ifigest.", hero("Area Soci"), "soci capitale sociale avvisi")
@@ -925,9 +930,9 @@ add(
 )
 
 # Footer pages --------------------------------------------------------------
-add("trasparenza.html", "Trasparenza", "Trasparenza Banca Ifigest.", hero("Trasparenza", image=False), "trasparenza")
-add("dichiarazione-accessibilita.html", "Dichiarazione di Accessibilità", "Dichiarazione di accessibilità del sito Banca Ifigest.", hero("Dichiarazione di Accessibilità", image=False), "accessibilità")
-add("disconoscimento-operazioni.html", "Disconoscimento delle operazioni di pagamento", "Disconoscimento delle operazioni di pagamento.", hero("Disconoscimento delle operazioni di pagamento", image=False), "disconoscimento pagamento")
+add("trasparenza.html", "Trasparenza", "Trasparenza Banca Ifigest.", hero("Trasparenza", image=False) + placeholder_blocks("trasparenza"), "trasparenza")
+add("dichiarazione-accessibilita.html", "Dichiarazione di Accessibilità", "Dichiarazione di accessibilità del sito Banca Ifigest.", hero("Dichiarazione di Accessibilità", image=False) + placeholder_blocks("accessibilita"), "accessibilità")
+add("disconoscimento-operazioni.html", "Disconoscimento delle operazioni di pagamento", "Disconoscimento delle operazioni di pagamento.", hero("Disconoscimento delle operazioni di pagamento", image=False) + placeholder_blocks("disconoscimento"), "disconoscimento pagamento")
 
 # Contatti -------------------------------------------------------------------
 # Pagina costruita come quella del riferimento: colonne con titolo a barra,
