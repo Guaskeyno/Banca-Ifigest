@@ -658,6 +658,38 @@ h1, h2, h3, h4, h5, h6,
 .tm-section-muted { background: var(--ifg-muted); }
 .tm-section-muted p { max-width: 900px; font-size: 16px; line-height: 1.75; }
 
+/* Schede (Area Soci): pill come la sotto-navigazione */
+
+.tm-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 48px;
+  padding: 0;
+  list-style: none;
+}
+.tm-tabs::before { display: none; }
+.tm-tabs > li { padding-left: 0; margin: 0; }
+.tm-tabs > li > a {
+  display: inline-block;
+  padding: 6px 20px;
+  border: 1px solid var(--ifg-dark);
+  border-radius: 500px;
+  font-family: var(--ifg-font-body);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.35px;
+  text-transform: none;
+  color: var(--ifg-dark);
+  transition: 0.1s ease-in-out;
+  transition-property: color, background-color;
+}
+.tm-tabs > li > a:hover,
+.tm-tabs > li > a:focus { background: var(--ifg-primary-tint); color: var(--ifg-dark); text-decoration: none; }
+.tm-tabs > li.uk-active > a { background: var(--ifg-dark); color: var(--ifg-white); font-weight: 700; }
+
+.tm-tab-panels p { font-size: 17px; line-height: 1.6; }
+
 /* Governance / documenti */
 
 .tm-doc-section + .tm-doc-section { margin-top: 64px; }

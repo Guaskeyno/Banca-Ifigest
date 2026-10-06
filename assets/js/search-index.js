@@ -99,8 +99,8 @@ window.IFIGEST_SEARCH_INDEX = [
  {
   "url": "area-soci.html",
   "title": "Area Soci",
-  "description": "Area Soci Banca Ifigest.",
-  "text": "soci capitale sociale avvisi Area Soci"
+  "description": "Avvisi, documenti e informazioni sul capitale sociale per i soci di Banca Ifigest.",
+  "text": "soci azionisti avvisi prelazione azioni documenti aumento di capitale relazione semestrale prospetto Area Soci Avvisi, documenti e informazioni sul capitale sociale Avvisi Documenti Aumento di capitale Avviso ai signori soci Si comunica che sono state poste in vendita n. 2.721 azioni Banca Ifigest spa al prezzo unitario di Euro 5,50. Il controvalore dovrà essere corrisposto contestualmente al trasferimento dei titoli azionari. Con lettera datata 1° aprile 2025 questa società ha provveduto, ai sensi di Statuto, ad inviare ad ogni Socio specifica comunicazione per l’esercizio del diritto di prelazione. I soci interessati all’esercizio del diritto di prelazione potranno contattare l’ufficio di Presidenza allo 055/2463201 per ogni ulteriore informazione. Documenti area soci Relazione finanziaria semestrale consolidata Documenti aumento di capitale Prospetto Ifigest aumento di capitale Avviso agli Azionisti di Offerta in Opzione ai sensi 2441"
  },
  {
   "url": "whistleblowing.html",
@@ -112,19 +112,19 @@ window.IFIGEST_SEARCH_INDEX = [
   "url": "trasparenza.html",
   "title": "Trasparenza",
   "description": "Trasparenza Banca Ifigest.",
-  "text": "trasparenza Trasparenza Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Richiedi una consulenza Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Richiedi una consulenza"
+  "text": "trasparenza Trasparenza Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
  },
  {
   "url": "dichiarazione-accessibilita.html",
   "title": "Dichiarazione di Accessibilità",
   "description": "Dichiarazione di accessibilità del sito Banca Ifigest.",
-  "text": "accessibilità Dichiarazione di Accessibilità Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Richiedi una consulenza Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Richiedi una consulenza"
+  "text": "accessibilità Dichiarazione di Accessibilità Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
  },
  {
   "url": "disconoscimento-operazioni.html",
   "title": "Disconoscimento delle operazioni di pagamento",
   "description": "Disconoscimento delle operazioni di pagamento.",
-  "text": "disconoscimento pagamento Disconoscimento delle operazioni di pagamento Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Richiedi una consulenza Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Richiedi una consulenza"
+  "text": "disconoscimento pagamento Disconoscimento delle operazioni di pagamento Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
  },
  {
   "url": "contatti.html",

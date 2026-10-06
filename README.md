@@ -37,4 +37,4 @@ Poi apri http://localhost:8000.
 - Immagini: tutte le immagini sono segnaposto (`.tm-placeholder`).
 - Link senza destinazione (`#`): Lavora con noi, documenti PDF, segnalazione interna whistleblowing, schede prodotto MIFID II.
 - Testo provvisorio (Lorem ipsum): Collocamento (Club Deal, FIA, Certificati, Polizze); due blocchi ciascuna su Gestioni Patrimoniali, Finanza Strutturata, Lombard Loans, Debt Advisory, Sostenibilità, Trasparenza, Dichiarazione di Accessibilità, Disconoscimento operazioni.
-- Pagine senza testi definiti: Area Soci.
+- Area Soci: i documenti puntano ai file su bancaifigest.com.

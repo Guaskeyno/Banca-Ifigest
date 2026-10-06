@@ -415,10 +415,14 @@ def feature(title, text, button, href, media_first=True):
 
 
 def doc_list(items):
-    lis = "".join(
-        f'<li><a href="#"><span uk-icon="icon: file-pdf"></span><span>{i}</span></a></li>' for i in items
-    )
-    return f'<ul class="tm-doc-list">{lis}</ul>'
+    """items: etichette (link "#" provvisorio) oppure coppie (etichetta, url)."""
+    lis = []
+    for i in items:
+        label, href = i if isinstance(i, tuple) else (i, "#")
+        icon = "file-text" if href.lower().endswith((".doc", ".docx")) else "file-pdf"
+        target = ' target="_blank" rel="noopener"' if href.startswith("http") else ""
+        lis.append(f'<li><a href="{href}"{target}><span uk-icon="icon: {icon}"></span><span>{label}</span></a></li>')
+    return '<ul class="tm-doc-list">' + "".join(lis) + "</ul>"
 
 
 def link_list(items):
@@ -615,10 +619,11 @@ LOREM = "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eius
 CTA_CONSULENZA = button("Richiedi una consulenza", "contatti.html")
 
 
-def placeholder_blocks(prefix):
+def placeholder_blocks(prefix, cta=True):
     """Due blocchi immagine + testo provvisorio, alternati (come Collocamento). TODO: testi definitivi."""
-    return split(block("Lorem ipsum", LOREM + CTA_CONSULENZA), sid=f"{prefix}-1", extra=" tm-section-split-first") + split(
-        block("Lorem ipsum", LOREM + CTA_CONSULENZA), media_first=True, sid=f"{prefix}-2"
+    body = LOREM + (CTA_CONSULENZA if cta else "")
+    return split(block("Lorem ipsum", body), sid=f"{prefix}-1", extra=" tm-section-split-first") + split(
+        block("Lorem ipsum", body), media_first=True, sid=f"{prefix}-2"
     )
 
 add(
@@ -895,7 +900,50 @@ add(
     + placeholder_blocks("sostenibilita"),
     "esg sostenibilità",
 )
-add("area-soci.html", "Area Soci", "Area Soci Banca Ifigest.", hero("Area Soci"), "soci capitale sociale avvisi")
+# Contenuti da bancaifigest.com/avvisi-per-i-soci/ (schede: Avvisi, Documenti, Aumento di capitale)
+SOCI_DOCS = doc_list([
+    ("Relazione finanziaria semestrale consolidata", "https://www.bancaifigest.com/PDF/areasoci/relazione-finanziaria-semestrale-consolidata-BANCA-IFIGEST_%20IAS-34.pdf"),
+])
+SOCI_CAPITALE = doc_list([
+    ("Prospetto Ifigest aumento di capitale", "https://www.bancaifigest.com/PDF/areasoci/PROSPETTO-IFIGEST-AUMENTO-CAPITALE-2024.pdf"),
+    ("Avviso agli Azionisti di Offerta in Opzione ai sensi 2441", "https://www.bancaifigest.com/PDF/areasoci/avviso-azionisti.docx"),
+])
+add(
+    "area-soci.html",
+    "Area Soci",
+    "Avvisi, documenti e informazioni sul capitale sociale per i soci di Banca Ifigest.",
+    hero("Area Soci", "Avvisi, documenti e informazioni sul capitale sociale")
+    + f"""
+<section class="uk-section tm-section-tabs">
+  <div class="uk-container uk-container-large">
+    <ul class="tm-tabs" uk-tab="connect: #tm-soci-panels; animation: uk-animation-fade">
+      <li><a href="#">Avvisi</a></li>
+      <li><a href="#">Documenti</a></li>
+      <li><a href="#">Aumento di capitale</a></li>
+    </ul>
+    <div id="tm-soci-panels" class="uk-switcher tm-tab-panels">
+      <div>
+        <h2 class="tm-section-title">Avviso ai signori soci</h2>
+        <div>
+          <p>Si comunica che sono state poste in vendita n. 2.721 azioni Banca Ifigest spa al prezzo unitario di Euro 5,50.</p>
+          <p>Il controvalore dovrà essere corrisposto contestualmente al trasferimento dei titoli azionari.</p>
+          <p>Con lettera datata 1° aprile 2025 questa società ha provveduto, ai sensi di Statuto, ad inviare ad ogni Socio specifica comunicazione per l’esercizio del diritto di prelazione.</p>
+          <p>I soci interessati all’esercizio del diritto di prelazione potranno contattare l’ufficio di Presidenza allo <a href="tel:+390552463201">055/2463201</a> per ogni ulteriore informazione.</p>
+        </div>
+      </div>
+      <div>
+        <h2 class="tm-section-title">Documenti area soci</h2>
+        {SOCI_DOCS}
+      </div>
+      <div>
+        <h2 class="tm-section-title">Documenti aumento di capitale</h2>
+        {SOCI_CAPITALE}
+      </div>
+    </div>
+  </div>
+</section>""",
+    "soci azionisti avvisi prelazione azioni documenti aumento di capitale relazione semestrale prospetto",
+)
 
 add(
     "whistleblowing.html",
@@ -930,9 +978,9 @@ add(
 )
 
 # Footer pages --------------------------------------------------------------
-add("trasparenza.html", "Trasparenza", "Trasparenza Banca Ifigest.", hero("Trasparenza", image=False) + placeholder_blocks("trasparenza"), "trasparenza")
-add("dichiarazione-accessibilita.html", "Dichiarazione di Accessibilità", "Dichiarazione di accessibilità del sito Banca Ifigest.", hero("Dichiarazione di Accessibilità", image=False) + placeholder_blocks("accessibilita"), "accessibilità")
-add("disconoscimento-operazioni.html", "Disconoscimento delle operazioni di pagamento", "Disconoscimento delle operazioni di pagamento.", hero("Disconoscimento delle operazioni di pagamento", image=False) + placeholder_blocks("disconoscimento"), "disconoscimento pagamento")
+add("trasparenza.html", "Trasparenza", "Trasparenza Banca Ifigest.", hero("Trasparenza", image=False) + placeholder_blocks("trasparenza", cta=False), "trasparenza")
+add("dichiarazione-accessibilita.html", "Dichiarazione di Accessibilità", "Dichiarazione di accessibilità del sito Banca Ifigest.", hero("Dichiarazione di Accessibilità", image=False) + placeholder_blocks("accessibilita", cta=False), "accessibilità")
+add("disconoscimento-operazioni.html", "Disconoscimento delle operazioni di pagamento", "Disconoscimento delle operazioni di pagamento.", hero("Disconoscimento delle operazioni di pagamento", image=False) + placeholder_blocks("disconoscimento", cta=False), "disconoscimento pagamento")
 
 # Contatti -------------------------------------------------------------------
 # Pagina costruita come quella del riferimento: colonne con titolo a barra,
