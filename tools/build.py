@@ -28,7 +28,7 @@ NAV = [
             ("Investimenti e Risparmio", "investimenti-e-risparmio.html"),
             ("Wealth Management", "wealth-management.html"),
             ("Collocamento", "collocamento.html"),
-            ("Consulenza Finanziaria", "consulenza-finanziaria.html"),
+            ("Gestioni Patrimoniali", "gestioni-patrimoniali.html"),
         ],
     },
     {
@@ -466,8 +466,8 @@ add(
     + cards(
         [
             ("Private Banking", "Un banker dedicato, un conto corrente progettato per esigenze complesse, e un'interlocuzione diretta con la direzione su ogni decisione importante", "private-banking.html"),
-            ("Gestioni Patrimoniali", "Oltre 30 linee di gestione attiva, costruite per profilo di rischio e orizzonte. La nostra priorità: proteggere il capitale e generare valore nel tempo", "investimenti-e-risparmio.html#gestioni-patrimoniali"),
-            ("Consulenza", "Raccomandazioni personalizzate su tutti i principali strumenti finanziari, con la libertà di scegliere e la trasparenza di chi non vende prodotti propri", "consulenza-finanziaria.html"),
+            ("Gestioni Patrimoniali", "Oltre 30 linee di gestione attiva, costruite per profilo di rischio e orizzonte. La nostra priorità: proteggere il capitale e generare valore nel tempo", "gestioni-patrimoniali.html"),
+            ("Consulenza", "Raccomandazioni personalizzate su tutti i principali strumenti finanziari, con la libertà di scegliere e la trasparenza di chi non vende prodotti propri", "investimenti-e-risparmio.html#consulenza-evoluta"),
             ("Family Office", "Patrimonio personale, familiare, professionale: una visione d'insieme, con soluzioni di pianificazione successoria, fiscale e immobiliare", "wealth-management.html"),
             ("Corporate Finance", "Con L&amp;B Partners affianchiamo imprenditori e PMI in operazioni di M&amp;A, capital raising e ristrutturazione del capitale. Una sola banca, dal patrimonio all'azienda", "investment-banking.html"),
             ("Fundstore", "La nostra piattaforma per investire in oltre 8.000 fondi, con commissioni trasparenti e un approccio costruito sull'autonomia dell'investitore informato", "https://www.fundstore.it", True),
@@ -493,7 +493,7 @@ add(
             ("Investimenti e Risparmio", "Oltre 30 linee di gestione attiva, costruite per profilo di rischio e orizzonte. La nostra priorità: proteggere il capitale e generare valore nel tempo", "investimenti-e-risparmio.html"),
             ("Wealth Management", "Patrimonio personale, familiare, professionale: una visione d'insieme, con soluzioni di pianificazione successoria, fiscale e immobiliare", "wealth-management.html"),
             ("Collocamento", "Assicurazione Vita in partnership con CNP Vita Assicura, per assicurare il futuro del patrimonio", "collocamento.html"),
-            ("Consulenza Finanziaria", "Raccomandazioni personalizzate su tutti i principali strumenti finanziari, con la libertà di scegliere e la trasparenza di chi non vende prodotti propri", "consulenza-finanziaria.html"),
+            ("Gestioni Patrimoniali", "Oltre 30 linee di gestione attiva, costruite per profilo di rischio e orizzonte. La nostra priorità: proteggere il capitale e generare valore nel tempo", "gestioni-patrimoniali.html"),
         ]
     ),
 )
@@ -628,11 +628,14 @@ add(
 )
 
 add(
-    "consulenza-finanziaria.html",
-    "Consulenza Finanziaria",
-    "Consulenza finanziaria Banca Ifigest.",
-    hero("Consulenza Finanziaria"),
-    "consulenza",
+    "gestioni-patrimoniali.html",
+    "Gestioni Patrimoniali",
+    "Gestioni Patrimoniali Banca Ifigest.",
+    hero("Gestioni Patrimoniali")
+    # TODO: testi definitivi
+    + split(block("Lorem ipsum", LOREM + CTA_CONSULENZA), sid="gestioni-1", extra=" tm-section-split-first")
+    + split(block("Lorem ipsum", LOREM + CTA_CONSULENZA), media_first=True, sid="gestioni-2"),
+    "gestioni patrimoniali linee di gestione",
 )
 
 # Investment Banking --------------------------------------------------------

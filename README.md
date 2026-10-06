@@ -36,5 +36,5 @@ Poi apri http://localhost:8000.
 
 - Immagini: tutte le immagini sono segnaposto (`.tm-placeholder`).
 - Link senza destinazione (`#`): Lavora con noi, documenti PDF, segnalazione interna whistleblowing, schede prodotto MIFID II.
-- Testo provvisorio (Lorem ipsum): Collocamento – Club Deal, FIA, Certificati, Polizze.
-- Pagine senza testi definiti: Consulenza Finanziaria, Finanza Strutturata, Lombard Loans, Debt Advisory, Sostenibilità, Area Soci, Trasparenza, Dichiarazione di Accessibilità, Disconoscimento operazioni.
+- Testo provvisorio (Lorem ipsum): Collocamento – Club Deal, FIA, Certificati, Polizze; Gestioni Patrimoniali – entrambi i blocchi.
+- Pagine senza testi definiti: Finanza Strutturata, Lombard Loans, Debt Advisory, Sostenibilità, Area Soci, Trasparenza, Dichiarazione di Accessibilità, Disconoscimento operazioni.
