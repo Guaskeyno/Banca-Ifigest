@@ -611,6 +611,7 @@ CNP = (
     "Apprezzati dai mercati globali per il miglior rating ESG nel settore assicurativo (AAA fonte MSCI) e un rating finanziario: Fitch A+, Standard &amp; Poor's A+ e Moody's A1. "
     "L'Italia rappresenta un mercato strategico per il Gruppo, dove opera da oltre 20 anni ed è oggi il 5° player nel business Vita.</p>"
 )
+LOREM = "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>"  # TODO: testo definitivo
 CTA_CONSULENZA = button("Richiedi una consulenza", "contatti.html")
 
 add(
@@ -619,10 +620,10 @@ add(
     "Guarda con serenità al futuro, con soluzioni a capitale garantito e diversificazione.",
     hero("Collocamento", "Guarda con serenità al futuro, con soluzioni a capitale garantito e diversificazione")
     + split(block("CNP Vita Assicura", CNP + CTA_CONSULENZA), sid="cnp-vita-assicura", extra=" tm-section-split-first")
-    + split(block("Club Deal", CTA_CONSULENZA), media_first=True, sid="club-deal")
-    + split(block("FIA", CTA_CONSULENZA), sid="fia")
-    + split(block("Certificati", CTA_CONSULENZA), media_first=True, sid="certificati")
-    + split(block("Polizze", CTA_CONSULENZA), sid="polizze"),
+    + split(block("Club Deal", LOREM + CTA_CONSULENZA), media_first=True, sid="club-deal")
+    + split(block("FIA", LOREM + CTA_CONSULENZA), sid="fia")
+    + split(block("Certificati", LOREM + CTA_CONSULENZA), media_first=True, sid="certificati")
+    + split(block("Polizze", LOREM + CTA_CONSULENZA), sid="polizze"),
     "assicurazione vita cnp club deal fia certificati polizze ivass rui",
 )
 
