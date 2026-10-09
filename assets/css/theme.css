@@ -336,6 +336,9 @@ h1, h2, h3, h4, h5, h6,
   background-image: repeating-linear-gradient(135deg, transparent 0 22px, rgba(255, 255, 255, 0.28) 22px 23px);
   color: rgba(0, 59, 76, 0.45);
 }
+.tm-placeholder { position: relative; overflow: hidden; }
+/* Immagine definitiva: copre il segnaposto quando il file esiste */
+.tm-photo { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; object-fit: cover; }
 .tm-placeholder-cover { height: 100%; }
 .tm-placeholder-square { aspect-ratio: 1 / 1; }
 

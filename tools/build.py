@@ -98,9 +98,13 @@ def tel_href(num):
     return "tel:+39" + re.sub(r"\D", "", num)
 
 
-def placeholder(cls="", label="Immagine"):
+def placeholder(cls="", label="Immagine", hint=""):
+    """Segnaposto immagine. Contiene già il percorso dell'immagine definitiva
+    (assets/img/pages/<pagina>-<hint>.jpg, assegnato in add()): finché il file non
+    esiste l'<img> viene rimosso e resta il segnaposto; appena caricato, compare."""
     return (
-        f'<div class="tm-placeholder {cls}" role="img" aria-label="{label} segnaposto">'
+        f'<div class="tm-placeholder {cls}">'
+        f'<img class="tm-photo" src="__IMG:{hint}__" alt="" loading="lazy" decoding="async" onerror="this.remove()">'
         '<span uk-icon="icon: image; ratio: 2"></span></div>'
     )
 
@@ -229,7 +233,7 @@ def subnav(slug):
 def hero(title, subtitle="", image=True):
     sub = f'<p class="tm-hero-subtitle">{subtitle}</p>' if subtitle else ""
     media = (
-        f'<div class="tm-hero-media">{placeholder("tm-placeholder-cover")}</div>' if image else ""
+        f'<div class="tm-hero-media">{placeholder("tm-placeholder-cover", hint="hero")}</div>' if image else ""
     )
     return f"""
 <section class="tm-hero{'' if image else ' tm-hero-plain'}">
@@ -374,7 +378,7 @@ def text_section(content, sid="", extra=""):
 
 
 def split(content, media_first=False, sid="", extra=""):
-    media = f'<div class="tm-split-media">{placeholder("tm-placeholder-square")}</div>'
+    media = f'<div class="tm-split-media">{placeholder("tm-placeholder-square", hint=sid)}</div>'
     text = f'<div class="tm-split-content">{content}</div>'
     inner = media + text if media_first else text + media
     id_attr = f' id="{sid}"' if sid else ""
@@ -391,7 +395,7 @@ def block(title, body="", level="h2", extra=""):
 
 
 def feature(title, text, button, href, media_first=True):
-    media = f'<div class="tm-feature-media">{placeholder("tm-placeholder-cover")}</div>'
+    media = f'<div class="tm-feature-media">{placeholder("tm-placeholder-cover", hint=slugify(title))}</div>'
     content = (
         f'<div class="tm-feature-content"><h2 class="tm-feature-title">{title}</h2><p>{text}</p>'
         f'<a class="uk-button uk-button-default tm-button-light-outline" href="{href}"{SCROLL if href.startswith("#") else ""}>{button}</a></div>'
@@ -443,7 +447,29 @@ def button(label, href, style="primary"):
 PAGES = []
 
 
+def slugify(text):
+    import unicodedata
+    t = unicodedata.normalize("NFD", text).encode("ascii", "ignore").decode().lower()
+    return re.sub(r"[^a-z0-9]+", "-", t).strip("-")
+
+
 def add(slug, title, description, body, keywords=""):
+    page_name = slug.replace(".html", "")
+    page_name = "home" if page_name == "index" else page_name
+    used, counter = set(), [0]
+
+    def name(m):
+        hint = m.group(1)
+        if hint.startswith(page_name + "-"):
+            hint = hint[len(page_name) + 1:]
+        if not hint or hint in used:
+            counter[0] += 1
+            hint = f"immagine-{counter[0]}"
+        used.add(hint)
+        path = f"assets/img/pages/{page_name}-{hint}.jpg"
+        return path
+
+    body = re.sub(r"__IMG:([^_]*)__", name, body)
     PAGES.append((slug, title, description, body, keywords))
 
 
@@ -588,7 +614,8 @@ add(
         + block(
             "Amministrazione di Patrimoni",
             "<p>Amministrazione di patrimoni mobiliari, con rendicontazione puntuale e supporto negli adempimenti, anche senza intestazione dei beni.</p>",
-        )
+        ),
+        sid="intestazione-fiduciaria",
     )
     + split(
         block(
@@ -600,6 +627,7 @@ add(
             "<p>Separazione e protezione degli asset, a garanzia di continuità e riservatezza nella gestione del patrimonio nel tempo.</p>",
         ),
         media_first=True,
+        sid="pianificazione-successoria",
     )
     + feature(
         "Valore di Gruppo",
@@ -624,8 +652,8 @@ CTA_CONSULENZA = button("Richiedi una consulenza", "contatti.html")
 def placeholder_blocks(prefix, cta=True):
     """Due blocchi immagine + testo provvisorio, alternati (come Collocamento). TODO: testi definitivi."""
     body = LOREM + (CTA_CONSULENZA if cta else "")
-    return split(block("Lorem ipsum", body), sid=f"{prefix}-1", extra=" tm-section-split-first") + split(
-        block("Lorem ipsum", body), media_first=True, sid=f"{prefix}-2"
+    return split(block("Lorem ipsum", body), sid="blocco-1", extra=" tm-section-split-first") + split(
+        block("Lorem ipsum", body), media_first=True, sid="blocco-2"
     )
 
 add(
@@ -1115,6 +1143,38 @@ def text_of(html):
     return re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", html)).strip()
 
 
+IMAGE_SPECS = {
+    "hero": ("Testata (hero)", "2880 × 1106 px (circa 2,6:1)"),
+    "tm-placeholder-square": ("Blocco immagine + testo", "1312 × 1312 px (1:1)"),
+    "tm-placeholder-cover": ("Pannello scuro con immagine", "1728 × 820 px (circa 2,1:1)"),
+}
+
+
+def write_image_manifest():
+    """Elenco delle immagini attese, pagina per pagina, in assets/img/pages/README.md."""
+    lines = [
+        "# Immagini delle pagine",
+        "",
+        "Generato da `tools/build.py`: non modificare a mano.",
+        "",
+        "Caricare qui i file con **esattamente** questi nomi (minuscolo, estensione `.jpg`).",
+        "Finché un file manca, la pagina mostra il segnaposto; appena caricato, l'immagine compare da sola.",
+        "",
+    ]
+    for slug, title, *_ in PAGES:
+        html = (ROOT / slug).read_text(encoding="utf-8")
+        found = []
+        for m in re.finditer(r'<div class="(tm-hero-media|tm-split-media|tm-feature-media)"><div class="tm-placeholder ([^"]+)"><img class="tm-photo" src="assets/img/pages/([^"]+)"', html):
+            kind = "hero" if m.group(1) == "tm-hero-media" else m.group(2).strip()
+            found.append((m.group(3), *IMAGE_SPECS[kind]))
+        if found:
+            lines += [f"## {title} (`{slug}`)", "", "| File | Uso | Dimensioni consigliate |", "|---|---|---|"]
+            lines += [f"| `{f}` | {use} | {size} |" for f, use, size in found]
+            lines.append("")
+    (ROOT / "assets/img/pages").mkdir(parents=True, exist_ok=True)
+    (ROOT / "assets/img/pages/README.md").write_text("\n".join(lines), encoding="utf-8")
+
+
 def main():
     index = [
         {"url": slug, "title": title, "description": description, "text": f"{keywords} {text_of(body)}"}
@@ -1128,6 +1188,7 @@ def main():
     )
     for slug, title, description, body, keywords in PAGES:
         (ROOT / slug).write_text(page(slug, title, description, body), encoding="utf-8")
+    write_image_manifest()
     print(f"Built {len(PAGES)} pages")
 
 
