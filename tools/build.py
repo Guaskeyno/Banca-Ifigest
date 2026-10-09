@@ -94,16 +94,6 @@ SCROLL = ' uk-scroll="offset: 96"'
 # --------------------------------------------------------------------------
 # Partials
 # --------------------------------------------------------------------------
-STRIPES = (
-    '<svg class="tm-stripes" viewBox="0 0 274 400" preserveAspectRatio="none" aria-hidden="true" focusable="false">'
-    + "".join(
-        f'<rect x="{x}" y="0" width="{w}" height="400"/>'
-        for x, w in [(0, 2), (6, 4), (18, 8), (36, 10), (58, 12), (84, 14), (114, 16), (154, 24), (202, 24), (250, 24)]
-    )
-    + "</svg>"
-)
-
-
 def tel_href(num):
     return "tel:+39" + re.sub(r"\D", "", num)
 
@@ -239,7 +229,7 @@ def subnav(slug):
 def hero(title, subtitle="", image=True):
     sub = f'<p class="tm-hero-subtitle">{subtitle}</p>' if subtitle else ""
     media = (
-        f'<div class="tm-hero-media">{placeholder("tm-placeholder-cover")}{STRIPES}</div>' if image else ""
+        f'<div class="tm-hero-media">{placeholder("tm-placeholder-cover")}</div>' if image else ""
     )
     return f"""
 <section class="tm-hero{'' if image else ' tm-hero-plain'}">

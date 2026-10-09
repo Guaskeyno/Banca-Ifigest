@@ -351,17 +351,6 @@ h1, h2, h3, h4, h5, h6,
 @media (min-width: 640px) { .tm-hero-media { height: 420px; } }
 @media (min-width: 1200px) { .tm-hero-media { height: clamp(460px, 38.4vw, 553px); } }
 
-.tm-stripes {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  width: 19%;
-  min-width: 120px;
-  height: 72%;
-  fill: var(--ifg-primary);
-  pointer-events: none;
-}
-
 .tm-hero-title {
   background: var(--ifg-primary);
   color: var(--ifg-white);
