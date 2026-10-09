@@ -520,6 +520,13 @@ h1, h2, h3, h4, h5, h6,
 
 .tm-section-text .tm-block p { max-width: none; }
 
+/* Sezione su colore principale, testo bianco */
+.tm-section-primary { background: var(--ifg-primary); color: var(--ifg-white); }
+.tm-section-primary .tm-block-title,
+.tm-section-primary h2,
+.tm-section-primary h3 { color: var(--ifg-white); }
+.tm-section-primary a { color: var(--ifg-white); text-decoration: underline; }
+
 /* Feature: pannello scuro con immagine */
 
 .tm-feature {

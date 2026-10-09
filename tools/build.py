@@ -746,6 +746,7 @@ add(
             "<p>Banca Ifigest opera in un contesto di architettura aperta: la propria indipendenza da grandi gruppi finanziari consente di selezionare, senza condizionamenti, i migliori strumenti e le migliori soluzioni disponibili sul mercato per ogni esigenza del cliente. Dalla scelta dei fondi collocati tramite Fundstore alla selezione degli strumenti obbligazionari e azionari nelle gestioni patrimoniali, la preferenza va sempre al prodotto più adatto agli obiettivi del cliente.</p>",
         ),
         sid="filosofia",
+        extra=" tm-section-primary",
     ),
     "storia 1987 filosofia di gestione architettura aperta indipendente firenze",
 )
