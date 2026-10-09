@@ -730,6 +730,33 @@ h1, h2, h3, h4, h5, h6,
 
 .tm-list-horizontal.tm-footer-secondary { margin-top: 24px; }
 
+/* Documenti a fisarmonica (Governance), come la pagina Documentazione del riferimento */
+
+.tm-doc-rule { margin: 20px 0; border: 0; border-top: 1px solid rgba(0, 0, 0, 0.06); }
+.tm-doc-accordion { margin: 0; padding: 0; list-style: none; }
+.tm-doc-accordion > li + li { margin-top: 20px; }
+.tm-doc-accordion .uk-accordion-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 0;
+  font-family: var(--ifg-font-body);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--ifg-dark);
+  text-decoration: none;
+}
+.tm-doc-accordion .uk-accordion-title:hover,
+.tm-doc-accordion .uk-accordion-title:focus { font-weight: 700; color: var(--ifg-dark); }
+.tm-doc-accordion .uk-accordion-title::before { display: none; }
+.tm-doc-accordion .uk-accordion-content { margin-top: 20px; }
+.tm-doc-accordion .tm-doc-list { margin: 0; }
+.tm-doc-accordion .tm-doc-list li + li { margin-top: 0; }
+.tm-doc-accordion .tm-doc-list a { padding: 0; gap: 10px; font-size: 16px; line-height: 28px; text-decoration: underline; }
+.tm-doc-accordion .tm-doc-list a .uk-icon { margin-top: 4px; color: var(--ifg-dark); }
+
 /* Governance / documenti */
 
 .tm-doc-section + .tm-doc-section { margin-top: 64px; }
