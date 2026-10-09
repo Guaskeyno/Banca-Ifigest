@@ -734,7 +734,7 @@ h1, h2, h3, h4, h5, h6,
 
 .tm-doc-rule { margin: 20px 0; border: 0; border-top: 1px solid rgba(0, 0, 0, 0.06); }
 .tm-doc-accordion { margin: 0; padding: 0; list-style: none; }
-.tm-doc-accordion > li + li { margin-top: 20px; }
+.tm-doc-accordion > li + li { margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--ifg-line); }
 .tm-doc-accordion .uk-accordion-title {
   display: flex;
   align-items: center;
