@@ -278,6 +278,7 @@ def footer():
       <div class="uk-width-1-2@m uk-flex uk-flex-middle">
         <nav class="tm-footer-small uk-width-1-1" aria-label="Link utili">
           <ul class="tm-list-horizontal">{"".join(items)}</ul>
+          <ul class="tm-list-horizontal tm-footer-secondary"><li class="no-separator"><a href="privacy-policy.html">Privacy Policy</a></li></ul>
           <p class="tm-footer-legal">Capitale sociale euro 37.554.277,00 i.v. | Albo delle Banche n. 5485 | Albo dei Gruppi Bancari n. 3185</p>
         </nav>
       </div>
@@ -1060,6 +1061,28 @@ add(
     "Tutti i riferimenti utili per entrare in contatto con Banca Ifigest: sede, filiali, telefoni, email e dati societari.",
     contact_page(),
     "contatti sede filiali telefono email pec indirizzo firenze milano roma torino prato genova dati societari",
+)
+
+# Privacy Policy --------------------------------------------------------------
+# Impaginata come la privacy policy del riferimento (titolo, sottotitolo, testo).
+# Testo copiato dalla privacy policy Iubenda di Banca Ifigest
+# (https://www.iubenda.com/privacy-policy/58439536): non si aggiorna da solo,
+# va risincronizzato a mano in content/privacy-policy.html quando cambia.
+PRIVACY_HTML = (ROOT / "content/privacy-policy.html").read_text(encoding="utf-8")
+add(
+    "privacy-policy.html",
+    "Privacy Policy",
+    "Privacy policy del sito Banca Ifigest: quali dati raccogliamo, perché li raccogliamo e quali sono i diritti degli utenti.",
+    f"""
+<section class="uk-section tm-section-policy">
+  <div class="uk-container uk-container-large">
+    <h1 class="tm-policy-title">Privacy Policy</h1>
+    <p class="tm-policy-intro">Benvenuto nella privacy policy di bancaifigest.com. Questa policy ti aiuterà a comprendere quali dati raccogliamo, perché li raccogliamo e quali sono i tuoi diritti in merito.</p>
+    <p class="tm-caption">Ultima modifica: 24 febbraio 2026</p>
+    <div class="tm-policy">{PRIVACY_HTML}</div>
+  </div>
+</section>""",
+    "privacy policy gdpr dati personali cookie trattamento diritti titolare",
 )
 
 # Search --------------------------------------------------------------------

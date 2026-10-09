@@ -696,6 +696,36 @@ h1, h2, h3, h4, h5, h6,
 
 .tm-tab-panels p { font-size: 17px; line-height: 1.6; }
 
+/* Privacy Policy (come il riferimento: titolo, sottotitolo, testo con titoletti in grassetto) */
+
+.tm-policy-title { margin: 0 0 16px; font-size: 34px; line-height: 1.2; }
+@media (min-width: 960px) { .tm-policy-title { font-size: 42px; } }
+.tm-policy-intro { margin: 0 0 8px; font-size: 18px; line-height: 1.5; }
+
+.tm-policy { margin-top: 56px; font-size: 16px; line-height: 1.75; }
+@media (min-width: 960px) { .tm-policy { margin-top: 70px; } }
+.tm-policy h2,
+.tm-policy h3,
+.tm-policy h4,
+.tm-policy h5 {
+  font-family: var(--ifg-font-body);
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--ifg-dark);
+}
+.tm-policy h2 { margin: 48px 0 12px; font-size: 22px; line-height: 1.3; }
+.tm-policy h2:first-child { margin-top: 0; }
+.tm-policy h3 { margin: 28px 0 8px; font-size: 18px; line-height: 1.4; }
+.tm-policy h4 { margin: 24px 0 6px; font-size: 16px; line-height: 1.4; }
+.tm-policy h5 { margin: 16px 0 4px; font-size: 14px; line-height: 1.4; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(0, 59, 76, 0.75); }
+.tm-policy p { margin: 0 0 12px; }
+.tm-policy ul { margin: 0 0 16px; padding-left: 20px; }
+.tm-policy li + li { margin-top: 4px; }
+.tm-policy a { text-decoration: underline; word-break: break-word; }
+
+.tm-list-horizontal.tm-footer-secondary { margin-top: 24px; }
+
 /* Governance / documenti */
 
 .tm-doc-section + .tm-doc-section { margin-top: 64px; }

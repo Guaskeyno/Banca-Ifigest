@@ -38,3 +38,7 @@ Poi apri http://localhost:8000.
 - Link senza destinazione (`#`): Lavora con noi, documenti PDF, segnalazione interna whistleblowing, schede prodotto MIFID II.
 - Testo provvisorio (Lorem ipsum): Collocamento (Club Deal, FIA, Certificati, Polizze); due blocchi ciascuna su Gestioni Patrimoniali, Finanza Strutturata, Lombard Loans, Debt Advisory, Sostenibilità, Trasparenza, Dichiarazione di Accessibilità, Disconoscimento operazioni.
 - Area Soci: i documenti puntano ai file su bancaifigest.com.
+
+## Privacy Policy
+
+Il testo di `privacy-policy.html` è copiato dalla privacy policy Iubenda di Banca Ifigest (https://www.iubenda.com/privacy-policy/58439536) e salvato in `content/privacy-policy.html`. Non si aggiorna automaticamente: quando la policy su Iubenda cambia, aggiornare quel file (e la data "Ultima modifica" in `tools/build.py`) e rigenerare le pagine.
