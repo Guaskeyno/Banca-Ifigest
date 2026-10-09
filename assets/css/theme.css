@@ -398,6 +398,14 @@ h1, h2, h3, h4, h5, h6,
 .tm-intro-cta { margin-top: 48px; }
 @media (min-width: 960px) { .tm-intro-cta { margin-top: 70px; } }
 
+/* Due colonne: titolo a sinistra, testo a destra (Chi Siamo, come il riferimento) */
+
+.tm-two-col-heading { margin: 0; font-size: 22px; line-height: 1.3; color: var(--ifg-primary); }
+@media (min-width: 960px) { .tm-two-col-heading { font-size: 28px; } }
+.tm-two-col-text { color: var(--ifg-primary); }
+.tm-two-col-text p { margin: 0; font-size: 17px; line-height: 1.75; }
+.tm-two-col-text p + p { margin-top: 1em; }
+
 /* Lead */
 
 .tm-section-lead { padding-bottom: 0; }

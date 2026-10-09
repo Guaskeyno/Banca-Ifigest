@@ -707,12 +707,21 @@ add(
     "Chi Siamo",
     "Una realtà indipendente, specializzata nella gestione e valorizzazione dei patrimoni privati e istituzionali.",
     hero("Chi Siamo", "Una realtà indipendente, specializzata nella gestione e valorizzazione dei patrimoni privati e istituzionali")
-    + split(
-        '<p class="tm-lead tm-lead-primary">Il Gruppo Bancario Ifigest è fondato su principi di trasparenza, indipendenza e orientamento al cliente, integrando competenze bancarie, fiduciarie e di gestione del risparmio.</p>'
-        "<p>Banca Ifigest è una banca privata e indipendente con sede a Firenze, iscritta all'Albo delle Banche al Num. 5485 e all'Albo dei Gruppi Bancari al num. 3185. Aderente al Fondo Interbancario di tutela dei depositi e al Fondo Nazionale di Garanzia.</p>"
-        "<p>Intermediario autorizzato all'esercizio dei servizi bancari e di investimento di collocamento, ricezione e trasmissione di ordini, gestione individuale di portafoglio di investimento e consulenza in materia di investimenti dalla Banca d'Italia con delibera del 19 aprile 2001. Il Gruppo comprende Banca Ifigest S.p.A., Sevian Fiduciaria, Fundstore e Soprarno SGR.</p>",
-        extra=" tm-section-split-center",
-    )
+    # Titolo a sinistra, testo a destra (come "La nostra esperienza, la vostra crescita" del riferimento)
+    + """
+<section class="uk-section tm-section-two-col" id="chi-siamo">
+  <div class="uk-container uk-container-large">
+    <div class="uk-grid-large uk-child-width-1-2@m" uk-grid>
+      <div>
+        <h2 class="tm-two-col-heading">Il Gruppo Bancario Ifigest è fondato su principi di trasparenza, indipendenza e orientamento al cliente, integrando competenze bancarie, fiduciarie e di gestione del risparmio.</h2>
+      </div>
+      <div class="tm-two-col-text">
+        <p>Banca Ifigest è una banca privata e indipendente con sede a Firenze, iscritta all'Albo delle Banche al Num. 5485 e all'Albo dei Gruppi Bancari al num. 3185. Aderente al Fondo Interbancario di tutela dei depositi e al Fondo Nazionale di Garanzia.</p>
+        <p>Intermediario autorizzato all'esercizio dei servizi bancari e di investimento di collocamento, ricezione e trasmissione di ordini, gestione individuale di portafoglio di investimento e consulenza in materia di investimenti dalla Banca d'Italia con delibera del 19 aprile 2001. Il Gruppo comprende Banca Ifigest S.p.A., Sevian Fiduciaria, Fundstore e Soprarno SGR.</p>
+      </div>
+    </div>
+  </div>
+</section>"""
     + f"""
 <section class="uk-section tm-section-timeline-title" id="storia" aria-labelledby="storia-title">
   <div class="uk-container uk-container-large">
