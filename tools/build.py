@@ -349,7 +349,7 @@ def card(title, text, href, external=False):
             <h3 class="tm-card-title">{title}</h3>
             <p class="tm-card-text">{text}</p>
           </div>
-          <span class="tm-card-arrow" aria-hidden="true"><span uk-icon="arrow-right"></span></span>
+          <span class="tm-card-arrow" aria-hidden="true">&gt;</span>
         </a>
       </div>"""
 

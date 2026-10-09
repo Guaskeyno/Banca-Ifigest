@@ -486,18 +486,24 @@ h1, h2, h3, h4, h5, h6,
 @media (min-width: 960px) { .tm-card-title { font-size: 24px; } }
 .tm-card-text { margin: 0; font-size: 17px; line-height: 1.4; }
 
+/* Bottone freccia come il riferimento (pill 44x26 con ">") */
 .tm-card-arrow {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
+  display: inline-block;
+  align-self: flex-start;
+  padding: 0 16px;
+  border: 1px solid transparent;
   border-radius: 500px;
   background: var(--ifg-dark);
   color: var(--ifg-white);
-  transition: background-color 0.25s ease, transform 0.25s ease;
+  font-family: var(--ifg-font-body);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  box-shadow: 1px 3px 15px rgba(0, 59, 76, 0.2);
+  transition: background-color 0.25s ease;
 }
-.tm-card:hover .tm-card-arrow { background: var(--ifg-primary); transform: translateX(4px); }
+.tm-card:hover .tm-card-arrow,
+.tm-card:focus .tm-card-arrow { background: var(--ifg-primary); }
 
 /* Split: immagine + testo */
 
