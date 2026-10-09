@@ -89,7 +89,7 @@ SEDI = [
 
 ACTIVE = ' class="uk-active"'
 CURRENT = ' aria-current="page"'
-SCROLL = ' uk-scroll="offset: 96"'
+SCROLL = ' uk-scroll="offset: 120"'
 
 # --------------------------------------------------------------------------
 # Partials
@@ -128,7 +128,7 @@ def header(slug):
         return (
             f'<li class="uk-parent{active}"><a href="{item["href"]}">{escape(item["label"])} '
             '<span uk-navbar-parent-icon></span></a>'
-            '<div class="uk-navbar-dropdown"><ul class="uk-nav uk-navbar-dropdown-nav">'
+            '<div class="uk-drop uk-navbar-dropdown"><ul class="uk-nav uk-navbar-dropdown-nav">'
             f"{sub}</ul></div></li>"
         )
 
@@ -437,7 +437,7 @@ def link_list(items):
 
 
 def button(label, href, style="primary"):
-    scroll = ' uk-scroll="offset: 96"' if href.startswith("#") else ""
+    scroll = ' uk-scroll="offset: 120"' if href.startswith("#") else ""
     return f'<a class="uk-button uk-button-{style}" href="{href}"{scroll}>{label}</a>'
 
 

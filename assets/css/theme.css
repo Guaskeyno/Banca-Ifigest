@@ -29,7 +29,7 @@
   --ifg-font-body: "Lato", "Helvetica Neue", Arial, sans-serif;
   --ifg-font-display: "Meghana", "Lato", "Helvetica Neue", Arial, sans-serif;
 
-  --ifg-header-height: 96px;
+  --ifg-header-height: 120px;
   --ifg-gutter: 20px;
 }
 
@@ -163,7 +163,9 @@ h1, h2, h3, h4, h5, h6,
 }
 .uk-navbar-sticky { box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12); }
 
-.tm-header .uk-navbar { min-height: var(--ifg-header-height); align-items: center; }
+/* Altezza come il riferimento: barra 80px + 20px sopra e sotto = 120px */
+.tm-header .uk-navbar-container { padding: 20px 0; }
+.tm-header .uk-navbar { min-height: 80px; align-items: center; }
 .tm-header .uk-navbar-left,
 .tm-header .uk-navbar-right { align-items: center; }
 .tm-header .uk-navbar-right { gap: 8px; }
@@ -261,8 +263,8 @@ h1, h2, h3, h4, h5, h6,
 
 /* Header mobile + offcanvas */
 
-.tm-header-mobile .uk-navbar { min-height: 72px; }
-.tm-header-mobile .uk-navbar-toggle { min-height: 72px; color: var(--ifg-white); }
+.tm-header-mobile .uk-navbar { min-height: 80px; }
+.tm-header-mobile .uk-navbar-toggle { min-height: 80px; color: var(--ifg-white); }
 
 .uk-offcanvas-bar {
   background: var(--ifg-primary);
