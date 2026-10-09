@@ -752,10 +752,14 @@ h1, h2, h3, h4, h5, h6,
 .tm-doc-accordion .uk-accordion-title:focus { font-weight: 700; color: var(--ifg-dark); }
 .tm-doc-accordion .uk-accordion-title::before { display: none; }
 .tm-doc-accordion .uk-accordion-content { margin-top: 20px; }
-.tm-doc-accordion .tm-doc-list { margin: 0; }
-.tm-doc-accordion .tm-doc-list li + li { margin-top: 0; }
-.tm-doc-accordion .tm-doc-list a { padding: 0; gap: 10px; font-size: 16px; line-height: 28px; text-decoration: underline; }
-.tm-doc-accordion .tm-doc-list a .uk-icon { margin-top: 4px; color: var(--ifg-dark); }
+.tm-doc-accordion .tm-doc-list,
+.tm-docs-plain .tm-doc-list { margin: 0; }
+.tm-doc-accordion .tm-doc-list li + li,
+.tm-docs-plain .tm-doc-list li + li { margin-top: 0; }
+.tm-doc-accordion .tm-doc-list a,
+.tm-docs-plain .tm-doc-list a { padding: 0; gap: 10px; font-size: 16px; line-height: 28px; text-decoration: underline; }
+.tm-doc-accordion .tm-doc-list a .uk-icon,
+.tm-docs-plain .tm-doc-list a .uk-icon { margin-top: 4px; color: var(--ifg-dark); }
 
 /* Governance / documenti */
 

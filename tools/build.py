@@ -804,17 +804,30 @@ add(
 
     <div class="tm-doc-section" id="documenti">
       <h2 class="tm-section-title">Documenti</h2>
-      <hr class="tm-doc-rule">
       {doc_accordion([
-          ("Bilanci d’esercizio", ["Bilancio d’esercizio Banca Ifigest SpA 2025", "Bilancio d’esercizio Banca Ifigest SpA 2024", "Bilancio d’esercizio Banca Ifigest SpA 2023"]),
-          ("Bilanci consolidati", ["Bilancio consolidato Gruppo Bancario Ifigest 2025", "Bilancio consolidato Gruppo Bancario Ifigest 2024", "Bilancio consolidato Gruppo Bancario Ifigest 2023"]),
-          ("Informativa Stato per Stato", ["Informativa Stato per Stato 2025", "Informativa Stato per Stato 2024", "Informativa Stato per Stato 2023"]),
-          ("Documentazione generale", ["Informazioni Generali", "Terzo Pilastro, Informativa al pubblico", "Patriot Act"]),
-          ("Privacy", ["Informativa Privacy Utenti Web", "Informativa Privacy Clienti", "Informativa Privacy Fornitori", "Informativa Privacy Videosorveglianza"]),
-          ("Governance", ["Statuto", "Informativa sul Governo Societario", "Regolamento per la gestione delle obbligazioni e delle operazioni con i soggetti in conflitto d’interesse", "Policy conflitti"]),
-          ("Modello 231", ["Modello Organizzativo ai sensi della Legge n.231 del 2001", "Codice Etico", "Code of Conduct"]),
-          ("BRRD (Bail-in)", ["Informativa alla Clientela Bail-In", "Banca d’Italia: che cosa cambia nella gestione delle crisi bancarie", "D.Lgs. n. 180 del 16/11/2015 · D.Lgs. n. 181 del 16/11/2015", "CONSOB: Comunicazione n. 0090430 del 24/11/2015"]),
+          ("Bilanci", [
+              "Bilancio d’esercizio Banca Ifigest SpA 2025", "Bilancio d’esercizio Banca Ifigest SpA 2024", "Bilancio d’esercizio Banca Ifigest SpA 2023",
+              "Informativa Stato per Stato 2025", "Informativa Stato per Stato 2024", "Informativa Stato per Stato 2023",
+              "Bilancio consolidato Gruppo Bancario Ifigest 2025", "Bilancio consolidato Gruppo Bancario Ifigest 2024", "Bilancio consolidato Gruppo Bancario Ifigest 2023",
+          ]),
+          ("Documentazione Generale", ["Informazioni Generali", "Terzo Pilastro, Informativa al pubblico", "Patriot Act"]),
       ])}
+    </div>
+    <div class="tm-doc-section" id="privacy">
+      <h2 class="tm-section-title">Privacy</h2>
+      <div class="tm-docs-plain">{doc_list(['Informativa Privacy Utenti Web', 'Informativa Privacy Clienti', 'Informativa Privacy Fornitori', 'Informativa Privacy Videosorveglianza'])}</div>
+    </div>
+    <div class="tm-doc-section" id="governance">
+      <h2 class="tm-section-title">Governance</h2>
+      <div class="tm-docs-plain">{doc_list(['Statuto', 'Informativa sul Governo Societario', 'Regolamento per la gestione delle obbligazioni e delle operazioni con i soggetti in conflitto d’interesse', 'Policy conflitti'])}</div>
+    </div>
+    <div class="tm-doc-section" id="modello-231">
+      <h2 class="tm-section-title">Modello 231</h2>
+      <div class="tm-docs-plain">{doc_list(['Modello Organizzativo ai sensi della Legge n.231 del 2001', 'Codice Etico', 'Code of Conduct'])}</div>
+    </div>
+    <div class="tm-doc-section" id="brrd">
+      <h2 class="tm-section-title">BRRD (Bail-In)</h2>
+      <div class="tm-docs-plain">{doc_list(['Informativa alla Clientela Bail-In', 'Banca d’Italia: che cosa cambia nella gestione delle crisi bancarie', 'D.Lgs. n. 180 del 16/11/2015 · D.Lgs. n. 181 del 16/11/2015', 'CONSOB: Comunicazione n. 0090430 del 24/11/2015'])}</div>
     </div>
   </div>
 </section>""",
