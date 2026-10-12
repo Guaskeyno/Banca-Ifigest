@@ -34,9 +34,9 @@ Poi apri http://localhost:8000.
 
 ## Segnaposto da completare
 
-- Immagini: tutte le immagini sono segnaposto (`.tm-placeholder`).
+- Immagini: testate caricate in `assets/img/pages/`; i blocchi ancora senza immagine sono elencati in `assets/img/pages/README.md` (estensione `.jpg` o `.jpeg`).
 - Link senza destinazione (`#`): Lavora con noi, documenti PDF, segnalazione interna whistleblowing, schede prodotto MIFID II.
-- Testo provvisorio (Lorem ipsum): Collocamento (Club Deal, FIA, Certificati, Polizze); due blocchi ciascuna su Gestioni Patrimoniali, Finanza Strutturata, Lombard Loans, Debt Advisory, Sostenibilità, Trasparenza, Dichiarazione di Accessibilità, Disconoscimento operazioni.
+- Testo provvisorio (Lorem ipsum): Collocamento (Club Deal, FIA, Certificati, Polizze); Gestioni Patrimoniali (due sezioni); due blocchi ciascuna su Finanza Strutturata, Lombard Loans, Debt Advisory, Sostenibilità, Trasparenza, Dichiarazione di Accessibilità, Disconoscimento operazioni.
 - Area Soci: i documenti puntano ai file su bancaifigest.com.
 
 ## Privacy Policy

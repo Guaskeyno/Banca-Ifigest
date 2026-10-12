@@ -13,7 +13,7 @@
   <!-- Libreria: UIkit (MIT) -->
   <link rel="stylesheet" href="assets/vendor/uikit/css/uikit.min.css?v=b444d797">
   <!-- Tema Banca Ifigest -->
-  <link rel="stylesheet" href="assets/css/theme.css?v=86fa822e">
+  <link rel="stylesheet" href="assets/css/theme.css?v=9a8caad8">
 </head>
 <body class="page-wealth-management">
 
@@ -92,7 +92,7 @@
 <main id="main">
 
 <section class="tm-hero">
-  <div class="tm-hero-media"><div class="tm-placeholder tm-placeholder-cover"><img class="tm-photo" src="assets/img/pages/wealth-management-hero.jpg" alt="" loading="lazy" decoding="async" onerror="this.remove()"><span uk-icon="icon: image; ratio: 2"></span></div></div>
+  <div class="tm-hero-media"><div class="tm-placeholder tm-placeholder-cover"><img class="tm-photo" src="assets/img/pages/wealth-management-hero.jpeg" alt="" loading="lazy" decoding="async" onerror="if(!this.dataset.alt){this.dataset.alt=1;this.src=this.src.replace(/\.jpe?g$/,function(e){return e=='.jpg'?'.jpeg':'.jpg'})}else{this.remove()}"><span uk-icon="icon: image; ratio: 2"></span></div></div>
   <div class="tm-hero-title">
     <div class="uk-container uk-container-large" uk-scrollspy="cls: uk-animation-fade; delay: 150">
       <h1 class="tm-hero-heading">Wealth Management</h1>
@@ -100,24 +100,25 @@
     </div>
   </div>
 </section>
-<section class="uk-section tm-section-lead">
+<section class="uk-section tm-category" id="sevian-fiduciaria">
   <div class="uk-container uk-container-large">
-    <div class="tm-lead tm-lead-primary"><p>Sevian Fiduciaria è la società fiduciaria, parte del Gruppo, che affianca la banca con servizi di intestazione fiduciaria, amministrazione e pianificazione successoria, offrendo a clienti privati, famiglie e imprese uno strumento di riservatezza, protezione e continuità nella gestione del patrimonio.</p></div>
+    <div class="tm-category-head"><span class="tm-category-icon" uk-icon="icon: users; ratio: 1.6"></span><h2 class="tm-category-title">Sevian Fiduciaria</h2></div>
+    <div class="tm-category-intro"><p>Sevian Fiduciaria è la società fiduciaria, parte del Gruppo, che affianca la banca con servizi di <strong>intestazione fiduciaria, amministrazione e pianificazione successoria</strong>, offrendo a clienti privati, famiglie e imprese uno strumento di riservatezza, protezione e continuità nella gestione del patrimonio.</p></div>
+    <div class="uk-slider-container tm-pillars" uk-slider="finite: true">
+      <div class="uk-position-relative">
+        <ul class="uk-slider-items uk-grid"><li class="uk-width-1-1 uk-width-1-2@s uk-width-1-4@m"><div class="tm-pillar"><h3 class="tm-pillar-num">1.</h3><p><strong>INTESTAZIONE FIDUCIARIA</strong><br>Gestione di partecipazioni, strumenti finanziari e altri beni tramite intestazione alla fiduciaria, nel pieno rispetto della riservatezza e della titolarità sostanziale del cliente.</p></div></li><li class="uk-width-1-1 uk-width-1-2@s uk-width-1-4@m"><div class="tm-pillar"><h3 class="tm-pillar-num">2.</h3><p><strong>AMMINISTRAZIONE DI PATRIMONI</strong><br>Amministrazione di patrimoni mobiliari, con rendicontazione puntuale e supporto negli adempimenti, anche senza intestazione dei beni.</p></div></li><li class="uk-width-1-1 uk-width-1-2@s uk-width-1-4@m"><div class="tm-pillar"><h3 class="tm-pillar-num">3.</h3><p><strong>PIANIFICAZIONE SUCCESSORIA</strong><br>Strutturazione e tutela del patrimonio in ottica di passaggio generazionale, per trasmettere valore tra le generazioni con serenità e continuità.</p></div></li><li class="uk-width-1-1 uk-width-1-2@s uk-width-1-4@m"><div class="tm-pillar"><h3 class="tm-pillar-num">4.</h3><p><strong>RISERVATEZZA E PROTEZIONE</strong><br>Separazione e protezione degli asset, a garanzia di continuità e riservatezza nella gestione del patrimonio nel tempo.</p></div></li></ul>
+        <div class="tm-pillars-nav">
+          <a class="tm-slidenav" href="#" uk-slider-item="previous" aria-label="Precedente"><span uk-icon="chevron-left"></span></a>
+          <a class="tm-slidenav" href="#" uk-slider-item="next" aria-label="Successivo"><span uk-icon="chevron-right"></span></a>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
-<section class="uk-section tm-section-split" id="intestazione-fiduciaria">
+<section class="uk-section tm-category tm-category-muted" id="valore-di-gruppo">
   <div class="uk-container uk-container-large">
-    <div class="tm-split"><div class="tm-split-content"><div class="tm-block"><h2 class="tm-block-title">Intestazione Fiduciaria</h2><p>Gestione di partecipazioni, strumenti finanziari e altri beni tramite intestazione alla fiduciaria, nel pieno rispetto della riservatezza e della titolarità sostanziale del cliente.</p></div><div class="tm-block"><h2 class="tm-block-title">Amministrazione di Patrimoni</h2><p>Amministrazione di patrimoni mobiliari, con rendicontazione puntuale e supporto negli adempimenti, anche senza intestazione dei beni.</p></div></div><div class="tm-split-media"><div class="tm-placeholder tm-placeholder-square"><img class="tm-photo" src="assets/img/pages/wealth-management-intestazione-fiduciaria.jpg" alt="" loading="lazy" decoding="async" onerror="this.remove()"><span uk-icon="icon: image; ratio: 2"></span></div></div></div>
-  </div>
-</section>
-<section class="uk-section tm-section-split" id="pianificazione-successoria">
-  <div class="uk-container uk-container-large">
-    <div class="tm-split tm-split-reverse"><div class="tm-split-media"><div class="tm-placeholder tm-placeholder-square"><img class="tm-photo" src="assets/img/pages/wealth-management-pianificazione-successoria.jpg" alt="" loading="lazy" decoding="async" onerror="this.remove()"><span uk-icon="icon: image; ratio: 2"></span></div></div><div class="tm-split-content"><div class="tm-block"><h2 class="tm-block-title">Pianificazione Successoria</h2><p>Strutturazione e tutela del patrimonio in ottica di passaggio generazionale, per trasmettere valore tra le generazioni con serenità e continuità.</p></div><div class="tm-block"><h2 class="tm-block-title">Riservatezza e Protezione</h2><p>Separazione e protezione degli asset, a garanzia di continuità e riservatezza nella gestione del patrimonio nel tempo.</p></div></div></div>
-  </div>
-</section>
-<section class="uk-section uk-section-xsmall tm-section-feature">
-  <div class="uk-container uk-container-large">
-    <div class="tm-feature"><div class="tm-feature-media"><div class="tm-placeholder tm-placeholder-cover"><img class="tm-photo" src="assets/img/pages/wealth-management-valore-di-gruppo.jpg" alt="" loading="lazy" decoding="async" onerror="this.remove()"><span uk-icon="icon: image; ratio: 2"></span></div></div><div class="tm-feature-content"><h2 class="tm-feature-title">Valore di Gruppo</h2><p>Operando all'interno del Gruppo Bancario, Sevian Fiduciaria unisce la propria specializzazione alle competenze bancarie, di gestione e di consulenza della banca.</p><a class="uk-button uk-button-default tm-button-light-outline" href="contatti.html">Parla con un referente</a></div></div>
+    <div class="tm-category-head"><span class="tm-category-icon" uk-icon="icon: git-branch; ratio: 1.6"></span><h2 class="tm-category-title">Valore di Gruppo</h2></div>
+    <div class="tm-category-intro"><p>Operando all'interno del Gruppo Bancario, Sevian Fiduciaria <strong>unisce la propria specializzazione alle competenze bancarie, di gestione e di consulenza della banca</strong>.</p></div><div class="tm-category-cta uk-text-center"><a class="uk-button uk-button-primary" href="contatti.html">Parla con un referente</a></div>
   </div>
 </section>
 </main>
@@ -153,7 +154,7 @@
 <script src="assets/vendor/uikit/js/uikit.min.js?v=07072884"></script>
 <script src="assets/vendor/uikit/js/uikit-icons.min.js?v=7069ba71"></script>
 <!-- Script del sito -->
-<script src="assets/js/search-index.js?v=604600f5"></script>
+<script src="assets/js/search-index.js?v=b1b005ea"></script>
 <script src="assets/js/main.js?v=2de11464"></script>
 </body>
 </html>

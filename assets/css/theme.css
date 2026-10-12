@@ -540,27 +540,6 @@ h1, h2, h3, h4, h5, h6,
 .tm-section-primary h3 { color: var(--ifg-white); }
 .tm-section-primary a { color: var(--ifg-white); text-decoration: underline; }
 
-/* Feature: pannello scuro con immagine */
-
-.tm-feature {
-  display: grid;
-  grid-template-columns: 1fr;
-  background: var(--ifg-dark);
-  color: var(--ifg-white);
-}
-@media (min-width: 960px) {
-  .tm-feature { grid-template-columns: 864fr 448fr; min-height: 410px; }
-  .tm-feature-reverse { grid-template-columns: 448fr 864fr; }
-}
-.tm-feature-media { min-height: 240px; }
-.tm-feature-media .tm-placeholder { min-height: 240px; }
-.tm-feature-content { padding: 40px 32px; display: flex; flex-direction: column; align-items: flex-start; }
-@media (min-width: 960px) { .tm-feature-content { padding: 48px; } }
-@media (max-width: 959px) { .tm-feature-reverse .tm-feature-media { order: -1; } }
-.tm-feature-title { margin: 0 0 24px; color: var(--ifg-white); font-size: 24px; line-height: 1.4; }
-.tm-feature-content p { margin: 0 0 32px; font-size: 17px; line-height: 1.4; }
-.tm-feature-content .uk-button { margin-top: auto; width: 100%; max-width: 352px; }
-
 .tm-note { margin: 48px 0 0; text-align: center; font-size: 17px; }
 .tm-note a { text-decoration: underline; }
 
@@ -765,6 +744,105 @@ h1, h2, h3, h4, h5, h6,
 .tm-docs-plain .tm-doc-list a { padding: 0; gap: 10px; font-size: 16px; line-height: 28px; text-decoration: underline; }
 .tm-doc-accordion .tm-doc-list a .uk-icon,
 .tm-docs-plain .tm-doc-list a .uk-icon { margin-top: 4px; color: var(--ifg-dark); }
+
+/* Layout "prodotti" (come https://www.lbcapitalsgr.it/prodotti/) */
+
+.tm-category { padding-top: 56px; padding-bottom: 56px; }
+@media (min-width: 960px) { .tm-category { padding-top: 70px; padding-bottom: 70px; } }
+.tm-category-muted { background: var(--ifg-muted); }
+
+.tm-category-head { display: flex; align-items: center; gap: 20px; margin-bottom: 20px; }
+.tm-category-icon { flex: none; color: var(--ifg-primary); }
+.tm-category-title {
+  margin: 0;
+  font-family: var(--ifg-font-body);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 36px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ifg-dark);
+}
+.tm-category-intro p { margin: 0; font-size: 16px; line-height: 28px; }
+.tm-category-intro p + p { margin-top: 20px; }
+.tm-category-intro + .uk-button,
+.tm-category-intro + .tm-products,
+.tm-category-intro + .tm-pillars { margin-top: 40px; }
+.tm-category .tm-note { text-align: left; margin-top: 40px; }
+.tm-category-cta { margin-top: 48px; }
+
+/* Elenchi prodotto: titolo a pillola + righe con bottone ">" */
+.tm-products-title {
+  margin: 0 0 20px;
+  padding: 12px 24px;
+  border-radius: 500px;
+  background: var(--ifg-primary);
+  color: var(--ifg-white);
+  font-family: var(--ifg-font-body);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.tm-product-list { margin: 0; padding: 0 12px; list-style: none; }
+.tm-product-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  font-size: 16px;
+  line-height: 28px;
+}
+.tm-product-btn {
+  flex: none;
+  padding: 0 16px;
+  border-radius: 500px;
+  background: var(--ifg-dark);
+  color: var(--ifg-white);
+  font-weight: 700;
+  line-height: 24px;
+  box-shadow: 1px 3px 15px rgba(0, 59, 76, 0.2);
+  transition: background-color 0.25s ease;
+}
+.tm-product-btn:hover,
+.tm-product-btn:focus { background: var(--ifg-primary); color: var(--ifg-white); text-decoration: none; }
+
+/* Pilastri numerati */
+.tm-pillars { overflow-y: visible; padding-bottom: 72px; }
+.tm-pillar-num {
+  position: relative;
+  z-index: 0;
+  display: inline-block;
+  margin: 0;
+  padding-left: 4px;
+  font-family: var(--ifg-font-body);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 36px;
+}
+.tm-pillar-num::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 12px;
+  height: 100%;
+  background: var(--ifg-primary-tint);
+}
+.tm-pillar p { margin: 20px 0 0; font-size: 16px; line-height: 28px; }
+.tm-pillars-nav { position: absolute; right: 0; bottom: -72px; }
+/* su desktop i 4 pilastri sono tutti visibili: niente frecce */
+@media (min-width: 960px) {
+  .tm-pillars { padding-bottom: 0; }
+  .tm-pillars-nav { display: none; }
+}
+/* spazio tra l'introduzione della pagina e la prima sezione colorata */
+.tm-section-lead + .tm-category-muted { margin-top: 56px; }
+@media (min-width: 960px) { .tm-section-lead + .tm-category-muted { margin-top: 70px; } }
 
 /* Governance / documenti */
 

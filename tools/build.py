@@ -98,13 +98,22 @@ def tel_href(num):
     return "tel:+39" + re.sub(r"\D", "", num)
 
 
+# Se il file non c'è con l'estensione prevista, prova l'altra (.jpg <-> .jpeg);
+# se manca anche quella, toglie l'<img> e resta il segnaposto.
+IMG_ONERROR = (
+    "if(!this.dataset.alt){this.dataset.alt=1;"
+    "this.src=this.src.replace(/\\.jpe?g$/,function(e){return e=='.jpg'?'.jpeg':'.jpg'})}"
+    "else{this.remove()}"
+)
+
+
 def placeholder(cls="", label="Immagine", hint=""):
     """Segnaposto immagine. Contiene già il percorso dell'immagine definitiva
-    (assets/img/pages/<pagina>-<hint>.jpg, assegnato in add()): finché il file non
-    esiste l'<img> viene rimosso e resta il segnaposto; appena caricato, compare."""
+    (assets/img/pages/<pagina>-<hint>.jpg o .jpeg, assegnato in add()): finché il file
+    non esiste resta il segnaposto; appena caricato, compare."""
     return (
         f'<div class="tm-placeholder {cls}">'
-        f'<img class="tm-photo" src="__IMG:{hint}__" alt="" loading="lazy" decoding="async" onerror="this.remove()">'
+        f'<img class="tm-photo" src="__IMG:{hint}__" alt="" loading="lazy" decoding="async" onerror="{IMG_ONERROR}">'
         '<span uk-icon="icon: image; ratio: 2"></span></div>'
     )
 
@@ -394,21 +403,6 @@ def block(title, body="", level="h2", extra=""):
     return f'<div class="tm-block{extra}"><{level} class="tm-block-title">{title}</{level}>{body}</div>'
 
 
-def feature(title, text, button, href, media_first=True):
-    media = f'<div class="tm-feature-media">{placeholder("tm-placeholder-cover", hint=slugify(title))}</div>'
-    content = (
-        f'<div class="tm-feature-content"><h2 class="tm-feature-title">{title}</h2><p>{text}</p>'
-        f'<a class="uk-button uk-button-default tm-button-light-outline" href="{href}"{SCROLL if href.startswith("#") else ""}>{button}</a></div>'
-    )
-    inner = media + content if media_first else content + media
-    return f"""
-<section class="uk-section uk-section-xsmall tm-section-feature">
-  <div class="uk-container uk-container-large">
-    <div class="tm-feature{'' if media_first else ' tm-feature-reverse'}">{inner}</div>
-  </div>
-</section>"""
-
-
 def doc_list(items):
     """items: etichette (link "#" provvisorio) oppure coppie (etichetta, url)."""
     lis = []
@@ -466,8 +460,8 @@ def add(slug, title, description, body, keywords=""):
             counter[0] += 1
             hint = f"immagine-{counter[0]}"
         used.add(hint)
-        path = f"assets/img/pages/{page_name}-{hint}.jpg"
-        return path
+        base = f"assets/img/pages/{page_name}-{hint}"
+        return base + (".jpeg" if (ROOT / (base + ".jpeg")).exists() else ".jpg")
 
     body = re.sub(r"__IMG:([^_]*)__", name, body)
     PAGES.append((slug, title, description, body, keywords))
@@ -530,6 +524,57 @@ add(
     ),
 )
 
+# Layout "prodotti" (come https://www.lbcapitalsgr.it/prodotti/) ----------------
+# Sezioni alternate bianco/grigio: icona + titolo, testo introduttivo, eventuali
+# pilastri numerati, elenchi prodotto con titolo a pillola e righe con bottone ">".
+def category(sid, icon, title, body="", muted=False, extra=""):
+    intro = f'<div class="tm-category-intro">{body}</div>' if body else ""
+    return f"""
+<section class="uk-section tm-category{' tm-category-muted' if muted else ''}" id="{sid}">
+  <div class="uk-container uk-container-large">
+    <div class="tm-category-head"><span class="tm-category-icon" uk-icon="icon: {icon}; ratio: 1.6"></span><h2 class="tm-category-title">{title}</h2></div>
+    {intro}{extra}
+  </div>
+</section>"""
+
+
+def product_lists(columns):
+    """columns: [(titolo pillola, [(nome, href)])]"""
+    widths = {1: "uk-child-width-1-3@m", 2: "uk-child-width-1-2@m", 3: "uk-child-width-1-3@m", 4: "uk-child-width-1-2@s uk-child-width-1-4@l"}
+    cols = []
+    for pill, items in columns:
+        rows = "".join(
+            f'<li class="tm-product-row"><span>{name}</span>'
+            f'<a class="tm-product-btn" href="{href}" aria-label="{escape(name)}">&gt;</a></li>'
+            for name, href in items
+        )
+        cols.append(f'<div><h3 class="tm-products-title">{pill}</h3><ul class="tm-product-list">{rows}</ul></div>')
+    return f'<div class="uk-grid-large tm-products {widths[len(columns)]}" uk-grid>{"".join(cols)}</div>'
+
+
+def pillars(items):
+    """Pilastri numerati in slider, 4 per riga su desktop. items: [(etichetta, testo)]"""
+    lis = "".join(
+        f'<li class="uk-width-1-1 uk-width-1-2@s uk-width-1-4@m"><div class="tm-pillar">'
+        f'<h3 class="tm-pillar-num">{i}.</h3><p><strong>{label}</strong><br>{text}</p></div></li>'
+        for i, (label, text) in enumerate(items, 1)
+    )
+    return f"""
+    <div class="uk-slider-container tm-pillars" uk-slider="finite: true">
+      <div class="uk-position-relative">
+        <ul class="uk-slider-items uk-grid">{lis}</ul>
+        <div class="tm-pillars-nav">
+          <a class="tm-slidenav" href="#" uk-slider-item="previous" aria-label="Precedente"><span uk-icon="chevron-left"></span></a>
+          <a class="tm-slidenav" href="#" uk-slider-item="next" aria-label="Successivo"><span uk-icon="chevron-right"></span></a>
+        </div>
+      </div>
+    </div>"""
+
+
+def centered_cta(label, href):
+    return f'<div class="tm-category-cta uk-text-center">{button(label, href)}</div>'
+
+
 add(
     "servizi-bancari.html",
     "Servizi Bancari",
@@ -541,25 +586,18 @@ add(
     + lead(
         "<p>I servizi bancari Ifigest sono pensati per una clientela selezionata che richiede qualità, riservatezza e operatività senza compromessi. Dal conto corrente alla carta di credito premium, ogni strumento accompagna la vita quotidiana con la stessa cura che dedichiamo alla gestione del patrimonio.</p>"
     )
-    + feature(
-        "Conto Corrente",
-        "Il Conto Remunerato di Banca Ifigest offre la possibilità di far fruttare la liquidità disponibile, con condizioni trasparenti e competitive, mantenendo la piena disponibilità delle somme depositate.",
-        "Apri il conto Ifigest",
-        "contatti.html",
+    + category(
+        "conto-corrente", "lock", "Conto Corrente",
+        "<p>Il <strong>Conto Remunerato di Banca Ifigest</strong> offre la possibilità di far fruttare la liquidità disponibile, con condizioni trasparenti e competitive, mantenendo la piena disponibilità delle somme depositate.</p>",
+        muted=True,
+        extra=button("Apri il conto Ifigest", "contatti.html"),
     )
-    + feature(
-        "Carta Ifigest",
-        "La carta di credito Banca Ifigest, in partnership con Nexi, offre i massimi livelli di sicurezza e flessibilità per i pagamenti quotidiani e online, con le funzionalità Apple Pay per i pagamenti contactless. Disponibile nelle versioni individuale, aziendale e Black.",
-        "Contatta una filiale",
-        "contatti.html",
-        media_first=False,
-    )
-    + f"""
-<section class="uk-section uk-section-xsmall">
-  <div class="uk-container uk-container-large">
-    <p class="tm-note">Consulta i fogli informativi relativi ai conti correnti e alle carte <a href="info-prodotti.html#trasparenza">qui</a>.</p>
-  </div>
-</section>""",
+    + category(
+        "carta-ifigest", "credit-card", "Carta Ifigest",
+        "<p>La carta di credito Banca Ifigest, <strong>in partnership con Nexi</strong>, offre i massimi livelli di sicurezza e flessibilità per i pagamenti quotidiani e online, con le funzionalità Apple Pay per i pagamenti contactless. Disponibile nelle versioni <strong>individuale, aziendale e Black</strong>.</p>",
+        extra=button("Contatta una filiale", "contatti.html")
+        + '<p class="tm-note">Consulta i fogli informativi relativi ai conti correnti e alle carte <a href="info-prodotti.html#trasparenza">qui</a>.</p>',
+    ),
     "conto corrente carta di credito nexi apple pay conto remunerato",
 )
 
@@ -571,27 +609,25 @@ add(
     + lead(
         "<p>L'attività di investimento di Banca Ifigest è focalizzata sulla ricerca della rivalutazione del capitale nel medio-lungo periodo, attraverso strategie di gestione attiva, diversificazione e un'offerta aperta ai migliori strumenti del mercato.</p>"
     )
-    + split(
-        block(
-            "Gestioni Patrimoniali",
-            "<p>Le Gestioni Patrimoniali di Banca Ifigest non replicano passivamente la struttura del benchmark, ma operano in modo attivo sulla base di strategie di investimento globali e diversificate sulle principali asset class, con ottimizzazione dei portafogli e utilizzo di tutti gli strumenti del mercato finanziario.</p>"
-            "<p>Il team di gestione opera dai desk di Milano, Firenze e Roma, con competenze in analisi dei mercati finanziari, selezione di obbligazioni governative e societarie e stock picking azionario.</p>"
-            "<p>In virtù degli obiettivi di investimento del cliente, sono altresì disponibili linee di investimento flessibili e personalizzabili con le specifiche esigenze di ogni investitore.</p>"
-            "<p>Grazie alle competenze del proprio team di gestione, Banca Ifigest fornisce altresì consulenza e servizi di asset management per alcune primarie Società di gestione estere, attive su Fondi comuni e SICAV dedicati sia a clientela privata che istituzionale.</p>",
-        ),
-        sid="gestioni-patrimoniali",
+    + category(
+        "gestioni-patrimoniali", "album", "Gestioni Patrimoniali",
+        "<p>Le Gestioni Patrimoniali di Banca Ifigest <strong>non replicano passivamente la struttura del benchmark</strong>, ma operano in modo attivo sulla base di strategie di investimento globali e diversificate sulle principali asset class, con ottimizzazione dei portafogli e utilizzo di tutti gli strumenti del mercato finanziario.</p>"
+        "<p>Il team di gestione opera dai desk di Milano, Firenze e Roma, con competenze in analisi dei mercati finanziari, selezione di obbligazioni governative e societarie e stock picking azionario.</p>"
+        "<p>In virtù degli obiettivi di investimento del cliente, sono altresì disponibili <strong>linee di investimento flessibili e personalizzabili</strong> con le specifiche esigenze di ogni investitore.</p>"
+        "<p>Grazie alle competenze del proprio team di gestione, Banca Ifigest fornisce altresì consulenza e servizi di asset management per alcune primarie Società di gestione estere, attive su Fondi comuni e SICAV dedicati sia a clientela privata che istituzionale.</p>",
+        muted=True,
     )
-    + split(
-        block(
-            "Consulenza Evoluta",
-            "<p>In sintonia con il profilo e con gli obiettivi di investimento del cliente, il servizio di consulenza di Banca Ifigest fornisce raccomandazioni personalizzate su tutti i principali strumenti finanziari. Un servizio costruito sulla conoscenza approfondita del cliente, libero da condizionamenti di prodotto grazie all'architettura aperta della banca.</p>",
-        )
-        + block("Piani Individuali di Risparmio (PIR)", level="h3", extra=" tm-block-small")
-        + block("Piani di Accumulo del Capitale (PAC)", level="h3", extra=" tm-block-small"),
-        media_first=True,
-        sid="consulenza-evoluta",
+    + category(
+        "consulenza-evoluta", "commenting", "Consulenza Evoluta",
+        "<p>In sintonia con il profilo e con gli obiettivi di investimento del cliente, il servizio di consulenza di Banca Ifigest fornisce <strong>raccomandazioni personalizzate su tutti i principali strumenti finanziari</strong>. Un servizio costruito sulla conoscenza approfondita del cliente, libero da condizionamenti di prodotto grazie all'architettura aperta della banca.</p>",
+        extra=product_lists([
+            ("Piani di investimento", [
+                ("Piani Individuali di Risparmio (PIR)", "contatti.html"),
+                ("Piani di Accumulo del Capitale (PAC)", "contatti.html"),
+            ]),
+        ]),
     )
-    + split(block("Trading e Negoziazione Titoli"), sid="trading"),
+    + category("trading", "table", "Trading e Negoziazione Titoli", muted=True),
     "gestioni patrimoniali consulenza evoluta pir pac trading negoziazione titoli asset management",
 )
 
@@ -603,37 +639,21 @@ add(
         "Wealth Management",
         "Un unico punto di riferimento per proteggere, pianificare e ottimizzare il patrimonio personale, familiare e d'impresa.",
     )
-    + lead(
-        "<p>Sevian Fiduciaria è la società fiduciaria, parte del Gruppo, che affianca la banca con servizi di intestazione fiduciaria, amministrazione e pianificazione successoria, offrendo a clienti privati, famiglie e imprese uno strumento di riservatezza, protezione e continuità nella gestione del patrimonio.</p>"
+    + category(
+        "sevian-fiduciaria", "users", "Sevian Fiduciaria",
+        "<p>Sevian Fiduciaria è la società fiduciaria, parte del Gruppo, che affianca la banca con servizi di <strong>intestazione fiduciaria, amministrazione e pianificazione successoria</strong>, offrendo a clienti privati, famiglie e imprese uno strumento di riservatezza, protezione e continuità nella gestione del patrimonio.</p>",
+        extra=pillars([
+            ("INTESTAZIONE FIDUCIARIA", "Gestione di partecipazioni, strumenti finanziari e altri beni tramite intestazione alla fiduciaria, nel pieno rispetto della riservatezza e della titolarità sostanziale del cliente."),
+            ("AMMINISTRAZIONE DI PATRIMONI", "Amministrazione di patrimoni mobiliari, con rendicontazione puntuale e supporto negli adempimenti, anche senza intestazione dei beni."),
+            ("PIANIFICAZIONE SUCCESSORIA", "Strutturazione e tutela del patrimonio in ottica di passaggio generazionale, per trasmettere valore tra le generazioni con serenità e continuità."),
+            ("RISERVATEZZA E PROTEZIONE", "Separazione e protezione degli asset, a garanzia di continuità e riservatezza nella gestione del patrimonio nel tempo."),
+        ]),
     )
-    + split(
-        block(
-            "Intestazione Fiduciaria",
-            "<p>Gestione di partecipazioni, strumenti finanziari e altri beni tramite intestazione alla fiduciaria, nel pieno rispetto della riservatezza e della titolarità sostanziale del cliente.</p>",
-        )
-        + block(
-            "Amministrazione di Patrimoni",
-            "<p>Amministrazione di patrimoni mobiliari, con rendicontazione puntuale e supporto negli adempimenti, anche senza intestazione dei beni.</p>",
-        ),
-        sid="intestazione-fiduciaria",
-    )
-    + split(
-        block(
-            "Pianificazione Successoria",
-            "<p>Strutturazione e tutela del patrimonio in ottica di passaggio generazionale, per trasmettere valore tra le generazioni con serenità e continuità.</p>",
-        )
-        + block(
-            "Riservatezza e Protezione",
-            "<p>Separazione e protezione degli asset, a garanzia di continuità e riservatezza nella gestione del patrimonio nel tempo.</p>",
-        ),
-        media_first=True,
-        sid="pianificazione-successoria",
-    )
-    + feature(
-        "Valore di Gruppo",
-        "Operando all'interno del Gruppo Bancario, Sevian Fiduciaria unisce la propria specializzazione alle competenze bancarie, di gestione e di consulenza della banca.",
-        "Parla con un referente",
-        "contatti.html",
+    + category(
+        "valore-di-gruppo", "git-branch", "Valore di Gruppo",
+        "<p>Operando all'interno del Gruppo Bancario, Sevian Fiduciaria <strong>unisce la propria specializzazione alle competenze bancarie, di gestione e di consulenza della banca</strong>.</p>",
+        muted=True,
+        extra=centered_cta("Parla con un referente", "contatti.html"),
     ),
     "sevian fiduciaria intestazione fiduciaria amministrazione patrimoni pianificazione successoria family office",
 )
@@ -661,11 +681,11 @@ add(
     "Collocamento",
     "Guarda con serenità al futuro, con soluzioni a capitale garantito e diversificazione.",
     hero("Collocamento", "Guarda con serenità al futuro, con soluzioni a capitale garantito e diversificazione")
-    + split(block("CNP Vita Assicura", CNP + CTA_CONSULENZA), sid="cnp-vita-assicura", extra=" tm-section-split-first")
-    + split(block("Club Deal", LOREM + CTA_CONSULENZA), media_first=True, sid="club-deal")
-    + split(block("FIA", LOREM + CTA_CONSULENZA), sid="fia")
-    + split(block("Certificati", LOREM + CTA_CONSULENZA), media_first=True, sid="certificati")
-    + split(block("Polizze", LOREM + CTA_CONSULENZA), sid="polizze"),
+    + category("cnp-vita-assicura", "lifesaver", "CNP Vita Assicura", CNP)
+    + category("club-deal", "users", "Club Deal", LOREM, muted=True)
+    + category("fia", "database", "FIA", LOREM)
+    + category("certificati", "file-text", "Certificati", LOREM, muted=True)
+    + category("polizze", "file-edit", "Polizze", LOREM, extra=centered_cta("Richiedi una consulenza", "contatti.html")),
     "assicurazione vita cnp club deal fia certificati polizze ivass rui",
 )
 
@@ -673,7 +693,10 @@ add(
     "gestioni-patrimoniali.html",
     "Gestioni Patrimoniali",
     "Gestioni Patrimoniali Banca Ifigest.",
-    hero("Gestioni Patrimoniali") + placeholder_blocks("gestioni"),
+    hero("Gestioni Patrimoniali")
+    # TODO: testi definitivi
+    + category("blocco-1", "album", "Lorem ipsum", LOREM)
+    + category("blocco-2", "future", "Lorem ipsum", LOREM, muted=True, extra=centered_cta("Richiedi una consulenza", "contatti.html")),
     "gestioni patrimoniali linee di gestione",
 )
 
@@ -1157,14 +1180,14 @@ def write_image_manifest():
         "",
         "Generato da `tools/build.py`: non modificare a mano.",
         "",
-        "Caricare qui i file con **esattamente** questi nomi (minuscolo, estensione `.jpg`).",
+        "Caricare qui i file con **esattamente** questi nomi (minuscolo). L'estensione può essere `.jpg` o `.jpeg`: se esistono entrambe, viene usata `.jpeg`.",
         "Finché un file manca, la pagina mostra il segnaposto; appena caricato, l'immagine compare da sola.",
         "",
     ]
     for slug, title, *_ in PAGES:
         html = (ROOT / slug).read_text(encoding="utf-8")
         found = []
-        for m in re.finditer(r'<div class="(tm-hero-media|tm-split-media|tm-feature-media)"><div class="tm-placeholder ([^"]+)"><img class="tm-photo" src="assets/img/pages/([^"]+)"', html):
+        for m in re.finditer(r'<div class="(tm-hero-media|tm-split-media)"><div class="tm-placeholder ([^"]+)"><img class="tm-photo" src="assets/img/pages/([^"]+)"', html):
             kind = "hero" if m.group(1) == "tm-hero-media" else m.group(2).strip()
             found.append((m.group(3), *IMAGE_SPECS[kind]))
         if found:
