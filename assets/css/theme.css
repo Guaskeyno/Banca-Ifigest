@@ -819,6 +819,9 @@ em { color: inherit; }
 }
 .tm-product-list { margin: 0; padding: 0 12px; list-style: none; }
 /* Colonne informative: pillola + descrizione */
+/* nella pillola solo la parte marcata è in grassetto */
+.tm-info-columns .tm-products-title { font-weight: 400; }
+.tm-info-columns .tm-products-title strong { font-weight: 700; }
 .tm-info-text { margin: 0; padding: 0 12px; font-size: 16px; line-height: 28px; }
 .tm-category-head + .tm-info-columns { margin-top: 32px; }
 .tm-section-logos + .tm-category-muted { margin-top: 56px; }

@@ -811,31 +811,31 @@ add(
     + category(
         "private-banking", "users", "PRIVATE BANKING", muted=True,
         extra=info_columns([
-            ("<em>Banca Ifigest</em> - Rete Fisica", "Rete di 82 Private Banker per la gestione patrimoniale, consulenza ad alto contatto e conservazione intergenerazionale del capitale"),
-            ("<em>Fundstore</em>", "Canale nativo digitale e marketplace in architettura aperta che agisce come motore di Digital Banking a servizio del segmento retail/self-directed e IFA"),
-            ("<em>Sevian Srl</em>", "Società fiduciaria di Gruppo integrata verticalmente per erogare i servizi di Wealth Planning, intestazione fiduciaria e protezione del patrimonio familiare"),
+            ("<strong>Banca Ifigest</strong> - Rete Fisica", "Rete di 82 Private Banker per la gestione patrimoniale, consulenza ad alto contatto e conservazione intergenerazionale del capitale"),
+            ("<strong>Fundstore</strong>", "Canale nativo digitale e marketplace in architettura aperta che agisce come motore di Digital Banking a servizio del segmento retail/self-directed e IFA"),
+            ("<strong>Sevian Srl</strong>", "Società fiduciaria di Gruppo integrata verticalmente per erogare i servizi di Wealth Planning, intestazione fiduciaria e protezione del patrimonio familiare"),
         ]),
     )
     + category(
         "corporate-investment-banking", "world", "CORPORATE &amp; INVESTMENT BANKING (CIB)",
         extra=info_columns([
-            ("<em>L&amp;B Partners SpA</em>", "Boutique di Financial Advisory per servizi alle imprese (M&amp;A, Debt Advisory, Valuations) e Project Finance"),
-            ("<em>Club Deal</em>", "Veicoli d'investimento e strutturazione di operazioni in Private Equity / Venture riservate a clienti HNWI e famiglie imprenditoriali"),
-            ("<em>Finanza Strutturata (O&amp;D)</em>", "Soluzioni di finanziamento su misura, Project Finance e origination/distribuzione sul mercato"),
+            ("<strong>L&amp;B Partners SpA</strong>", "Boutique di Financial Advisory per servizi alle imprese (M&amp;A, Debt Advisory, Valuations) e Project Finance"),
+            ("<strong>Club Deal</strong>", "Veicoli d'investimento e strutturazione di operazioni in Private Equity / Venture riservate a clienti HNWI e famiglie imprenditoriali"),
+            ("<strong>Finanza Strutturata (O&amp;D)</strong>", "Soluzioni di finanziamento su misura, Project Finance e origination/distribuzione sul mercato"),
         ]),
     )
     + category(
         "asset-management", "album", "ASSET MANAGEMENT", muted=True,
         extra=info_columns([
-            ("<em>L&amp;B Capital SGR SpA</em>", "La Società di Gestione del Risparmio del Gruppo, nata dall'unione di Soprarno SGR e MIP SGR"),
-            ("<em>Gamma Prodotti</em>", "Gestione di Fondi Comuni UCITS (azionari, obbligazionari, flessibili), Fondi Alternativi FIA (Italian Renewable Resources) e linee di gestione per la Rete"),
+            ("<strong>L&amp;B Capital SGR SpA</strong>", "La Società di Gestione del Risparmio del Gruppo, nata dall'unione di Soprarno SGR e MIP SGR"),
+            ("<strong>Gamma Prodotti</strong>", "Gestione di Fondi Comuni UCITS (azionari, obbligazionari, flessibili), Fondi Alternativi FIA (Italian Renewable Resources) e linee di gestione per la Rete"),
         ]),
     )
     + category(
         "treasury-alm", "database", "TREASURY &amp; ALM",
         extra=info_columns([
-            ("<em>Banca Ifigest</em> - Funzione Direzionale", "Gestione integrata dell'Asset &amp; Liability Management del Gruppo"),
-            ("<em>Operatività</em>", "Ottimizzazione della liquidità di bilancio, gestione del portafoglio titoli di proprietà, copertura dei rischi finanziari e stabilizzazione del margine d'interesse"),
+            ("<strong>Banca Ifigest</strong> - Funzione Direzionale", "Gestione integrata dell'Asset &amp; Liability Management del Gruppo"),
+            ("<strong>Operatività</strong>", "Ottimizzazione della liquidità di bilancio, gestione del portafoglio titoli di proprietà, copertura dei rischi finanziari e stabilizzazione del margine d'interesse"),
         ]),
     )
     + timeline_section(),
