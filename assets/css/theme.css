@@ -65,6 +65,9 @@ h1, h2, h3, h4, h5, h6,
   letter-spacing: 0.5px;
 }
 
+/* il corsivo eredita il colore del testo (UIkit lo colorerebbe di rosa) */
+em { color: inherit; }
+
 ::selection { background: var(--ifg-primary); color: var(--ifg-white); }
 
 :focus-visible { outline: 2px solid var(--ifg-primary); outline-offset: 2px; }
@@ -815,6 +818,11 @@ h1, h2, h3, h4, h5, h6,
   text-transform: none;
 }
 .tm-product-list { margin: 0; padding: 0 12px; list-style: none; }
+/* Colonne informative: pillola + descrizione */
+.tm-info-text { margin: 0; padding: 0 12px; font-size: 16px; line-height: 28px; }
+.tm-category-head + .tm-info-columns { margin-top: 32px; }
+.tm-section-logos + .tm-category-muted { margin-top: 56px; }
+@media (min-width: 960px) { .tm-section-logos + .tm-category-muted { margin-top: 70px; } }
 .tm-product-row {
   display: flex;
   align-items: center;

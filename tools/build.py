@@ -582,6 +582,16 @@ def pillars(items):
     </div>"""
 
 
+def info_columns(items):
+    """Colonne con titolo a pillola e descrizione (come gli elenchi prodotto). items: [(sottotitolo, descrizione)]"""
+    widths = {1: "uk-child-width-1-3@m", 2: "uk-child-width-1-2@m", 3: "uk-child-width-1-3@m", 4: "uk-child-width-1-2@s uk-child-width-1-4@l"}
+    cols = "".join(
+        f'<div><h3 class="tm-products-title">{sub}</h3><p class="tm-info-text">{desc}</p></div>'
+        for sub, desc in items
+    )
+    return f'<div class="uk-grid-large tm-products tm-info-columns {widths[len(items)]}" uk-grid>{cols}</div>'
+
+
 def centered_cta(label, href):
     return f'<div class="tm-category-cta uk-text-center">{button(label, href)}</div>'
 
@@ -797,8 +807,39 @@ add(
     <div class="uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-5@m" uk-grid>{group_logos}</div>
   </div>
 </section>"""
+    # Le aree di attività del Gruppo (layout come la pagina Prodotti del riferimento)
+    + category(
+        "private-banking", "users", "PRIVATE BANKING", muted=True,
+        extra=info_columns([
+            ("<em>Banca Ifigest</em> - Rete Fisica", "Rete di 82 Private Banker per la gestione patrimoniale, consulenza ad alto contatto e conservazione intergenerazionale del capitale"),
+            ("<em>Fundstore</em>", "Canale nativo digitale e marketplace in architettura aperta che agisce come motore di Digital Banking a servizio del segmento retail/self-directed e IFA"),
+            ("<em>Sevian Srl</em>", "Società fiduciaria di Gruppo integrata verticalmente per erogare i servizi di Wealth Planning, intestazione fiduciaria e protezione del patrimonio familiare"),
+        ]),
+    )
+    + category(
+        "corporate-investment-banking", "world", "CORPORATE &amp; INVESTMENT BANKING (CIB)",
+        extra=info_columns([
+            ("<em>L&amp;B Partners SpA</em>", "Boutique di Financial Advisory per servizi alle imprese (M&amp;A, Debt Advisory, Valuations) e Project Finance"),
+            ("<em>Club Deal</em>", "Veicoli d'investimento e strutturazione di operazioni in Private Equity / Venture riservate a clienti HNWI e famiglie imprenditoriali"),
+            ("<em>Finanza Strutturata (O&amp;D)</em>", "Soluzioni di finanziamento su misura, Project Finance e origination/distribuzione sul mercato"),
+        ]),
+    )
+    + category(
+        "asset-management", "album", "ASSET MANAGEMENT", muted=True,
+        extra=info_columns([
+            ("<em>L&amp;B Capital SGR SpA</em>", "La Società di Gestione del Risparmio del Gruppo, nata dall'unione di Soprarno SGR e MIP SGR"),
+            ("<em>Gamma Prodotti</em>", "Gestione di Fondi Comuni UCITS (azionari, obbligazionari, flessibili), Fondi Alternativi FIA (Italian Renewable Resources) e linee di gestione per la Rete"),
+        ]),
+    )
+    + category(
+        "treasury-alm", "database", "TREASURY &amp; ALM",
+        extra=info_columns([
+            ("<em>Banca Ifigest</em> - Funzione Direzionale", "Gestione integrata dell'Asset &amp; Liability Management del Gruppo"),
+            ("<em>Operatività</em>", "Ottimizzazione della liquidità di bilancio, gestione del portafoglio titoli di proprietà, copertura dei rischi finanziari e stabilizzazione del margine d'interesse"),
+        ]),
+    )
     + timeline_section(),
-    "gruppo bancario sevian fundstore soprarno sgr storia 1987",
+    "gruppo bancario sevian fundstore soprarno sgr storia 1987 private banking corporate investment banking cib asset management treasury alm l&b partners l&b capital club deal",
 )
 
 add(
