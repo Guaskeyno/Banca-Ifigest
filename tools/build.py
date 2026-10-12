@@ -58,6 +58,7 @@ NAV = [
         ],
     },
 ]
+NAV.sort(key=lambda item: {"La Banca": 0, "Il Gruppo": 1}.get(item["label"], 2))  # La Banca e Il Gruppo per primi
 
 BANCA_ONLINE_URL = "https://areariservata.bancaifigest.it/CBL-MITO-WA-2.0/?v=451#!/access/login"
 LINKEDIN_URL = "https://www.linkedin.com/company/banca-ifigest/"
