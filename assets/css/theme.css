@@ -1002,6 +1002,73 @@ em { color: inherit; }
 
 .tm-footer-social { display: inline-block; }
 
+/* ==========================================================================
+   LA BANCA — marchio Banca Ifigest
+   Nelle pagine della sezione La Banca le superfici di marca sono #DDE9EE
+   con testo #003B4C, e il logo è quello della banca.
+   ========================================================================== */
+
+.tm-brand-banca { --ifg-brand-bg: #dde9ee; --ifg-brand-ink: #003b4c; }
+
+/* Header */
+.tm-brand-banca .tm-header .uk-navbar-container,
+.tm-brand-banca .tm-header-mobile .uk-navbar-container { background: var(--ifg-brand-bg); }
+.tm-brand-banca .tm-header .uk-logo img { width: 240px; }
+.tm-brand-banca .tm-header-mobile .uk-logo img { width: 190px; }
+.tm-brand-banca .tm-header .uk-navbar-nav > li > a { color: var(--ifg-brand-ink); }
+.tm-brand-banca .tm-header .uk-navbar-nav > li:hover > a,
+.tm-brand-banca .tm-header .uk-navbar-nav > li > a:focus,
+.tm-brand-banca .tm-header .uk-navbar-nav > li > a[aria-expanded="true"],
+.tm-brand-banca .tm-header .uk-navbar-nav > li.uk-active > a { color: var(--ifg-white); background: var(--ifg-brand-ink); }
+.tm-brand-banca .tm-search-toggle,
+.tm-brand-banca .tm-search-toggle:hover,
+.tm-brand-banca .tm-search-toggle:focus,
+.tm-brand-banca .tm-search-toggle[aria-expanded="true"],
+.tm-brand-banca .tm-header-mobile .uk-navbar-toggle { color: var(--ifg-brand-ink); }
+.tm-brand-banca .tm-button-online { background: var(--ifg-brand-ink); color: var(--ifg-white); border-color: var(--ifg-brand-ink); }
+.tm-brand-banca .tm-button-online:hover,
+.tm-brand-banca .tm-button-online:focus { background: var(--ifg-primary); border-color: var(--ifg-primary); color: var(--ifg-white); }
+/* il pannello del menu resta distinguibile dalla barra, che ora ha lo stesso azzurro */
+.tm-brand-banca .uk-navbar-dropbar { background: var(--ifg-white); }
+@media (min-width: 1200px) and (max-width: 1399px) {
+  .tm-brand-banca .tm-header .uk-logo img { width: 200px; }
+}
+
+/* Menu mobile */
+.tm-brand-banca .uk-offcanvas-bar { background: var(--ifg-brand-bg); }
+.tm-brand-banca .uk-offcanvas-bar .uk-nav-default > li > a,
+.tm-brand-banca .uk-offcanvas-bar .uk-offcanvas-close { color: var(--ifg-brand-ink); }
+.tm-brand-banca .uk-offcanvas-bar .uk-nav-default .uk-nav-sub a { color: rgba(0, 59, 76, 0.8); }
+.tm-brand-banca .uk-offcanvas-bar .uk-nav-default .uk-nav-sub a:hover,
+.tm-brand-banca .uk-offcanvas-bar .uk-nav-default .uk-nav-sub li.uk-active > a { color: var(--ifg-brand-ink); }
+
+/* Fascia titolo */
+.tm-brand-banca .tm-hero-title { background: var(--ifg-brand-bg); color: var(--ifg-brand-ink); }
+.tm-brand-banca .tm-hero-heading,
+.tm-brand-banca .tm-hero-subtitle { color: var(--ifg-brand-ink); }
+
+/* Sezioni su colore di marca (Chi Siamo) */
+.tm-brand-banca .tm-section-primary { background: var(--ifg-brand-bg); color: var(--ifg-brand-ink); }
+.tm-brand-banca .tm-section-primary .tm-block-title,
+.tm-brand-banca .tm-section-primary h2,
+.tm-brand-banca .tm-section-primary h3,
+.tm-brand-banca .tm-section-primary a { color: var(--ifg-brand-ink); }
+
+/* Riquadri scuri (dati Governance, invito Whistleblowing) */
+.tm-brand-banca .tm-stat,
+.tm-brand-banca .tm-cta { background: var(--ifg-brand-bg); color: var(--ifg-brand-ink); }
+.tm-brand-banca .tm-cta-title,
+.tm-brand-banca .tm-link-light,
+.tm-brand-banca .tm-link-light:hover { color: var(--ifg-brand-ink); }
+.tm-brand-banca .tm-cta .tm-button-light-outline { color: var(--ifg-brand-ink); border-color: var(--ifg-brand-ink); }
+.tm-brand-banca .tm-cta .tm-button-light-outline:hover,
+.tm-brand-banca .tm-cta .tm-button-light-outline:focus { background: var(--ifg-brand-ink); color: var(--ifg-white); border-color: var(--ifg-brand-ink); }
+
+/* Footer */
+.tm-brand-banca .tm-footer { background: var(--ifg-brand-bg); color: var(--ifg-brand-ink); border-top: 1px solid var(--ifg-line); }
+.tm-brand-banca .tm-footer a,
+.tm-brand-banca .tm-footer a:hover { color: var(--ifg-brand-ink); }
+
 /* Utility */
 
 .uk-light a, .uk-light .uk-link { color: inherit; }

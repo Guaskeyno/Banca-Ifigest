@@ -54,6 +54,7 @@ NAV = [
             ("Info Prodotti", "info-prodotti.html"),
             ("Sostenibilità", "sostenibilita.html"),
             ("Area Soci", "area-soci.html"),
+            ("Whistleblowing", "whistleblowing.html"),
         ],
     },
 ]
@@ -123,6 +124,23 @@ def placeholder(cls="", label="Immagine", hint=""):
     )
 
 
+def is_banca(slug):
+    """Pagine della sezione La Banca: marchio Banca Ifigest e tema chiaro (#DDE9EE)."""
+    item = section_of(slug)
+    return bool(item and item["label"] == "La Banca")
+
+
+def logo(slug, where):
+    """Logo per header ('desktop' | 'mobile') e footer: Gruppo ovunque, Banca Ifigest nelle pagine La Banca."""
+    if is_banca(slug):
+        w = {"desktop": 240, "mobile": 190, "footer": 200}[where]
+        return f'<img src="assets/img/logo-banca-ifigest.png" width="{w}" height="{round(w * 88 / 960)}" alt="Banca Ifigest">'
+    if where == "footer":
+        return f'<img src="assets/img/logo-ifigest-footer.svg" width="134" height="32" alt="{SITE} - Gruppo Bancario">'
+    w, h = (160, 64) if where == "desktop" else (120, 48)
+    return f'<img src="assets/img/logo-ifigest.svg" width="{w}" height="{h}" alt="{SITE} - Gruppo Bancario">'
+
+
 def section_of(slug):
     for item in NAV:
         if slug == item["href"] or slug in [h for _, h in item["children"]]:
@@ -173,7 +191,7 @@ def header(slug):
         <nav class="uk-navbar" aria-label="Navigazione principale" uk-navbar="align: left; dropbar: true; dropbar-anchor: !.uk-navbar-container; target-y: !.uk-navbar-container; delay-hide: 200">
           <div class="uk-navbar-left">
             <a href="index.html" class="uk-navbar-item uk-logo" aria-label="{SITE} - Torna alla Home">
-              <img src="assets/img/logo-ifigest.svg" width="160" height="64" alt="{SITE} - Gruppo Bancario">
+              {logo(slug, "desktop")}
             </a>
           </div>
           <div class="uk-navbar-right">
@@ -205,7 +223,7 @@ def header(slug):
         <nav class="uk-navbar" aria-label="Navigazione mobile" uk-navbar>
           <div class="uk-navbar-left">
             <a href="index.html" class="uk-navbar-item uk-logo" aria-label="{SITE} - Torna alla Home">
-              <img src="assets/img/logo-ifigest.svg" width="120" height="48" alt="{SITE} - Gruppo Bancario">
+              {logo(slug, "mobile")}
             </a>
           </div>
           <div class="uk-navbar-right">
@@ -266,7 +284,7 @@ def hero(title, subtitle="", image=True):
 </section>"""
 
 
-def footer():
+def footer(slug=""):
     # Struttura come il footer del riferimento: logo | link orizzontali | social + copyright
     rows = [FOOTER_LINKS[:3], FOOTER_LINKS[3:]]
     items = []
@@ -282,7 +300,7 @@ def footer():
     <div class="uk-grid tm-footer-grid" uk-grid>
       <div class="uk-width-1-4@m uk-flex uk-flex-middle">
         <div>
-          <a href="index.html" aria-label="{SITE} - Torna alla Home"><img src="assets/img/logo-ifigest-footer.svg" width="134" height="32" alt="{SITE} - Gruppo Bancario"></a>
+          <a href="index.html" aria-label="{SITE} - Torna alla Home">{logo(slug, "footer")}</a>
           <p class="tm-footer-small">Banca Ifigest S.p.A.<br>P.za Santa Maria Soprarno, 1 - 50125 Firenze<br>
             <a href="tel:+3905521631">+39 055 21631</a><br>
             <a href="mailto:segreteria.ifigest@legalmail.it">segreteria.ifigest@legalmail.it</a></p>
@@ -333,13 +351,13 @@ def page(slug, title, description, body):
   <!-- Tema Banca Ifigest -->
   <link rel="stylesheet" href="{asset("assets/css/theme.css")}">
 </head>
-<body class="page-{slug.replace('.html', '')}">
+<body class="page-{slug.replace('.html', '')}{' tm-brand-banca' if is_banca(slug) else ''}">
 {header(slug)}
 {subnav(slug)}
 <main id="main">
 {body}
 </main>
-{footer()}
+{footer(slug)}
 <!-- Libreria: UIkit (MIT) -->
 <script src="{asset("assets/vendor/uikit/js/uikit.min.js")}"></script>
 <script src="{asset("assets/vendor/uikit/js/uikit-icons.min.js")}"></script>
