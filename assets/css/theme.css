@@ -2,7 +2,7 @@
    Banca Ifigest — tema
    Linguaggio visivo derivato dal sito di riferimento (UIkit, Lato + Meghana,
    pill buttons, dropbar di navigazione, fasce colore con righe verticali).
-   Colore principale: #005A7C
+   Colore principale: #003B4C (voci di menu selezionate: #005A7C)
    ========================================================================== */
 
 /* FONTS */
@@ -18,7 +18,9 @@
 /* TOKENS */
 
 :root {
-  --ifg-primary: #005a7c;          /* colore principale (sostituisce #c5d9c9 del riferimento) */
+  --ifg-primary: #003b4c;          /* colore principale (sostituisce #c5d9c9 del riferimento) */
+  --ifg-accent: #005a7c;           /* solo per le voci di navigazione selezionate */
+  --ifg-hover: #1d5565;            /* stato hover di bottoni e frecce (schiarita del principale) */
   --ifg-primary-tint: #dde9ee;     /* tinta chiara per dropdown e stati hover */
   --ifg-dark: #003b4c;             /* testi, bottoni, pannelli scuri */
   --ifg-muted: #f2f2f2;            /* sfondo card */
@@ -55,6 +57,9 @@ body { overflow-x: hidden; }
 
 a, .uk-link { color: var(--ifg-primary); }
 a:hover, .uk-link:hover { color: var(--ifg-dark); }
+/* i link nel testo hanno lo stesso colore del testo: restano riconoscibili con la sottolineatura */
+#main p a:not(.uk-button),
+#main dd a { text-decoration: underline; }
 
 h1, h2, h3, h4, h5, h6,
 .uk-h1, .uk-h2, .uk-h3, .uk-h4, .uk-h5, .uk-h6 {
@@ -125,7 +130,7 @@ em { color: inherit; }
 }
 .uk-button-primary:hover,
 .uk-button-primary:focus {
-  background-color: var(--ifg-primary);
+  background-color: var(--ifg-hover);
   color: var(--ifg-white);
 }
 
@@ -153,7 +158,7 @@ em { color: inherit; }
   box-shadow: 1px 3px 15px rgba(0, 0, 0, 0.12);
 }
 .tm-button-online:hover,
-.tm-button-online:focus { background: var(--ifg-dark); color: var(--ifg-white); border-color: var(--ifg-dark); }
+.tm-button-online:focus { background: transparent; color: var(--ifg-white); border-color: var(--ifg-white); }
 
 /* ==========================================================================
    HEADER / NAVBAR
@@ -200,7 +205,7 @@ em { color: inherit; }
 .tm-header .uk-navbar-nav > li > a[aria-expanded="true"],
 .tm-header .uk-navbar-nav > li.uk-active > a {
   color: var(--ifg-white);
-  background: var(--ifg-dark);
+  background: var(--ifg-accent);
 }
 
 .tm-header .uk-navbar-nav > li > a[aria-expanded="true"] .uk-navbar-parent-icon { transform: rotateX(180deg); }
@@ -246,7 +251,7 @@ em { color: inherit; }
 .uk-navbar-dropdown-nav > li > a:focus,
 .uk-navbar-dropdown-nav > li.uk-active > a {
   color: var(--ifg-white);
-  background: var(--ifg-dark);
+  background: var(--ifg-accent);
 }
 
 /* Search */
@@ -334,7 +339,7 @@ em { color: inherit; }
 }
 .tm-subnav-list a:hover,
 .tm-subnav-list a:focus { background: var(--ifg-primary-tint); color: var(--ifg-dark); text-decoration: none; }
-.tm-subnav-list .uk-active a { background: var(--ifg-dark); color: var(--ifg-white); font-weight: 700; }
+.tm-subnav-list .uk-active a { background: var(--ifg-accent); color: var(--ifg-white); font-weight: 700; }
 
 /* ==========================================================================
    SEGNAPOSTO IMMAGINI
@@ -519,7 +524,7 @@ em { color: inherit; }
   transition: background-color 0.25s ease;
 }
 .tm-card:hover .tm-card-arrow,
-.tm-card:focus .tm-card-arrow { background: var(--ifg-primary); }
+.tm-card:focus .tm-card-arrow { background: var(--ifg-hover); }
 
 /* Split: immagine + testo */
 
@@ -628,7 +633,7 @@ em { color: inherit; }
 }
 .tm-slidenav + .tm-slidenav { margin-left: 8px; }
 .tm-slidenav:hover,
-.tm-slidenav:focus { background-color: var(--ifg-primary); color: var(--ifg-white); }
+.tm-slidenav:focus { background-color: var(--ifg-hover); color: var(--ifg-white); }
 
 /* Pagina Contatti (come il riferimento) */
 
@@ -694,7 +699,7 @@ em { color: inherit; }
 }
 .tm-tabs > li > a:hover,
 .tm-tabs > li > a:focus { background: var(--ifg-primary-tint); color: var(--ifg-dark); text-decoration: none; }
-.tm-tabs > li.uk-active > a { background: var(--ifg-dark); color: var(--ifg-white); font-weight: 700; }
+.tm-tabs > li.uk-active > a { background: var(--ifg-accent); border-color: var(--ifg-accent); color: var(--ifg-white); font-weight: 700; }
 
 .tm-tab-panels p { font-size: 17px; line-height: 1.6; }
 
@@ -848,7 +853,7 @@ em { color: inherit; }
   transition: background-color 0.25s ease;
 }
 .tm-product-btn:hover,
-.tm-product-btn:focus { background: var(--ifg-primary); color: var(--ifg-white); text-decoration: none; }
+.tm-product-btn:focus { background: var(--ifg-hover); color: var(--ifg-white); text-decoration: none; }
 
 /* Pilastri numerati */
 .tm-pillars { overflow-y: visible; padding-bottom: 72px; }
@@ -1019,7 +1024,7 @@ em { color: inherit; }
 .tm-brand-banca .tm-header .uk-navbar-nav > li:hover > a,
 .tm-brand-banca .tm-header .uk-navbar-nav > li > a:focus,
 .tm-brand-banca .tm-header .uk-navbar-nav > li > a[aria-expanded="true"],
-.tm-brand-banca .tm-header .uk-navbar-nav > li.uk-active > a { color: var(--ifg-white); background: var(--ifg-brand-ink); }
+.tm-brand-banca .tm-header .uk-navbar-nav > li.uk-active > a { color: var(--ifg-white); background: var(--ifg-accent); }
 .tm-brand-banca .tm-search-toggle,
 .tm-brand-banca .tm-search-toggle:hover,
 .tm-brand-banca .tm-search-toggle:focus,
@@ -1027,7 +1032,7 @@ em { color: inherit; }
 .tm-brand-banca .tm-header-mobile .uk-navbar-toggle { color: var(--ifg-brand-ink); }
 .tm-brand-banca .tm-button-online { background: var(--ifg-brand-ink); color: var(--ifg-white); border-color: var(--ifg-brand-ink); }
 .tm-brand-banca .tm-button-online:hover,
-.tm-brand-banca .tm-button-online:focus { background: var(--ifg-primary); border-color: var(--ifg-primary); color: var(--ifg-white); }
+.tm-brand-banca .tm-button-online:focus { background: var(--ifg-hover); border-color: var(--ifg-hover); color: var(--ifg-white); }
 /* il pannello del menu resta distinguibile dalla barra, che ora ha lo stesso azzurro */
 .tm-brand-banca .uk-navbar-dropbar { background: var(--ifg-white); }
 @media (min-width: 1200px) and (max-width: 1399px) {
