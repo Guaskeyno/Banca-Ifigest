@@ -1,6 +1,6 @@
 # Banca Ifigest — sito web
 
-Sito statico in HTML, CSS e JavaScript. Il linguaggio visivo (tipografia Lato + Meghana, set di icone UIkit, bottoni a pillola, navigazione con dropbar, fasce colore con righe verticali) è ripreso dal sito di riferimento; colore principale `#003B4C` (voci di menu selezionate `#005A7C`; pagine La Banca su `#DDE9EE`), testi e immagini specifici di Banca Ifigest.
+Sito statico in HTML, CSS e JavaScript. Il linguaggio visivo (tipografia Lato + Meghana, set di icone UIkit, bottoni a pillola, navigazione con dropbar, fasce colore con righe verticali) è ripreso dal sito di riferimento; marchio Banca Ifigest su fondo `#DDE9EE` con testo `#003B4C` in tutte le pagine, tranne Il Gruppo che usa il logo Ifigest Gruppo Bancario e `#003B4C` come colore principale (voci di menu selezionate `#005A7C`), testi e immagini specifici di Banca Ifigest.
 
 ## Struttura
 

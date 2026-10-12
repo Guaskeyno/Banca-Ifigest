@@ -125,13 +125,12 @@ def placeholder(cls="", label="Immagine", hint=""):
 
 
 def is_banca(slug):
-    """Pagine della sezione La Banca: marchio Banca Ifigest e tema chiaro (#DDE9EE)."""
-    item = section_of(slug)
-    return bool(item and item["label"] == "La Banca")
+    """Marchio Banca Ifigest e tema chiaro (#DDE9EE) su tutte le pagine tranne Il Gruppo."""
+    return slug != "il-gruppo.html"
 
 
 def logo(slug, where):
-    """Logo per header ('desktop' | 'mobile') e footer: Gruppo ovunque, Banca Ifigest nelle pagine La Banca."""
+    """Logo per header ('desktop' | 'mobile') e footer: Banca Ifigest ovunque, Gruppo solo nella pagina Il Gruppo."""
     if is_banca(slug):
         w = {"desktop": 240, "mobile": 190, "footer": 200}[where]
         return f'<img src="assets/img/logo-banca-ifigest.png" width="{w}" height="{round(w * 88 / 960)}" alt="Banca Ifigest">'
