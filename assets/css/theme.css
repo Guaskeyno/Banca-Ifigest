@@ -1069,10 +1069,7 @@ em { color: inherit; }
 .tm-brand-banca .tm-cta .tm-button-light-outline:hover,
 .tm-brand-banca .tm-cta .tm-button-light-outline:focus { background: var(--ifg-brand-ink); color: var(--ifg-white); border-color: var(--ifg-brand-ink); }
 
-/* Footer */
-.tm-brand-banca .tm-footer { background: var(--ifg-brand-bg); color: var(--ifg-brand-ink); border-top: 1px solid var(--ifg-line); }
-.tm-brand-banca .tm-footer a,
-.tm-brand-banca .tm-footer a:hover { color: var(--ifg-brand-ink); }
+/* Il footer resta scuro (#003B4C) su tutte le pagine */
 
 /* Utility */
 

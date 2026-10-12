@@ -133,7 +133,9 @@ def is_banca(slug):
 def logo(slug, where):
     """Logo per header ('desktop' | 'mobile') e footer: Banca Ifigest ovunque, Gruppo solo nella pagina Il Gruppo."""
     if is_banca(slug):
-        w = {"desktop": 240, "mobile": 190, "footer": 200}[where]
+        if where == "footer":  # footer sempre scuro: versione bianca del logo
+            return '<img src="assets/img/logo-banca-ifigest-white.png" width="200" height="18" alt="Banca Ifigest">'
+        w = {"desktop": 240, "mobile": 190}[where]
         return f'<img src="assets/img/logo-banca-ifigest.png" width="{w}" height="{round(w * 88 / 960)}" alt="Banca Ifigest">'
     if where == "footer":
         return f'<img src="assets/img/logo-ifigest-footer.svg" width="134" height="32" alt="{SITE} - Gruppo Bancario">'
