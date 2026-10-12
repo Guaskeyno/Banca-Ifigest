@@ -809,11 +809,28 @@ def timeline_section():
 </section>"""
 
 
-GROUP_LOGOS = 5  # segnaposto quadrati per i loghi delle società del Gruppo
-group_logos = "".join(
-    f'<div><div class="tm-logo-media">{placeholder("tm-placeholder-square tm-placeholder-logo", hint=f"logo-{i}")}</div></div>'
-    for i in range(1, GROUP_LOGOS + 1)
-)
+# Loghi delle società del Gruppo: (sito, nome) oppure None se il logo non ha link (sito corrente)
+GROUP_LOGOS = [
+    None,
+    ("https://www.lbcapitalsgr.it/", "L&B Capital SGR"),
+    ("https://lbpartners.it/", "L&B Partners"),
+    ("https://www.fundstore.it/", "Fundstore"),
+    None,
+]
+
+
+def group_logo(i, link):
+    media = placeholder("tm-placeholder-square tm-placeholder-logo", hint=f"logo-{i}")
+    if link:
+        url, name = link
+        media = (
+            f'<a class="tm-logo-link" href="{url}" target="_blank" rel="noopener" '
+            f'aria-label="{escape(name)} (si apre in una nuova scheda)">{media}</a>'
+        )
+    return f'<div><div class="tm-logo-media">{media}</div></div>'
+
+
+group_logos = "".join(group_logo(i, link) for i, link in enumerate(GROUP_LOGOS, 1))
 
 add(
     "il-gruppo.html",
@@ -1264,7 +1281,7 @@ def write_image_manifest():
     for slug, title, *_ in PAGES:
         html = (ROOT / slug).read_text(encoding="utf-8")
         found = []
-        for m in re.finditer(r'<div class="(tm-hero-media|tm-split-media|tm-logo-media)"><div class="tm-placeholder ([^"]+)"><img class="tm-photo" src="assets/img/pages/([^"]+)"', html):
+        for m in re.finditer(r'<div class="(tm-hero-media|tm-split-media|tm-logo-media)">(?:<a [^>]*>)?<div class="tm-placeholder ([^"]+)"><img class="tm-photo" src="assets/img/pages/([^"]+)"', html):
             kind = "hero" if m.group(1) == "tm-hero-media" else m.group(2).strip()
             found.append((m.group(3), *IMAGE_SPECS[kind]))
         if found:

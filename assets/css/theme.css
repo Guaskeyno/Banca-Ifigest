@@ -360,7 +360,10 @@ em { color: inherit; }
 .tm-placeholder-cover { height: 100%; }
 .tm-placeholder-square { aspect-ratio: 1 / 1; }
 /* Loghi del Gruppo: il logo sta dentro il quadrato, senza ritagli */
-.tm-placeholder-logo .tm-photo { object-fit: contain; padding: 14%; box-sizing: border-box; background: var(--ifg-white); border: 1px solid var(--ifg-line); }
+.tm-placeholder-logo .tm-photo { object-fit: contain; padding: 14%; box-sizing: border-box; background: var(--ifg-white); }
+.tm-logo-link { display: block; transition: opacity 0.2s ease; }
+.tm-logo-link:hover { opacity: 0.7; }
+.tm-logo-link:focus-visible { outline: 2px solid var(--ifg-accent); outline-offset: 4px; }
 .tm-section-logos { padding-bottom: 0; }
 
 /* ==========================================================================
