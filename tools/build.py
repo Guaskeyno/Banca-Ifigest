@@ -820,8 +820,9 @@ add(
     hero("Gruppo Bancario Ifigest", "Un nuovo movimento finanziario")
     + lead(LOREM, "dark")  # TODO: testo definitivo
     + f"""
-<section class="uk-section tm-section-logos" aria-label="Le società del Gruppo">
+<section class="uk-section tm-section-logos" aria-labelledby="societa-title">
   <div class="uk-container uk-container-large">
+    <h2 id="societa-title" class="tm-section-title">Le Società del Gruppo Bancario Ifigest</h2>
     <div class="uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-5@m" uk-grid>{group_logos}</div>
   </div>
 </section>"""
