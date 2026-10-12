@@ -203,6 +203,14 @@ h1, h2, h3, h4, h5, h6,
 .tm-header .uk-navbar-nav > li > a[aria-expanded="true"] .uk-navbar-parent-icon { transform: rotateX(180deg); }
 .uk-navbar-parent-icon { transition: transform 0.2s ease; }
 
+/* Con cinque voci, tra 1200 e 1400px si stringono gli spazi per restare su una riga */
+@media (min-width: 1200px) and (max-width: 1399px) {
+  .tm-header .uk-navbar-nav { gap: 0; margin-right: 4px; }
+  .tm-header .uk-navbar-nav > li > a { padding: 4px 11px; font-size: 15px; }
+  .tm-header .uk-logo img { width: 140px; }
+  .tm-header .tm-button-online { padding: 0 18px; }
+}
+
 /* Dropbar (pannello a tutta larghezza che scende sotto la barra) */
 
 .uk-navbar-dropbar {
@@ -343,6 +351,9 @@ h1, h2, h3, h4, h5, h6,
 .tm-photo { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; object-fit: cover; }
 .tm-placeholder-cover { height: 100%; }
 .tm-placeholder-square { aspect-ratio: 1 / 1; }
+/* Loghi del Gruppo: il logo sta dentro il quadrato, senza ritagli */
+.tm-placeholder-logo .tm-photo { object-fit: contain; padding: 14%; box-sizing: border-box; background: var(--ifg-white); border: 1px solid var(--ifg-line); }
+.tm-section-logos { padding-bottom: 0; }
 
 /* ==========================================================================
    HERO

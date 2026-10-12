@@ -2,7 +2,7 @@
 
 Generato da `tools/build.py`: non modificare a mano.
 
-Caricare qui i file con **esattamente** questi nomi (minuscolo). L'estensione può essere `.jpg` o `.jpeg`: se esistono entrambe, viene usata `.jpeg`.
+Caricare qui i file con **esattamente** questi nomi (minuscolo). Estensioni accettate: `.jpg`, `.jpeg`, `.png`, `.svg`, `.webp` (per i loghi meglio `.png` o `.svg`). Il nome qui sotto indica l'estensione attesa, ma vanno bene anche le altre.
 Finché un file manca, la pagina mostra il segnaposto; appena caricato, l'immagine compare da sola.
 
 ## Home (`index.html`)
@@ -82,6 +82,11 @@ Finché un file manca, la pagina mostra il segnaposto; appena caricato, l'immagi
 | File | Uso | Dimensioni consigliate |
 |---|---|---|
 | `il-gruppo-hero.jpeg` | Testata (hero) | 2880 × 1106 px (circa 2,6:1) |
+| `il-gruppo-logo-1.jpg` | Logo società del Gruppo (non viene ritagliato) | 800 × 800 px (1:1), sfondo bianco o trasparente |
+| `il-gruppo-logo-2.jpg` | Logo società del Gruppo (non viene ritagliato) | 800 × 800 px (1:1), sfondo bianco o trasparente |
+| `il-gruppo-logo-3.jpg` | Logo società del Gruppo (non viene ritagliato) | 800 × 800 px (1:1), sfondo bianco o trasparente |
+| `il-gruppo-logo-4.jpg` | Logo società del Gruppo (non viene ritagliato) | 800 × 800 px (1:1), sfondo bianco o trasparente |
+| `il-gruppo-logo-5.jpg` | Logo società del Gruppo (non viene ritagliato) | 800 × 800 px (1:1), sfondo bianco o trasparente |
 
 ## Chi Siamo (`chi-siamo.html`)
 

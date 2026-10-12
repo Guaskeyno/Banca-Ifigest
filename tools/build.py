@@ -43,13 +43,17 @@ NAV = [
     {
         "label": "Il Gruppo",
         "href": "il-gruppo.html",
+        "children": [],
+    },
+    {
+        "label": "La Banca",
+        "href": "chi-siamo.html",
+        "overview": "Chi Siamo",  # etichetta della pagina principale nel menu mobile
         "children": [
-            ("Chi Siamo", "chi-siamo.html"),
             ("Governance", "governance.html"),
             ("Info Prodotti", "info-prodotti.html"),
             ("Sostenibilità", "sostenibilita.html"),
             ("Area Soci", "area-soci.html"),
-            ("Whistleblowing", "whistleblowing.html"),
         ],
     },
 ]
@@ -98,12 +102,13 @@ def tel_href(num):
     return "tel:+39" + re.sub(r"\D", "", num)
 
 
-# Se il file non c'è con l'estensione prevista, prova l'altra (.jpg <-> .jpeg);
-# se manca anche quella, toglie l'<img> e resta il segnaposto.
+# Estensioni accettate per le immagini. Se il file non c'è con l'estensione prevista,
+# la pagina prova le altre una alla volta; se mancano tutte, toglie l'<img> e resta il segnaposto.
+IMG_EXTS = ["jpeg", "jpg", "png", "svg", "webp"]
 IMG_ONERROR = (
-    "if(!this.dataset.alt){this.dataset.alt=1;"
-    "this.src=this.src.replace(/\\.jpe?g$/,function(e){return e=='.jpg'?'.jpeg':'.jpg'})}"
-    "else{this.remove()}"
+    "var x=['jpeg','jpg','png','svg','webp'],t=(this.dataset.t||'')+this.src.split('.').pop()+',';"
+    "this.dataset.t=t;var n=x.filter(function(e){return t.indexOf(e+',')<0})[0];"
+    "if(n){this.src=this.src.replace(/\\.[a-z]+$/,'.'+n)}else{this.remove()}"
 )
 
 
@@ -130,6 +135,8 @@ def header(slug):
 
     def desktop_item(item):
         active = " uk-active" if item is current else ""
+        if not item["children"]:
+            return f'<li class="{active.strip()}"><a href="{item["href"]}">{escape(item["label"])}</a></li>'
         sub = "".join(
             f'<li{ACTIVE if href == slug else ""}><a href="{href}">{escape(label)}</a></li>'
             for label, href in item["children"]
@@ -147,9 +154,12 @@ def header(slug):
             for label, href in item["children"]
         )
         opened = " uk-open" if item is current else ""
+        if not item["children"]:
+            return f'<li{ACTIVE if item is current else ""}><a href="{item["href"]}">{escape(item["label"])}</a></li>'
+        overview = item.get("overview", "Panoramica")
         return (
             f'<li class="uk-parent{opened}"><a href="#">{escape(item["label"])} <span uk-nav-parent-icon></span></a>'
-            f'<ul class="uk-nav-sub"><li><a href="{item["href"]}">Panoramica</a></li>{sub}</ul></li>'
+            f'<ul class="uk-nav-sub"><li{ACTIVE if item["href"] == slug else ""}><a href="{item["href"]}">{overview}</a></li>{sub}</ul></li>'
         )
 
     desktop = "".join(desktop_item(i) for i in NAV)
@@ -225,7 +235,7 @@ def header(slug):
 
 def subnav(slug):
     item = section_of(slug)
-    if not item:
+    if not item or not item["children"]:
         return ""
     links = "".join(
         f'<li{ACTIVE if href == slug else ""}><a href="{href}"{CURRENT if href == slug else ""}>{escape(label)}</a></li>'
@@ -461,7 +471,8 @@ def add(slug, title, description, body, keywords=""):
             hint = f"immagine-{counter[0]}"
         used.add(hint)
         base = f"assets/img/pages/{page_name}-{hint}"
-        return base + (".jpeg" if (ROOT / (base + ".jpeg")).exists() else ".jpg")
+        found = [e for e in IMG_EXTS if (ROOT / f"{base}.{e}").exists()]
+        return f"{base}.{found[0] if found else 'jpg'}"
 
     body = re.sub(r"__IMG:([^_]*)__", name, body)
     PAGES.append((slug, title, description, body, keywords))
@@ -724,29 +735,6 @@ add("lombard-loans.html", "Lombard Loans", "Lombard Loans Banca Ifigest.", hero(
 add("debt-advisory.html", "Debt Advisory", "Debt Advisory Banca Ifigest.", hero("Debt Advisory") + placeholder_blocks("debt-advisory"), "struttura finanziaria")
 
 # Il Gruppo -----------------------------------------------------------------
-add(
-    "il-gruppo.html",
-    "Il Gruppo",
-    "Gruppo Bancario Ifigest: un nuovo movimento finanziario.",
-    hero("Gruppo Bancario Ifigest", "Un nuovo movimento finanziario")
-    + lead(
-        "<p>Il Gruppo Bancario Ifigest, espressione autentica di esperienza e professionalità, nasce per costruire servizi evoluti e interconnessi e generare soluzioni innovative, in grado di rispondere alla complessità dei mercati contemporanei.</p>"
-        "<p>Un unico hub al servizio di aziende, famiglie imprenditoriali e privati caratterizzato da un servizio globale in-house a 360° che unisce competenze diversificate per un'offerta su misura di ogni esigenza.</p>",
-        "dark",
-    )
-    + cards(
-        [
-            ("Chi Siamo", "Gruppo Bancario, storia, management, mission, filosofia di gestione e architettura aperta", "chi-siamo.html"),
-            ("Governance", "Dati societari, documentazione, privacy, Modello 231 e BRRD", "governance.html"),
-            ("Info Prodotti", "Trasparenza, Reclami, Sede di Esecuzione, PSD2, Schede Prodotto, ACF, FEA", "info-prodotti.html"),
-            ("Sostenibilità", "Principi ESG, obiettivi, prodotti sostenibili, governance e policy", "sostenibilita.html"),
-            ("Area Soci", "Avvisi, documenti e informazioni sul capitale sociale", "area-soci.html"),
-            ("Whistleblowing", "Segnalazione di violazioni, in conformità al D.Lgs. n. 24/2023", "whistleblowing.html"),
-        ]
-    ),
-    "gruppo bancario sevian fundstore soprarno sgr",
-)
-
 TIMELINE = [
     ("1987", "Fondazione di Banca Ifigest in Firenze"),
     ("2001", "Autorizzazione della Banca d'Italia all'esercizio dei servizi bancari e di investimento"),
@@ -762,6 +750,55 @@ TIMELINE_LINES = (
     '<svg class="tm-timeline-lines" viewBox="0 0 146.5 490" aria-hidden="true" focusable="false">'
     + "".join(f'<rect x="{x}" width="{w}" height="490"/>' for x, w in [(0, 7.41), (28.48, 6.75), (56.96, 6.09), (85.44, 5.43), (113.92, 4.77), (142.39, 4.11)])
     + "</svg>"
+)
+
+
+def timeline_section():
+    """La nostra storia: cronologia a slider (dimensioni e comportamento come il riferimento)."""
+    return f"""
+<section class="uk-section tm-section-timeline-title" id="storia" aria-labelledby="storia-title">
+  <div class="uk-container uk-container-large">
+    <h2 id="storia-title" class="tm-section-title">La nostra storia</h2>
+  </div>
+</section>
+<section class="tm-section-timeline" aria-label="La nostra storia, cronologia">
+  <div class="uk-grid uk-grid-collapse" uk-grid>
+    <div class="tm-timeline-lines-col uk-visible@m">{TIMELINE_LINES}</div>
+    <div class="uk-width-expand@m">
+      <div class="uk-slider-container tm-timeline" uk-slider>
+        <div class="uk-position-relative">
+          <ul class="uk-slider-items uk-grid uk-grid-divider">{timeline_items}</ul>
+          <div class="uk-slidenav-container tm-timeline-nav">
+            <a class="tm-slidenav" href="#" uk-slider-item="previous" aria-label="Precedente"><span uk-icon="chevron-left"></span></a>
+            <a class="tm-slidenav" href="#" uk-slider-item="next" aria-label="Successivo"><span uk-icon="chevron-right"></span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>"""
+
+
+GROUP_LOGOS = 5  # segnaposto quadrati per i loghi delle società del Gruppo
+group_logos = "".join(
+    f'<div><div class="tm-logo-media">{placeholder("tm-placeholder-square tm-placeholder-logo", hint=f"logo-{i}")}</div></div>'
+    for i in range(1, GROUP_LOGOS + 1)
+)
+
+add(
+    "il-gruppo.html",
+    "Il Gruppo",
+    "Gruppo Bancario Ifigest: un nuovo movimento finanziario.",
+    hero("Gruppo Bancario Ifigest", "Un nuovo movimento finanziario")
+    + lead(LOREM, "dark")  # TODO: testo definitivo
+    + f"""
+<section class="uk-section tm-section-logos" aria-label="Le società del Gruppo">
+  <div class="uk-container uk-container-large">
+    <div class="uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-5@m" uk-grid>{group_logos}</div>
+  </div>
+</section>"""
+    + timeline_section(),
+    "gruppo bancario sevian fundstore soprarno sgr storia 1987",
 )
 
 add(
@@ -780,28 +817,6 @@ add(
       <div class="tm-two-col-text">
         <p>Banca Ifigest è una banca privata e indipendente con sede a Firenze, iscritta all'Albo delle Banche al Num. 5485 e all'Albo dei Gruppi Bancari al num. 3185. Aderente al Fondo Interbancario di tutela dei depositi e al Fondo Nazionale di Garanzia.</p>
         <p>Intermediario autorizzato all'esercizio dei servizi bancari e di investimento di collocamento, ricezione e trasmissione di ordini, gestione individuale di portafoglio di investimento e consulenza in materia di investimenti dalla Banca d'Italia con delibera del 19 aprile 2001. Il Gruppo comprende Banca Ifigest S.p.A., Sevian Fiduciaria, Fundstore e Soprarno SGR.</p>
-      </div>
-    </div>
-  </div>
-</section>"""
-    + f"""
-<section class="uk-section tm-section-timeline-title" id="storia" aria-labelledby="storia-title">
-  <div class="uk-container uk-container-large">
-    <h2 id="storia-title" class="tm-section-title">La nostra storia</h2>
-  </div>
-</section>
-<section class="tm-section-timeline" aria-label="La nostra storia, cronologia">
-  <div class="uk-grid uk-grid-collapse" uk-grid>
-    <div class="tm-timeline-lines-col uk-visible@m">{TIMELINE_LINES}</div>
-    <div class="uk-width-expand@m">
-      <div class="uk-slider-container tm-timeline" uk-slider>
-        <div class="uk-position-relative">
-          <ul class="uk-slider-items uk-grid uk-grid-divider">{timeline_items}</ul>
-          <div class="uk-slidenav-container tm-timeline-nav">
-            <a class="tm-slidenav" href="#" uk-slider-item="previous" aria-label="Precedente"><span uk-icon="chevron-left"></span></a>
-            <a class="tm-slidenav" href="#" uk-slider-item="next" aria-label="Successivo"><span uk-icon="chevron-right"></span></a>
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -1169,7 +1184,7 @@ def text_of(html):
 IMAGE_SPECS = {
     "hero": ("Testata (hero)", "2880 × 1106 px (circa 2,6:1)"),
     "tm-placeholder-square": ("Blocco immagine + testo", "1312 × 1312 px (1:1)"),
-    "tm-placeholder-cover": ("Pannello scuro con immagine", "1728 × 820 px (circa 2,1:1)"),
+    "tm-placeholder-square tm-placeholder-logo": ("Logo società del Gruppo (non viene ritagliato)", "800 × 800 px (1:1), sfondo bianco o trasparente"),
 }
 
 
@@ -1180,14 +1195,14 @@ def write_image_manifest():
         "",
         "Generato da `tools/build.py`: non modificare a mano.",
         "",
-        "Caricare qui i file con **esattamente** questi nomi (minuscolo). L'estensione può essere `.jpg` o `.jpeg`: se esistono entrambe, viene usata `.jpeg`.",
+        "Caricare qui i file con **esattamente** questi nomi (minuscolo). Estensioni accettate: `.jpg`, `.jpeg`, `.png`, `.svg`, `.webp` (per i loghi meglio `.png` o `.svg`). Il nome qui sotto indica l'estensione attesa, ma vanno bene anche le altre.",
         "Finché un file manca, la pagina mostra il segnaposto; appena caricato, l'immagine compare da sola.",
         "",
     ]
     for slug, title, *_ in PAGES:
         html = (ROOT / slug).read_text(encoding="utf-8")
         found = []
-        for m in re.finditer(r'<div class="(tm-hero-media|tm-split-media)"><div class="tm-placeholder ([^"]+)"><img class="tm-photo" src="assets/img/pages/([^"]+)"', html):
+        for m in re.finditer(r'<div class="(tm-hero-media|tm-split-media|tm-logo-media)"><div class="tm-placeholder ([^"]+)"><img class="tm-photo" src="assets/img/pages/([^"]+)"', html):
             kind = "hero" if m.group(1) == "tm-hero-media" else m.group(2).strip()
             found.append((m.group(3), *IMAGE_SPECS[kind]))
         if found:
