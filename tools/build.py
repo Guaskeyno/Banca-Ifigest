@@ -253,7 +253,30 @@ def header(slug):
 """
 
 
+# Barra sotto l'header con ancore alle sezioni della pagina (al posto dei link ad altre pagine)
+PAGE_ANCHORS = {
+    "il-gruppo.html": [
+        ("Le Società", "societa"),
+        ("Private Banking", "private-banking"),
+        ("Corporate & Investment Banking", "corporate-investment-banking"),
+        ("Asset Management", "asset-management"),
+        ("Treasury & ALM", "treasury-alm"),
+        ("La nostra Storia", "storia"),
+    ],
+}
+
+
 def subnav(slug):
+    if slug in PAGE_ANCHORS:
+        links = "".join(
+            f'<li><a href="#{sid}"{SCROLL}>{escape(label)}</a></li>' for label, sid in PAGE_ANCHORS[slug]
+        )
+        return f"""
+<nav class="tm-subnav" aria-label="Sezioni della pagina">
+  <div class="uk-container uk-container-large">
+    <ul class="tm-subnav-list">{links}</ul>
+  </div>
+</nav>"""
     item = section_of(slug)
     if not item or not item["children"]:
         return ""
@@ -694,7 +717,7 @@ add(
         "valore-di-gruppo", "git-branch", "Valore di Gruppo",
         "<p>Operando all'interno del Gruppo Bancario, Sevian Fiduciaria <strong>unisce la propria specializzazione alle competenze bancarie, di gestione e di consulenza della banca</strong>.</p>",
         muted=True,
-        extra=centered_cta("Parla con un referente", "contatti.html"),
+        extra=centered_cta("Scopri il Gruppo", "il-gruppo.html"),
     ),
     "sevian fiduciaria intestazione fiduciaria amministrazione patrimoni pianificazione successoria family office",
 )
@@ -839,7 +862,7 @@ add(
     hero("Gruppo Bancario Ifigest", "Un nuovo movimento finanziario")
     + lead(LOREM, "dark")  # TODO: testo definitivo
     + f"""
-<section class="uk-section tm-section-logos" aria-labelledby="societa-title">
+<section class="uk-section tm-section-logos" id="societa" aria-labelledby="societa-title">
   <div class="uk-container uk-container-large">
     <h2 id="societa-title" class="tm-section-title">Le Società del Gruppo Bancario Ifigest</h2>
     <div class="uk-grid-small uk-child-width-1-2 uk-child-width-1-3@s uk-child-width-1-5@m" uk-grid>{group_logos}</div>

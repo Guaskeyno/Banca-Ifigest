@@ -1077,3 +1077,13 @@ em { color: inherit; }
 /* Utility */
 
 .uk-light a, .uk-light .uk-link { color: inherit; }
+
+/* Ancore di pagina: la sezione si ferma sotto l'header fisso */
+.tm-category,
+.tm-section-logos,
+.tm-section-timeline-title { scroll-margin-top: 80px; }
+@media (min-width: 960px) {
+  .tm-category,
+  .tm-section-logos,
+  .tm-section-timeline-title { scroll-margin-top: var(--ifg-header-height); }
+}
