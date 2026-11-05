@@ -1087,3 +1087,20 @@ em { color: inherit; }
   .tm-section-logos,
   .tm-section-timeline-title { scroll-margin-top: var(--ifg-header-height); }
 }
+
+/* Informazioni: testi e gruppi di documenti */
+.tm-prose { max-width: 900px; }
+.tm-prose p { margin: 0 0 16px; font-size: 16px; line-height: 1.75; }
+.tm-prose .tm-bullet-list { margin: 0 0 16px; }
+.tm-prose a { text-decoration: underline; }
+.tm-prose .tm-doc-group { margin-top: 32px; }
+.tm-doc-section > .tm-doc-group:first-of-type,
+.tm-prose > .tm-doc-group:first-child { margin-top: 0; }
+.tm-doc-group-block + .tm-doc-group-block,
+.tm-doc-group-block + .tm-prose,
+.tm-prose + .tm-doc-group-block,
+.tm-prose + .tm-docs-plain,
+.tm-docs-plain + .tm-prose,
+.tm-prose + .tm-doc-accordion { margin-top: 32px; }
+.tm-doc-group-block .tm-prose + .tm-docs-plain { margin-top: 0; }
+.tm-doc-accordion .uk-accordion-content > p { max-width: 900px; font-size: 15px; line-height: 1.7; }

@@ -23,7 +23,7 @@ Finché un file manca, la pagina mostra il segnaposto; appena caricato, l'immagi
 |---|---|---|
 | `servizi-bancari-hero.jpeg` | Testata (hero) | 2880 × 1106 px (circa 2,6:1) |
 
-## Investimenti e Risparmio (`investimenti-e-risparmio.html`)
+## Consulenza e Servizi d'Investimento (`investimenti-e-risparmio.html`)
 
 | File | Uso | Dimensioni consigliate |
 |---|---|---|
@@ -52,6 +52,22 @@ Finché un file manca, la pagina mostra il segnaposto; appena caricato, l'immagi
 | File | Uso | Dimensioni consigliate |
 |---|---|---|
 | `investment-banking-hero.jpeg` | Testata (hero) | 2880 × 1106 px (circa 2,6:1) |
+
+## Prodotti Assicurativi (`prodotti-assicurativi.html`)
+
+| File | Uso | Dimensioni consigliate |
+|---|---|---|
+| `prodotti-assicurativi-hero.jpg` | Testata (hero) | 2880 × 1106 px (circa 2,6:1) |
+| `prodotti-assicurativi-blocco-1.jpg` | Blocco immagine + testo | 1312 × 1312 px (1:1) |
+| `prodotti-assicurativi-blocco-2.jpg` | Blocco immagine + testo | 1312 × 1312 px (1:1) |
+
+## Richiedi il tuo POS (`richiedi-pos.html`)
+
+| File | Uso | Dimensioni consigliate |
+|---|---|---|
+| `richiedi-pos-hero.jpg` | Testata (hero) | 2880 × 1106 px (circa 2,6:1) |
+| `richiedi-pos-blocco-1.jpg` | Blocco immagine + testo | 1312 × 1312 px (1:1) |
+| `richiedi-pos-blocco-2.jpg` | Blocco immagine + testo | 1312 × 1312 px (1:1) |
 
 ## Finanza Strutturata (`finanza-strutturata.html`)
 
@@ -94,13 +110,13 @@ Finché un file manca, la pagina mostra il segnaposto; appena caricato, l'immagi
 |---|---|---|
 | `chi-siamo-hero.jpeg` | Testata (hero) | 2880 × 1106 px (circa 2,6:1) |
 
-## Governance (`governance.html`)
+## Dati e Documenti Societari (`governance.html`)
 
 | File | Uso | Dimensioni consigliate |
 |---|---|---|
 | `governance-hero.jpeg` | Testata (hero) | 2880 × 1106 px (circa 2,6:1) |
 
-## Info Prodotti (`info-prodotti.html`)
+## Informazioni (`info-prodotti.html`)
 
 | File | Uso | Dimensioni consigliate |
 |---|---|---|
@@ -111,8 +127,6 @@ Finché un file manca, la pagina mostra il segnaposto; appena caricato, l'immagi
 | File | Uso | Dimensioni consigliate |
 |---|---|---|
 | `sostenibilita-hero.jpeg` | Testata (hero) | 2880 × 1106 px (circa 2,6:1) |
-| `sostenibilita-blocco-1.jpg` | Blocco immagine + testo | 1312 × 1312 px (1:1) |
-| `sostenibilita-blocco-2.jpg` | Blocco immagine + testo | 1312 × 1312 px (1:1) |
 
 ## Area Soci (`area-soci.html`)
 

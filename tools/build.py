@@ -19,48 +19,50 @@ SITE = "Banca Ifigest"
 # --------------------------------------------------------------------------
 # Navigation
 # --------------------------------------------------------------------------
+BANCA_ONLINE_URL = "https://areariservata.bancaifigest.it/CBL-MITO-WA/"
+
 NAV = [
-    {
-        "label": "Private Banking",
-        "href": "private-banking.html",
-        "children": [
-            ("Servizi Bancari", "servizi-bancari.html"),
-            ("Investimenti e Risparmio", "investimenti-e-risparmio.html"),
-            ("Wealth Management", "wealth-management.html"),
-            ("Collocamento", "collocamento.html"),
-            ("Gestioni Patrimoniali", "gestioni-patrimoniali.html"),
-        ],
-    },
-    {
-        "label": "Investment Banking",
-        "href": "investment-banking.html",
-        "children": [
-            ("Finanza Strutturata", "finanza-strutturata.html"),
-            ("Lombard Loans", "lombard-loans.html"),
-            ("Debt Advisory", "debt-advisory.html"),
-        ],
-    },
-    {
-        "label": "Il Gruppo",
-        "href": "il-gruppo.html",
-        "children": [],
-    },
     {
         "label": "La Banca",
         "href": "chi-siamo.html",
         "overview": "Chi Siamo",  # etichetta della pagina principale nel menu mobile
         "children": [
-            ("Governance", "governance.html"),
-            ("Info Prodotti", "info-prodotti.html"),
+            ("Dati e Documenti Societari", "governance.html"),
+            ("Informazioni", "info-prodotti.html"),
             ("Sostenibilità", "sostenibilita.html"),
             ("Area Soci", "area-soci.html"),
-            ("Whistleblowing", "whistleblowing.html"),
+            ("Collocamento", "collocamento.html"),
+        ],
+    },
+    {
+        "label": "Il Gruppo",
+        "href": "il-gruppo.html",
+        "overview": "Il Gruppo",
+        # ancore alle sezioni della pagina Il Gruppo
+        "children": [
+            ("Private Banking", "il-gruppo.html#private-banking"),
+            ("Corporate & Investment Banking", "il-gruppo.html#corporate-investment-banking"),
+            ("Asset Management", "il-gruppo.html#asset-management"),
+            ("Treasury & ALM", "il-gruppo.html#treasury-alm"),
+        ],
+    },
+    {
+        "label": "Prodotti e Servizi",
+        "href": "gestioni-patrimoniali.html",  # la voce apre la prima pagina della sezione
+        "children": [
+            ("Gestioni Patrimoniali", "gestioni-patrimoniali.html"),
+            ("Consulenza e Servizi d'Investimento", "investimenti-e-risparmio.html"),
+            ("Servizi Bancari", "servizi-bancari.html"),
+            ("Prodotti Assicurativi", "prodotti-assicurativi.html"),
+            ("Wealth Management", "wealth-management.html"),
+            ("Banca Online", BANCA_ONLINE_URL),
+            ("Richiedi il tuo POS", "richiedi-pos.html"),
         ],
     },
 ]
-NAV.sort(key=lambda item: {"La Banca": 0, "Il Gruppo": 1}.get(item["label"], 2))  # La Banca e Il Gruppo per primi
+# Private Banking e Investment Banking (con Finanza Strutturata, Lombard Loans, Debt Advisory)
+# restano online ma fuori dal menu.
 
-BANCA_ONLINE_URL = "https://areariservata.bancaifigest.it/CBL-MITO-WA-2.0/?v=451#!/access/login"
 LINKEDIN_URL = "https://www.linkedin.com/company/banca-ifigest/"
 
 FOOTER_LINKS = [
@@ -143,6 +145,13 @@ def logo(slug, where):
     return f'<img src="assets/img/logo-ifigest.svg" width="{w}" height="{h}" alt="{SITE} - Gruppo Bancario">'
 
 
+def nav_link(label, href, slug):
+    """<li><a> di una voce di menu: esterna in nuova scheda, corrente evidenziata."""
+    if href.startswith("http"):
+        return f'<li><a href="{href}" target="_blank" rel="noopener">{escape(label)}</a></li>'
+    return f'<li{ACTIVE if href == slug else ""}><a href="{href}">{escape(label)}</a></li>'
+
+
 def section_of(slug):
     for item in NAV:
         if slug == item["href"] or slug in [h for _, h in item["children"]]:
@@ -157,10 +166,7 @@ def header(slug):
         active = " uk-active" if item is current else ""
         if not item["children"]:
             return f'<li class="{active.strip()}"><a href="{item["href"]}">{escape(item["label"])}</a></li>'
-        sub = "".join(
-            f'<li{ACTIVE if href == slug else ""}><a href="{href}">{escape(label)}</a></li>'
-            for label, href in item["children"]
-        )
+        sub = "".join(nav_link(label, href, slug) for label, href in item["children"])
         return (
             f'<li class="uk-parent{active}"><a href="{item["href"]}">{escape(item["label"])} '
             '<span uk-navbar-parent-icon></span></a>'
@@ -169,17 +175,17 @@ def header(slug):
         )
 
     def mobile_item(item):
-        sub = "".join(
-            f'<li{ACTIVE if href == slug else ""}><a href="{href}">{escape(label)}</a></li>'
-            for label, href in item["children"]
-        )
+        sub = "".join(nav_link(label, href, slug) for label, href in item["children"])
         opened = " uk-open" if item is current else ""
         if not item["children"]:
             return f'<li{ACTIVE if item is current else ""}><a href="{item["href"]}">{escape(item["label"])}</a></li>'
-        overview = item.get("overview", "Panoramica")
+        overview = ""
+        if item["href"] not in [h for _, h in item["children"]]:
+            label = item.get("overview", "Panoramica")
+            overview = f'<li{ACTIVE if item["href"] == slug else ""}><a href="{item["href"]}">{label}</a></li>'
         return (
             f'<li class="uk-parent{opened}"><a href="#">{escape(item["label"])} <span uk-nav-parent-icon></span></a>'
-            f'<ul class="uk-nav-sub"><li{ACTIVE if item["href"] == slug else ""}><a href="{item["href"]}">{overview}</a></li>{sub}</ul></li>'
+            f'<ul class="uk-nav-sub">{overview}{sub}</ul></li>'
         )
 
     desktop = "".join(desktop_item(i) for i in NAV)
@@ -281,7 +287,7 @@ def subnav(slug):
     if not item or not item["children"]:
         return ""
     links = "".join(
-        f'<li{ACTIVE if href == slug else ""}><a href="{href}"{CURRENT if href == slug else ""}>{escape(label)}</a></li>'
+        nav_link(label, href, slug).replace('<a href="' + slug + '">', '<a href="' + slug + '"' + CURRENT + ">")
         for label, href in item["children"]
     )
     return f"""
@@ -461,7 +467,8 @@ def doc_list(items):
     lis = []
     for i in items:
         label, href = i if isinstance(i, tuple) else (i, "#")
-        icon = "file-text" if href.lower().endswith((".doc", ".docx")) else "file-pdf"
+        path = href.lower().split("?")[0]
+        icon = "file-text" if path.endswith((".doc", ".docx")) else "file-pdf" if path.endswith(".pdf") or href == "#" else "link"
         target = ' target="_blank" rel="noopener"' if href.startswith("http") else ""
         lis.append(f'<li><a href="{href}"{target}><span uk-icon="icon: {icon}"></span><span>{label}</span></a></li>')
     return '<ul class="tm-doc-list">' + "".join(lis) + "</ul>"
@@ -667,9 +674,9 @@ add(
 
 add(
     "investimenti-e-risparmio.html",
-    "Investimenti e Risparmio",
+    "Consulenza e Servizi d'Investimento",
     "Soluzioni costruite sugli obiettivi della nostra clientela.",
-    hero("Investimenti e Risparmio", "Soluzioni costruite sugli obiettivi della nostra clientela")
+    hero("Consulenza e Servizi d'Investimento", "Soluzioni costruite sugli obiettivi della nostra clientela")
     + lead(
         "<p>L'attività di investimento di Banca Ifigest è focalizzata sulla ricerca della rivalutazione del capitale nel medio-lungo periodo, attraverso strategie di gestione attiva, diversificazione e un'offerta aperta ai migliori strumenti del mercato.</p>"
     )
@@ -733,9 +740,13 @@ LOREM = "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eius
 CTA_CONSULENZA = button("Richiedi una consulenza", "contatti.html")
 
 
-def placeholder_blocks(prefix, cta=True):
+def placeholder_blocks(prefix, cta=True, images=True):
     """Due blocchi immagine + testo provvisorio, alternati (come Collocamento). TODO: testi definitivi."""
     body = LOREM + (CTA_CONSULENZA if cta else "")
+    if not images:
+        return text_section(block("Lorem ipsum", LOREM), sid="blocco-1") + text_section(
+            block("Lorem ipsum", body), sid="blocco-2", extra=" tm-section-muted"
+        )
     return split(block("Lorem ipsum", body), sid="blocco-1", extra=" tm-section-split-first") + split(
         block("Lorem ipsum", body), media_first=True, sid="blocco-2"
     )
@@ -783,6 +794,8 @@ add(
     ),
     "business imprese finanza strutturata lombard debt advisory",
 )
+add("prodotti-assicurativi.html", "Prodotti Assicurativi", "Prodotti assicurativi Banca Ifigest.", hero("Prodotti Assicurativi") + placeholder_blocks("prodotti-assicurativi"), "assicurazioni polizze")
+add("richiedi-pos.html", "Richiedi il tuo POS", "Richiedi il POS di Banca Ifigest per la tua attività.", hero("Richiedi il tuo POS") + placeholder_blocks("richiedi-pos"), "pos esercenti pagamenti")
 add("finanza-strutturata.html", "Finanza Strutturata", "Finanza strutturata Banca Ifigest.", hero("Finanza Strutturata") + placeholder_blocks("finanza-strutturata"), "project finance acquisition finance")
 add("lombard-loans.html", "Lombard Loans", "Lombard Loans Banca Ifigest.", hero("Lombard Loans") + placeholder_blocks("lombard-loans"), "finanziamento garantito")
 add("debt-advisory.html", "Debt Advisory", "Debt Advisory Banca Ifigest.", hero("Debt Advisory") + placeholder_blocks("debt-advisory"), "struttura finanziaria")
@@ -837,8 +850,8 @@ GROUP_LOGOS = [
     None,
     ("https://www.lbcapitalsgr.it/", "L&B Capital SGR"),
     ("https://lbpartners.it/", "L&B Partners"),
+    None,  # Sevian Fiduciaria
     ("https://www.fundstore.it/", "Fundstore"),
-    None,
 ]
 
 
@@ -872,7 +885,7 @@ add(
     + category(
         "private-banking", "users", "PRIVATE BANKING", muted=True,
         extra=info_columns([
-            ("<strong>Banca Ifigest</strong> - Rete Fisica", "Rete di 82 Private Banker per la gestione patrimoniale, consulenza ad alto contatto e conservazione intergenerazionale del capitale"),
+            ("<strong>Banca Ifigest</strong>", "Rete di 82 Private Banker per la gestione patrimoniale, consulenza ad alto contatto e conservazione intergenerazionale del capitale"),
             ("<strong>Fundstore</strong>", "Canale nativo digitale e marketplace in architettura aperta che agisce come motore di Digital Banking a servizio del segmento retail/self-directed e IFA"),
             ("<strong>Sevian Srl</strong>", "Società fiduciaria di Gruppo integrata verticalmente per erogare i servizi di Wealth Planning, intestazione fiduciaria e protezione del patrimonio familiare"),
         ]),
@@ -895,7 +908,7 @@ add(
     + category(
         "treasury-alm", "database", "TREASURY &amp; ALM",
         extra=info_columns([
-            ("<strong>Banca Ifigest</strong> - Funzione Direzionale", "Gestione integrata dell'Asset &amp; Liability Management del Gruppo"),
+            ("<strong>Banca Ifigest</strong>", "Gestione integrata dell'Asset &amp; Liability Management del Gruppo"),
             ("<strong>Operatività</strong>", "Ottimizzazione della liquidità di bilancio, gestione del portafoglio titoli di proprietà, copertura dei rischi finanziari e stabilizzazione del margine d'interesse"),
         ]),
     )
@@ -956,9 +969,9 @@ rows_html = "".join(f"<tr><th scope=\"row\">{l}</th><td>{v}</td></tr>" for l, v 
 
 add(
     "governance.html",
-    "Governance",
-    "Governance di Banca Ifigest: dati societari, documenti, privacy, Modello 231 e BRRD.",
-    hero("Governance", "Rigore e trasparenza")
+    "Dati e Documenti Societari",
+    "Dati e documenti societari di Banca Ifigest: dati societari, documenti, privacy, Modello 231 e BRRD.",
+    hero("Dati e Documenti Societari", "Rigore e trasparenza")
     + f"""
 <section class="uk-section tm-section-docs">
   <div class="uk-container uk-container-large">
@@ -1002,66 +1015,219 @@ add(
     "dati societari bilanci bilancio privacy statuto modello 231 codice etico bail-in brrd",
 )
 
+# Informazioni: contenuti 1:1 con bancaifigest.com/informazioni-e-link-utili/
+T = "https://www.bancaifigest.com/PDF/Trasparenza/"
+FI = T + "Fogli-informativi/"
+FID = T + "fid/"
+COLL = "https://bancaifigest.com/PDF/Collocamento/"
+CABEL = '<a href="https://www.cabel.it/attivita/openbanking/" target="_blank" rel="noopener"><strong>https://www.cabel.it/attivita/openbanking/</strong></a>'
+US_PERSON = "<p>Le notizie, i documenti e le informazioni contenuti nella presente sezione del sito non sono destinati a soggetti qualificabili come U.S. Person ai sensi della normativa statunitense applicabile, né possono essere trasmessi, diffusi o resi disponibili negli Stati Uniti d’America o a favore di U.S. Person.</p>"
+
+INFO_TRASPARENZA = [
+    ("Guide pratiche", [
+        ("GUIDA PRATICA CONTO CORRENTE", T + "Guide-pratiche/guida-conto-corrente.pdf"),
+        ("GUIDA PRATICA CREDITO CONSUMATORI", T + "Guide-pratiche/guida-credito-consumatori.pdf"),
+        ("GUIDA ARBITRO BANCARIO E FINANZIARIO", T + "Guide-pratiche/guida-arbitro-bancario-finanziario.pdf"),
+        ("GUIDA MUTUO", T + "Guide-pratiche/guida-mutuo.pdf"),
+        ("GUIDA CENTRALE DEI RISCHI", T + "Guide-pratiche/guida-centrale-dei-rischi.pdf"),
+        ("GUIDA PRATICA AI PAGAMENTI NEL COMMERCIO ELETTRONICO", T + "Guide-pratiche/guida-pratica-pagamenti-commercio-elettronico.pdf"),
+    ]),
+    ("Altre guide", [
+        ("I TUOI DIRITTI QUANDO EFFETTUI UN PAGAMENTO IN EUROPA", T + "Altre-guide/leaflet-your-rights-payments-eu_it.pdf"),
+        ("BONIFICO ISTANTANEO – LE NOVITA’", T + "Altre-guide/guida-abi-bonifici-istantanei-2026.pdf"),
+        ("DALLA TELEFONATA SOSPETTA ALL’EMAIL INGANNEVOLE: SCOPRI COME DIFENDERTI", T + "Altre-guide/truffe-online.pdf"),
+    ]),
+    ("Piano di sostituzione degli indici di riferimento", [
+        ("PIANO DI SOSTITUZIONE DEGLI INDICI DI RIFERIMENTO", T + "087.pdf"),
+    ]),
+    ("Tassi effettivi globali medi ai fini della legge antiusura (Art.2 Legge 108/96)", [
+        ("TASSI D’INTERESSE EFFETTIVI GLOBALI MEDI PER IL TRIMESTRE IN CORSO", "http://www.bancaditalia.it/compiti/vigilanza/compiti-vigilanza/tegm/"),
+    ]),
+    ("Fogli informativi", [(label, FI + f) for label, f in [
+        ("FOGLIO INFORMATIVO CASSETTE DI SICUREZZA", "001-3.pdf"),
+        ("FOGLIO INFORMATIVO CONTO CORRENTE IPOTECARIO", "003-3.pdf"),
+        ("FOGLIO INFORMATIVO CONTO DI BASE", "005-3.pdf"),
+        ("FOGLIO INFORMATIVO CONTO CORRENTE ORDINARIO", "006-3.pdf"),
+        ("FOGLIO INFORMATIVO SERVIZI ACCESSORI CONTO CORRENTE ORDINARIO", "007-5.pdf"),
+        ("FOGLIO INFORMATIVO CONTO CORRENTE TITOLI", "008-3.pdf"),
+        ("FOGLIO INFORMATIVO CREDITO DI FIRMA", "009-2.pdf"),
+        ("FOGLIO INFORMATIVO MANDATO A VENDERE", "010-2.pdf"),
+        ("FOGLIO INFORMATIVO MUTUO IPOTECARIO", "011-2.pdf"),
+        ("FOGLIO INFORMATIVO PEGNO", "012-2.pdf"),
+        ("FOGLIO INFORMATIVO FIDEIUSSIONE", "013-2.pdf"),
+        ("FOGLIO INFORMATIVO PRESTITO CHIROGRAFICO A TASSO VARIABILE", "014-2.pdf"),
+        ("FOGLIO INFORMATIVO VERSAMENTO DECIMI DI CAPITALE PER COSTITUZIONE SOCIETA’", "015-3.pdf"),
+        ("FOGLIO INFORMATIVO APERTURA DI CREDITO IN CONTO CORRENTE", "016-2.pdf"),
+        ("FOGLIO INFORMATIVO APERTURA DI CREDITO IPOTECARIA", "017-2.pdf"),
+        ("FOGLIO INFORMATIVO SERVIZI HOME BANKING MITO", "018-3.pdf"),
+        ("FOGLIO INFORMATIVO SERVIZI POS ESERCENTI", "019-2.pdf"),
+        ("FOGLIO INFORMATIVO ESERCENTI NEXI", "020-3.pdf"),
+        ("FOGLIO INFORMATIVO APERTURA DI CREDITO (CREDITO IMMOBILIARE A CONSUMATORI)", "021-1.pdf"),
+        ("FOGLIO INFORMATIVO MUTUO IPOTECARIO (CREDITO IMMOBILIARE A CONSUMATORI)", "022-1.pdf"),
+        ("FOGLIO INFORMATIVO PRESTITO PERSONALE (CREDITO IMMOBILIARE A CONSUMATORI)", "023-2.pdf"),
+        ("FOGLIO INFORMATIVO CARTE DI CREDITO INDIVIDUALI NEXI", "024-3.pdf"),
+        ("FOGLIO INFORMATIVO CARTE DI CREDITO AZIENDALI NEXI", "025-3.pdf"),
+        ("FOGLIO INFORMATIVO CARTA DI CREDITO BLACK", "026-3.pdf"),
+        ("FOGLIO INFORMATIVO CASELLA POSTALE", "027-3.pdf"),
+        ("FOGLIO INFORMATIVO CESSIONE DEL CREDITO DI IMPOSTA DA SUPERBONUS, ECOBONUS E ALTRI BONUS FISCALI EDILIZI", "028-4.pdf"),
+        ("FOGLIO INFORMATIVO CONTO CORRENTE SERVIZI DI PAGAMENTO E DEPOSITO TITOLI A CUSTODIA ED AMMINISTRAZIONE", "031-2.pdf"),
+        ("FOGLIO INFORMATIVO CARTA DI DEBITO INTERNAZIONALE INSTANT ISSUING", "032-3.pdf"),
+        ("FOGLIO INFORMATIVO CARTA DI DEBITO INTERNAZIONALE ON DEMAND", "033-3.pdf"),
+        ("FOGLIO INFORMATIVO CARTA DI DEBITO NEXI BUSINESS", "034-3.pdf"),
+        ("FOGLIO INFORMATIVO CASH POOLING", "035-3.pdf"),
+    ]]),
+    ("FID", [(label, FID + f) for label, f in [
+        ("FID CONTO CORRENTE IPOTECARIO", "IPOTECARIO.pdf"),
+        ("FID CONTO CORRENTE TITOLI", "TITOLI.pdf"),
+        ("FID CONTO CORRENTE ORDINARIO", "ORDINARIO.pdf"),
+        ("FID CONTO CORRENTE GOLD", "GOLD.pdf"),
+        ("FID CONTO CORRENTE PLATINUM", "PLATINUM.pdf"),
+        ("FID CONTO CORRENTE WEB", "WEB.pdf"),
+        ("FID CONTO DI BASE GENERICO ISEE", "ISEE.pdf"),
+        ("FID CONTO DI BASE GENERICO PER PENSIONATI", "PENSIONATI.pdf"),
+        ("FID CONTO DI BASE GENERICO PER PENSIONATI GRATUITO", "PENSIONATI-GRATUITO.pdf"),
+        ("FID CONTO DI BASE GENERICO", "CONTO.pdf"),
+    ]]),
+]
+
+KPI_PERIODS = [
+    "2019_06-2019_08", "2019_09-2019_11", "2019_12-2020_02", "2020_03-2020_05", "2020_06-2020_08",
+    "2020_09-2020_11", "2020_12-2021_02", "2021_03-2021_05", "2021_06-2021_08", "2021_09-2021_11",
+    "2021_12-2022_02", "2022_03-2022_05", "2022_06-2022_08", "2022_09-2022_11", "2022_12-2023_03",
+    "2023_04-2023_06", "2023_07-2023_09", "2023_10-2023_12", "2024_01-2024_03", "2024_04-2024_06",
+    "2024_07-2024_09", "2024_10-2024_12", "2025_01-2025_03", "2025_04-2025_06", "2025_07-2025_09",
+    "2025_10-2025_12", "2026_01-2026_03",
+]
+INFO_KPI = [
+    ("KPI " + p.replace("_", "/").replace("-", " – "), f"https://www.bancaifigest.com/PDF/kpi/KPI-{p}.pdf")
+    for p in KPI_PERIODS
+]
+
+INFO_COLLOCAMENTO = [
+    ("IT0006775552_3Y PHOENIX MEMORY WO", [
+        ("Fast Cash Collect IT0006775552 1.pdf", COLL + "IT0006775552_3Y/Fast%20Cash%20Collect%20IT0006775552%201.pdf"),
+        ("FT P68923.pdf", COLL + "IT0006775552_3Y/FT%20P68923.pdf"),
+        ("KID_3Y PHOENIX MEMORY WO on BMPS IM BAMI IM UCG IM BPE IM.pdf", COLL + "IT0006775552_3Y/KID_3Y%20PHOENIX%20MEMORY%20WO%20on%20BMPS%20IM%20BAMI%20IM%20UCG%20IM%20BPE%20IM.pdf"),
+        ("Product Term Sheet_3Y PHOENIX MEMORY WO on BMPS IM BAMI IM UCG IM BPE IM_vfinal.pdf", COLL + "IT0006775552_3Y/Product%20Term%20Sheet_3Y%20PHOENIX%20MEMORY%20WO%20on%20BMPS%20IM%20BAMI%20IM%20UCG%20IM%20BPE%20IM_vfinal.pdf"),
+    ]),
+    ("XS3127850645", [
+        ("FT_XS3127850645.pdf", COLL + "XS3127850645/FT_XS3127850645.pdf"),
+        ("KID XS3127850645.pdf", COLL + "XS3127850645/KID%20XS3127850645.pdf"),
+        ("Scheda Prodotto_XS3127850645 1.pdf", COLL + "XS3127850645/Scheda%20Prodotto_XS3127850645%201.pdf"),
+        ("TS_Ind XS3127850645.pdf", COLL + "XS3127850645/TS_Ind%20XS3127850645.pdf"),
+    ]),
+    ("XS3184499963", [
+        ("FT XS3184499963 1.pdf", COLL + "XS3184499963/FT%20XS3184499963%201.pdf"),
+        ("KID XS3184499963.pdf", COLL + "XS3184499963/KID%20XS3184499963.pdf"),
+        ("Scheda Prodotto ISIN XS3184499963.pdf", COLL + "XS3184499963/Scheda%20Prodotto%20ISIN%20XS3184499963.pdf"),
+        ("TS XS3184499963.pdf", COLL + "XS3184499963/TS%20XS3184499963.pdf"),
+    ]),
+]
+
+
+def doc_group(title, docs, intro=""):
+    """Gruppo di documenti senza fisarmonica: sottotitolo + elenco."""
+    return f'<div class="tm-doc-group-block"><h3 class="tm-doc-group">{title}</h3>{intro}<div class="tm-docs-plain">{doc_list(docs)}</div></div>'
+
+
+def doc_accordion_html(groups):
+    """Come doc_accordion, ma il contenuto di ogni voce è HTML già pronto."""
+    items = "".join(
+        f'<li><a class="uk-accordion-title" href="#">{escape(title)}<span uk-accordion-icon></span></a>'
+        f'<div class="uk-accordion-content">{content}</div></li>'
+        for title, content in groups
+    )
+    return f'<ul class="tm-doc-accordion" uk-accordion="multiple: true">{items}</ul>'
+
+
+def info_section(sid, title, content):
+    return f'<div class="tm-doc-section" id="{sid}"><h2 class="tm-section-title">{title}</h2>{content}</div>'
+
+
+PSD2_HTML = (
+    '<div class="tm-prose">'
+    "<p>Dal 13 gennaio 2018 è entrata in vigore la nuova Direttiva Europea sui servizi di pagamento, meglio conosciuta come PSD2. Questa direttiva è nata per promuovere l’innovazione e lo sviluppo dei digital payments, aumentare la protezione e la sicurezza degli utenti nei servizi di pagamento online e favorire più alti livelli di concorrenza all’interno del mercato dei pagamenti.</p>"
+    "<h3 class=\"tm-doc-group\">PERCHÉ É STATA INTRODOTTA?</h3>"
+    "<p>PSD2 si pone l’obiettivo di armonizzare il mercato europeo dei servizi di pagamento, rendendolo efficiente, competitivo e più sicuro per gli utenti.</p>"
+    "<p>In base a quanto previsto dalla normativa, per accedere e operare con i servizi online sarà necessario utilizzare strumenti che:</p>"
+    "<ul class=\"tm-bullet-list\"><li>verifichino l’identità del Cliente, attraverso due o più fattori di autenticazione (autenticazione forte).</li>"
+    "<li>certifichino l’operazione di pagamento attraverso un codice autorizzativo univoco (collegamento dinamico – dynamic linking).</li></ul>"
+    "</div>"
+    + doc_group("Scopri il nuovo sistema di sicurezza", [
+        ("Strong Customer Authentication MiTO Desktop (3 MB .PDF)", "https://bancaifigest.com/wp-content/uploads/2025/05/STRONG-CUSTOMER-AUTHENTICATION-MiTO-DESKTOP.pdf"),
+        ("Strong Customer Authentication MiTO Mobile (6 MB .PDF)", "https://bancaifigest.com/wp-content/uploads/2025/05/STRONG-CUSTOMER-AUTHENTICATION-MiTO-MOBILE.pdf"),
+    ])
+    + '<div class="tm-prose">'
+    "<p>PDS2 estende il proprio ambito di applicazione anche a player diversi dalle Banche, noti come Operatori Terzi, definendone diritti e obblighi, anche nei confronti degli utenti finali.</p>"
+    "<p>In sintesi, i principi fondanti di PSD2 sono i seguenti:</p>"
+    "<ul class=\"tm-bullet-list\"><li>trasparenza nei servizi di pagamento;</li>"
+    "<li>sicurezza nelle transazioni, con il rafforzamento dei diritti degli utenti e l’introduzione di requisiti più stringenti per i prestatori di servizi di pagamento;</li>"
+    "<li>innovazione nei servizi di pagamento online;</li>"
+    "<li>aumento della competitività tra i soggetti che offrono servizi di pagamento online.</li></ul>"
+    "<h3 class=\"tm-doc-group\">OPERATORI TERZI: CHI SONO E QUALI SERVIZI OFFRONO?</h3>"
+    "<p>PSD2 disciplina nuovi servizi di pagamento prestati anche da operatori diversi dalle Banche, i c.d. Operatori Terzi. Questi i principali:</p>"
+    "<p><strong>PISP (Payment Initiation Service Providers):</strong><br>sono soggetti che, su espressa autorizzazione del cliente, prestano a favore dell’utente stesso il servizio di disposizione di ordini di pagamento; fanno ossia da tramite tra la Banca ed il titolare del conto di pagamento – accessibile online – e avviano il pagamento a favore di un terzo soggetto, beneficiario della disposizione.</p>"
+    "<p>I PISP, ad esempio, permettono all’utente di effettuare un pagamento dal proprio conto ad un venditore, attraverso l’utilizzo di un software ‘ponte’ tra i due account.</p>"
+    "<p><strong>AISP (Account Information Services Providers):</strong><br>sono operatori che consentono all’utente, titolare di conti accessibili online, di ottenere un’informativa completa relativa ai servizi di pagamento dei rapporti a lui intestati. Ad esempio, l’utente potrà usare gli AISP per avere una visione di insieme della propria situazione finanziaria, analizzare le proprie abitudini di spesa e le proprie esigenze finanziarie future.</p>"
+    "<p><strong>PIISP (Payment Issuer Instrument Service Providers):</strong><br>sono soggetti che emettono carte di pagamento, regolate su un conto di pagamento accessibile online, di un istituto di credito diverso da quello che ha emesso la carta. I CISP non detengono direttamente fondi dei clienti, ma possono interrogare preventivamente la Banca presso cui il conto è attivo, per verificare la disponibilità dei fondi oggetto della transazione disposta dall’utente.</p>"
+    "</div>"
+    + '<div class="tm-docs-plain">' + doc_list([("Gestione dei consensi alle Terze Parti", "https://www.bancaifigest.com/wp-content/uploads/2019/08//THIRD%20PARTY%20PROVIDER%20MiTO.pdf")]) + "</div>"
+    + '<div class="tm-prose">'
+    "<h3 class=\"tm-doc-group\">SEZIONE DEDICATA AGLI OPERATORI TERZI</h3>"
+    "<p>La documentazione sulle specifiche tecniche per l’utilizzo delle funzionalità di accesso ai conti online da parte degli Operatori Terzi è disponibile <a href=\"https://www.bancaifigest.com/psd2\" target=\"_blank\" rel=\"noopener\">in questa pagina dedicata</a>. Allo stesso indirizzo è disponibile uno strumento che permette agli Operatori Terzi di eseguire dei test sulle funzionalità.</p>"
+    "</div>"
+)
+
+PSD2_TPP_HTML = (
+    '<div class="tm-prose">'
+    "<h3 class=\"tm-doc-group\">PSD2 – Payment Service Directive 2 (UE 2015/2366)</h3>"
+    "<p>Interfaccia dedicata per le Terze Parti (TPP) ex art. 30 e ss. RTS (regolamento delegato UE 2018/389)</p>"
+    f"<p>Ai fini delle operazioni connesse alla PSD2 si mette a disposizione delle Terze Parti autorizzate un’interfaccia dedicata per la componente home banking (ad es. bonifici) (Cabel Industry SPA – PSD2 Portal). Per collegarsi al servizio, consultare la relativa documentazione tecnica e richiedere maggiori informazioni, è sufficiente accedere al sito {CABEL} e seguire le istruzioni riportate.</p>"
+    f"<p>Per le specifiche tecniche degli standard API utilizzati è possibile consultare il sito {CABEL}.</p>"
+    "<h3 class=\"tm-doc-group\">PSD2 – Payment Service Directive 2 (UE 2015/2366) [English version]</h3>"
+    f"<p>For PSD2 purposes, to connect to home banking services (i.e. SCT) a dedicated interface (Cabel Industry SPA – PSD2 Portal) is provided to authorized TPPs. To connect to such services, consult technical documentation and require more information please visit the website {CABEL} and follow the instructions.</p>"
+    f"<p>For API standard’s technical specifications, please visit the website {CABEL}.</p>"
+    "</div>"
+    + doc_accordion_html([("Statistiche trimestrali sulla disponibilità e le prestazioni dell’interfaccia", doc_list(INFO_KPI))])
+)
+
+INFO_HTML = (
+    info_section("trasparenza", "Trasparenza", doc_accordion(INFO_TRASPARENZA))
+    + info_section("reclami", "Reclami",
+        doc_group("Informativa gestione reclami", [("INFO RECLAMI SUL SITO", "https://www.bancaifigest.com/PDF/Reclami/info-reclami-sul-sito-2026-1.pdf")])
+        + doc_group("Rendiconto annuale dei reclami servizi bancari e finanziari", [("RENDICONTO RECLAMI SERVIZI BANCARI E FINANZIARI 2025", "https://www.bancaifigest.com/PDF/Reclami/rendiconto-reclami-servizi-bancari-e-finanziari-2025.pdf")]))
+    + info_section("sedi-di-esecuzione", "Sedi di esecuzione",
+        doc_group("Informativa sedi di esecuzione", [
+            ("RTS 28 – ANNO 2025 PRO", "https://www.bancaifigest.com/PDF/sesecuzione/RTS28_2025_PRO.pdf"),
+            ("RTS 28 – ANNO 2025 RETAIL", "https://www.bancaifigest.com/PDF/sesecuzione/RTS28_2025_RET.pdf"),
+            ("Tabella Elenco Negoziatori", "https://www.bancaifigest.com/PDF/sesecuzione/Tabella_elenco_negoziatori_2024.pdf"),
+        ]))
+    + info_section("psd2", "PSD2", '<h3 class="tm-doc-group">Informativa PSD2</h3>' + PSD2_HTML)
+    + info_section("psd2-tpp", "PSD2-TPP", PSD2_TPP_HTML)
+    + info_section("schede-prodotto", "Schede prodotto",
+        '<h3 class="tm-doc-group">Informativa schede prodotto</h3><div class="tm-prose">'
+        '<p>Per ricercare titoli cliccare sul seguente link: <a href="https://www.borsaitaliana.it/homepage/homepage.htm" target="_blank" rel="noopener"><strong>Borsa Italiana</strong></a></p>'
+        '<p>Per ricercare schede prodotto MIFID II cliccare sul seguente link: <a href="https://bancaifigest.com/schede_prodotto/" target="_blank" rel="noopener"><strong>Schede prodotto</strong></a></p></div>')
+    + info_section("collocamento", "Collocamento",
+        doc_accordion_html([(title, US_PERSON + doc_list(docs)) for title, docs in INFO_COLLOCAMENTO]))
+    + info_section("acf", "ACF", doc_group("Informativa ACF", [("ACF", "https://www.acf.consob.it/")]))
+    + info_section("fea", "FEA", doc_group("Informativa FEA", [
+        ("CONTRATTO FIRMA ELETTRONICA AVANZATA (FEA)", "https://www.bancaifigest.com/PDF/FEA/contratto-1.pdf"),
+        ("ELENCO DEI DOCUMENTI SOTTOSCRIVIBILI CON FEA", "https://www.bancaifigest.com/PDF/FEA/documenti-04-2026.pdf"),
+    ]))
+)
 add(
     "info-prodotti.html",
-    "Info Prodotti",
-    "Informazioni normative e regolamentari relative ai prodotti e servizi offerti da Banca Ifigest.",
-    hero("Info Prodotti", "Informazioni normative e regolamentari relative ai prodotti e servizi offerti da Banca Ifigest")
+    "Informazioni",
+    "Informazioni e link utili: trasparenza, reclami, sedi di esecuzione, PSD2, schede prodotto, collocamento, ACF e FEA.",
+    hero("Informazioni", "Informazioni normative e regolamentari relative ai prodotti e servizi offerti da Banca Ifigest")
     + f"""
 <section class="uk-section tm-section-docs">
   <div class="uk-container uk-container-large">
-    <div class="tm-doc-section" id="trasparenza">
-      <h2 class="tm-section-title">Trasparenza</h2>
-      <div class="uk-grid-large uk-child-width-1-2@m" uk-grid>
-        <div>
-          <h3 class="tm-doc-group">Guide Pratiche</h3>
-          {doc_list(["Guida Pratica Conto Corrente", "Guida Pratica Credito Consumatori", "Guida Arbitro Bancario e Finanziario", "Guida Mutuo", "Guida Centrale dei Rischi", "Guida Pratica ai Pagamenti nel Commercio Elettronico"])}
-        </div>
-        <div>
-          <h3 class="tm-doc-group">Fogli Informativi e FID</h3>
-          {doc_list(["Foglio informativo Conto Corrente Ordinario", "Foglio informativo Carte di Credito NEXI", "Foglio informativo Gestione Portafoglio", "10 FID (fascicoli informativi) varianti Conto Corrente", "31 Fogli informativi (elenco completo)"])}
-        </div>
-      </div>
-    </div>
-
-    <div class="tm-doc-section" id="reclami">
-      <h2 class="tm-section-title">Reclami</h2>
-      {doc_list(["Info Reclami sul Sito", "Rendiconto Reclami Servizi Bancari e Finanziari 2025"])}
-    </div>
-
-    <div class="tm-doc-section" id="sede-di-esecuzione">
-      <h2 class="tm-section-title">Sede di Esecuzione</h2>
-      {doc_list(["RTS 28, Anno 2025 PRO", "RTS 28, Anno 2025 RETAIL", "Tabella Elenco Negoziatori"])}
-    </div>
-
-    <div class="tm-doc-section" id="psd2">
-      <h2 class="tm-section-title">PSD2</h2>
-      <p class="tm-measure">Dal 13 gennaio 2018 è entrata in vigore la nuova Direttiva Europea sui servizi di pagamento (PSD2), nata per promuovere l'innovazione e lo sviluppo dei digital payments, aumentare la protezione degli utenti e favorire la concorrenza nel mercato dei pagamenti. PSD2 introduce l'obbligo di autenticazione forte (SCA — Strong Customer Authentication) per l'accesso ai servizi online e per le operazioni di pagamento, attraverso due o più fattori di autenticazione e un codice autorizzativo univoco (dynamic linking).</p>
-      {doc_list(["Strong Customer Authentication MiTO Desktop", "Strong Customer Authentication MiTO Mobile", "Gestione dei consensi alle Terze Parti", "Interfaccia TPP: cabel.it/attivita.openbanking", "Statistiche KPI trimestrali sull’interfaccia (serie 2019-2026)"])}
-    </div>
-
-    <div class="tm-doc-section" id="schede-prodotto">
-      <h2 class="tm-section-title">Schede Prodotto</h2>
-      {link_list(['Per ricercare le schede prodotto MIFID II: <a href="#">Link</a>', 'Per ricercare titoli: <a href="https://www.borsaitaliana.it" target="_blank" rel="noopener">Borsa Italiana</a>'])}
-    </div>
-
-    <div class="tm-doc-section" id="collocamento">
-      <h2 class="tm-section-title">Collocamento</h2>
-      {doc_list(["IT0006775552 — 3Y PHOENIX MEMORY WO"])}
-    </div>
-
-    <div class="tm-doc-section" id="acf">
-      <h2 class="tm-section-title">ACF</h2>
-      <p class="tm-measure">Per qualsiasi controversia con Banca Ifigest in materia di servizi di investimento non risolta tramite reclamo, è possibile ricorrere all’Arbitro per le Controversie Finanziarie (ACF) di CONSOB: <a href="https://www.acf.consob.it" target="_blank" rel="noopener">acf.consob.it</a></p>
-    </div>
-
-    <div class="tm-doc-section" id="fea">
-      <h2 class="tm-section-title">Firma Elettronica Avanzata</h2>
-      {doc_list(["Contratto Firma Elettronica (FEA)", "Elenco dei Documenti Sottoscrivibili con FEA (Aprile 2026)"])}
-    </div>
+    {INFO_HTML}
   </div>
 </section>""",
-    "trasparenza fogli informativi guide pratiche reclami sede di esecuzione psd2 schede prodotto acf fea firma elettronica",
+    "trasparenza guide pratiche fogli informativi fid antiusura reclami sedi di esecuzione rts 28 psd2 tpp kpi schede prodotto mifid collocamento acf fea firma elettronica",
 )
 
 add(
@@ -1069,7 +1235,7 @@ add(
     "Sostenibilità",
     "Crediamo nella sostenibilità come fattore di creazione di valore nel lungo periodo per clienti, azionisti e comunità.",
     hero("Sostenibilità", "Crediamo nella sostenibilità come fattore di creazione di valore nel lungo periodo per clienti, azionisti e comunità")
-    + placeholder_blocks("sostenibilita"),
+    + placeholder_blocks("sostenibilita", images=False),
     "esg sostenibilità",
 )
 # Contenuti da bancaifigest.com/avvisi-per-i-soci/ (schede: Avvisi, Documenti, Aumento di capitale)

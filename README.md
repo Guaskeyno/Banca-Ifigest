@@ -36,8 +36,9 @@ Poi apri http://localhost:8000.
 
 - Immagini: testate caricate in `assets/img/pages/`; i blocchi ancora senza immagine (compresi i 5 loghi del Gruppo) sono elencati in `assets/img/pages/README.md`. Estensioni accettate: `.jpg`, `.jpeg`, `.png`, `.svg`, `.webp`.
 - Link senza destinazione (`#`): Lavora con noi, documenti PDF, segnalazione interna whistleblowing, schede prodotto MIFID II.
-- Testo provvisorio (Lorem ipsum): Il Gruppo (introduzione); Collocamento (Club Deal, FIA, Certificati, Polizze); Gestioni Patrimoniali (due sezioni); due blocchi ciascuna su Finanza Strutturata, Lombard Loans, Debt Advisory, Sostenibilità, Trasparenza, Dichiarazione di Accessibilità, Disconoscimento operazioni.
-- Area Soci: i documenti puntano ai file su bancaifigest.com.
+- Testo provvisorio (Lorem ipsum): Il Gruppo (introduzione); Collocamento (Club Deal, FIA, Certificati, Polizze); Gestioni Patrimoniali (due sezioni); due blocchi ciascuna su Prodotti Assicurativi, Richiedi il tuo POS, Finanza Strutturata, Lombard Loans, Debt Advisory, Sostenibilità, Trasparenza, Dichiarazione di Accessibilità, Disconoscimento operazioni.
+- Area Soci e Informazioni: i documenti puntano ai file su bancaifigest.com.
+- Private Banking, Investment Banking, Finanza Strutturata, Lombard Loans e Debt Advisory restano online ma fuori dal menu.
 
 ## Privacy Policy
 
