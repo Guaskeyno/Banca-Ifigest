@@ -1104,3 +1104,8 @@ em { color: inherit; }
 .tm-prose + .tm-doc-accordion { margin-top: 32px; }
 .tm-doc-group-block .tm-prose + .tm-docs-plain { margin-top: 0; }
 .tm-doc-accordion .uk-accordion-content > p { max-width: 900px; font-size: 15px; line-height: 1.7; }
+
+/* Hero con animazione del logo */
+.tm-hero-media-video { background: var(--ifg-primary); }
+.tm-hero-video-banca-ifigest { background: var(--ifg-primary-tint); } /* colore del primo fotogramma */
+.tm-hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }

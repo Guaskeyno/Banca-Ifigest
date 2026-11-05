@@ -48,19 +48,17 @@ NAV = [
     },
     {
         "label": "Prodotti e Servizi",
-        "href": "gestioni-patrimoniali.html",  # la voce apre la prima pagina della sezione
+        "href": "investimenti-e-risparmio.html",  # la voce apre la prima pagina della sezione
         "children": [
-            ("Gestioni Patrimoniali", "gestioni-patrimoniali.html"),
             ("Consulenza e Servizi d'Investimento", "investimenti-e-risparmio.html"),
             ("Servizi Bancari", "servizi-bancari.html"),
             ("Prodotti Assicurativi", "prodotti-assicurativi.html"),
             ("Wealth Management", "wealth-management.html"),
-            ("Banca Online", BANCA_ONLINE_URL),
             ("Richiedi il tuo POS", "richiedi-pos.html"),
         ],
     },
 ]
-# Private Banking e Investment Banking (con Finanza Strutturata, Lombard Loans, Debt Advisory)
+# Gestioni Patrimoniali, Private Banking e Investment Banking (con Finanza Strutturata, Lombard Loans, Debt Advisory)
 # restano online ma fuori dal menu.
 
 LINKEDIN_URL = "https://www.linkedin.com/company/banca-ifigest/"
@@ -298,11 +296,25 @@ def subnav(slug):
 </nav>"""
 
 
-def hero(title, subtitle="", image=True):
-    sub = f'<p class="tm-hero-subtitle">{subtitle}</p>' if subtitle else ""
-    media = (
-        f'<div class="tm-hero-media">{placeholder("tm-placeholder-cover", hint="hero")}</div>' if image else ""
+def hero_video(name):
+    """Animazione del logo al posto della foto: 3:4 sotto i 640px, 16:9 oltre. Parte una volta e si ferma sull'ultimo fotogramma."""
+    return (
+        f'<div class="tm-hero-media tm-hero-media-video tm-hero-video-{name}">'
+        '<video class="tm-hero-video" autoplay muted playsinline preload="auto" aria-hidden="true">'
+        f'<source media="(max-width: 639px)" src="assets/video/{name}-3x4.mp4" type="video/mp4">'
+        f'<source src="assets/video/{name}-16x9.mp4" type="video/mp4">'
+        "</video></div>"
     )
+
+
+def hero(title, subtitle="", image=True, video=""):
+    sub = f'<p class="tm-hero-subtitle">{subtitle}</p>' if subtitle else ""
+    if video:
+        media = hero_video(video)
+    else:
+        media = (
+            f'<div class="tm-hero-media">{placeholder("tm-placeholder-cover", hint="hero")}</div>' if image else ""
+        )
     return f"""
 <section class="tm-hero{'' if image else ' tm-hero-plain'}">
   {media}
@@ -536,6 +548,7 @@ add(
     hero(
         "Un nuovo movimento finanziario",
         "Dal 1987, offriamo una relazione di fiducia per chi cerca una banca su misura, non di serie",
+        video="banca-ifigest",
     )
     + """
 <section class="uk-section tm-section-intro">
@@ -872,7 +885,7 @@ add(
     "il-gruppo.html",
     "Il Gruppo",
     "Gruppo Bancario Ifigest: un nuovo movimento finanziario.",
-    hero("Gruppo Bancario Ifigest", "Un nuovo movimento finanziario")
+    hero("Gruppo Bancario Ifigest", "Un nuovo movimento finanziario", video="gruppo-ifigest")
     + lead(LOREM, "dark")  # TODO: testo definitivo
     + f"""
 <section class="uk-section tm-section-logos" id="societa" aria-labelledby="societa-title">

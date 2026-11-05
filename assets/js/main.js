@@ -83,7 +83,19 @@
       .join('');
   }
 
+  /* Animazione hero: con "riduci movimento" attivo mostra subito l'ultimo fotogramma */
+  function initHeroVideo() {
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    Array.prototype.forEach.call(document.querySelectorAll('.tm-hero-video'), function (video) {
+      video.removeAttribute('autoplay');
+      video.pause();
+      var toEnd = function () { video.currentTime = Math.max(0, video.duration - 0.05); };
+      if (video.readyState >= 1) toEnd(); else video.addEventListener('loadedmetadata', toEnd, { once: true });
+    });
+  }
+
   document.addEventListener('DOMContentLoaded', function () {
+    initHeroVideo();
     initOffcanvasFocus();
     initSearchPage();
   });
