@@ -370,20 +370,28 @@ em { color: inherit; }
    HERO
    ========================================================================== */
 
-.tm-hero-media {
+/* Come il riferimento: la testata occupa lo schermo sotto header (e sotto-menu),
+   l'immagine copre tutta l'area e la fascia del titolo sta sul fondo */
+.tm-hero:not(.tm-hero-plain) {
   position: relative;
-  height: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: calc(100vh - 80px);
+}
+@media (min-width: 960px) { .tm-hero:not(.tm-hero-plain) { min-height: calc(100vh - var(--ifg-header-height)); } }
+.tm-hero-media {
+  position: absolute;
+  inset: 0;
   overflow: hidden;
 }
-@media (min-width: 640px) { .tm-hero-media { height: 420px; } }
-@media (min-width: 1200px) { .tm-hero-media { height: clamp(460px, 38.4vw, 553px); } }
+.tm-hero-title { position: relative; z-index: 2; }
 
 .tm-hero-title {
   background: var(--ifg-primary);
   color: var(--ifg-white);
-  padding: 36px 0 40px;
+  padding: 40px 0;
 }
-@media (min-width: 960px) { .tm-hero-title { padding: 48px 0 52px; } }
 
 .tm-hero-heading {
   margin: 0;

@@ -297,11 +297,13 @@ def subnav(slug):
 
 
 def hero_video(name):
-    """Animazione del logo al posto della foto: 3:4 sotto i 640px, 16:9 oltre. Parte una volta e si ferma sull'ultimo fotogramma."""
+    """Animazione del logo al posto della foto, formati come il riferimento: 9:16 sotto i 640px,
+    3:4 fino a 959px, 16:9 oltre. Parte una volta e si ferma sull'ultimo fotogramma."""
     return (
         f'<div class="tm-hero-media tm-hero-media-video tm-hero-video-{name}">'
         '<video class="tm-hero-video" autoplay muted playsinline preload="auto" aria-hidden="true">'
-        f'<source media="(max-width: 639px)" src="assets/video/{name}-3x4.mp4" type="video/mp4">'
+        f'<source media="(max-width: 639px)" src="assets/video/{name}-9x16.mp4" type="video/mp4">'
+        f'<source media="(max-width: 959px)" src="assets/video/{name}-3x4.mp4" type="video/mp4">'
         f'<source src="assets/video/{name}-16x9.mp4" type="video/mp4">'
         "</video></div>"
     )
@@ -316,7 +318,7 @@ def hero(title, subtitle="", image=True, video=""):
             f'<div class="tm-hero-media">{placeholder("tm-placeholder-cover", hint="hero")}</div>' if image else ""
         )
     return f"""
-<section class="tm-hero{'' if image else ' tm-hero-plain'}">
+<section class="tm-hero{'' if image or video else ' tm-hero-plain'}"{'' if not (image or video) else ' uk-height-viewport="offset-top: true"'}>
   {media}
   <div class="tm-hero-title">
     <div class="uk-container uk-container-large" uk-scrollspy="cls: uk-animation-fade; delay: 150">
