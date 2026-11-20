@@ -84,7 +84,7 @@ SEDI = [
         ]),
     ],
     [
-        ("Milano", [{"lines": ["Via Durini, 27", "20122 Milano (MI)"], "tel": "02.7788011", "email": "milano@bancaifigest.it"}]),
+        ("Milano", [{"lines": ["Corso Europa, 11", "20122 Milano (MI)"], "tel": "02.7788011", "email": "milano@bancaifigest.it"}]),
         ("Roma", [{"lines": ["Via Lima, 10", "00198 Roma"], "tel": "06.8535951", "email": "roma@bancaifigest.it"}]),
     ],
     [
@@ -607,6 +607,8 @@ add(
     "private banking gestioni patrimoniali consulenza family office corporate finance fundstore apple pay nexi carta",
 )
 
+LOREM = "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>"  # TODO: testo definitivo
+
 # Private Banking -----------------------------------------------------------
 add(
     "private-banking.html",
@@ -617,15 +619,7 @@ add(
         "<p>La nostra offerta è costruita attorno alle esigenze reali: dalla gestione del conto quotidiano alla pianificazione patrimoniale di lungo periodo, con soluzioni integrate per il privato, la famiglia e l'imprenditore.</p>",
         "dark",
     )
-    + cards(
-        [
-            ("Servizi Bancari", "Servizi bancari per esigenze complesse, e un'interlocuzione diretta con la direzione su ogni decisione importante", "servizi-bancari.html"),
-            ("Investimenti e Risparmio", "Oltre 30 linee di gestione attiva, costruite per profilo di rischio e orizzonte. La nostra priorità: proteggere il capitale e generare valore nel tempo", "investimenti-e-risparmio.html"),
-            ("Wealth Management", "Patrimonio personale, familiare, professionale: una visione d'insieme, con soluzioni di pianificazione successoria, fiscale e immobiliare", "wealth-management.html"),
-            ("Collocamento", "Assicurazione Vita in partnership con CNP Vita Assicura, per assicurare il futuro del patrimonio", "collocamento.html"),
-            ("Gestioni Patrimoniali", "Oltre 30 linee di gestione attiva, costruite per profilo di rischio e orizzonte. La nostra priorità: proteggere il capitale e generare valore nel tempo", "gestioni-patrimoniali.html"),
-        ]
-    ),
+    + text_section(block("Lorem ipsum", LOREM), sid="private-banking-intro"),  # TODO: testo definitivo
 )
 
 # Layout "prodotti" (come https://www.lbcapitalsgr.it/prodotti/) ----------------
@@ -782,7 +776,6 @@ CNP = (
     "Apprezzati dai mercati globali per il miglior rating ESG nel settore assicurativo (AAA fonte MSCI) e un rating finanziario: Fitch A+, Standard &amp; Poor's A+ e Moody's A1. "
     "L'Italia rappresenta un mercato strategico per il Gruppo, dove opera da oltre 20 anni ed è oggi il 5° player nel business Vita.</p>"
 )
-LOREM = "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>"  # TODO: testo definitivo
 CTA_CONSULENZA = button("Richiedi una consulenza", "contatti.html")
 
 
