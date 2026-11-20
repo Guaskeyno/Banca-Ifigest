@@ -153,3 +153,9 @@ Finché un file manca, la pagina mostra il segnaposto; appena caricato, l'immagi
 | File | Uso | Dimensioni consigliate |
 |---|---|---|
 | `contatti-hero.jpeg` | Testata (hero) | 2880 × 1106 px (circa 2,6:1) |
+
+## Lavora con noi (`lavora-con-noi.html`)
+
+| File | Uso | Dimensioni consigliate |
+|---|---|---|
+| `lavora-con-noi-hero.webp` | Testata (hero) | 2880 × 1106 px (circa 2,6:1) |

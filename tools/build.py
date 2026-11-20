@@ -64,7 +64,7 @@ NAV = [
 LINKEDIN_URL = "https://www.linkedin.com/company/banca-ifigest/"
 
 FOOTER_LINKS = [
-    ("Lavora con noi", "#"),
+    ("Lavora con noi", "lavora-con-noi.html"),
     ("Schede Prodotto", "info-prodotti.html#schede-prodotto"),
     ("Trasparenza", "trasparenza.html"),
     ("Whistleblowing", "whistleblowing.html"),
@@ -203,6 +203,7 @@ def header(slug):
           <div class="uk-navbar-right">
             <ul class="uk-navbar-nav">
               {desktop}
+              <li{ACTIVE if slug == "lavora-con-noi.html" else ""}><a href="lavora-con-noi.html">Lavora con noi</a></li>
               <li{ACTIVE if slug == "contatti.html" else ""}><a href="contatti.html">Contatti</a></li>
             </ul>
             <div class="uk-navbar-item">
@@ -244,6 +245,7 @@ def header(slug):
       <button class="uk-offcanvas-close" type="button" uk-close aria-label="Chiudi il menu"></button>
       <ul class="uk-nav uk-nav-default" uk-nav="multiple: false">
         {mobile}
+        <li{ACTIVE if slug == "lavora-con-noi.html" else ""}><a href="lavora-con-noi.html">Lavora con noi</a></li>
         <li{ACTIVE if slug == "contatti.html" else ""}><a href="contatti.html">Contatti</a></li>
       </ul>
       <a class="uk-button tm-button-online uk-width-1-1 uk-margin-medium-top" href="{BANCA_ONLINE_URL}" target="_blank" rel="noopener"><span uk-icon="icon: lock; ratio: .8"></span> Banca Online</a>
@@ -1438,6 +1440,81 @@ add(
 )
 
 # Search --------------------------------------------------------------------
+# Lavora con noi -------------------------------------------------------------
+# Destinatari: Risorse Umane sempre, L&B Partners in aggiunta solo se scelta come società.
+CAREERS_TO = "risorseumane@bancaifigest.it"
+CAREERS_TO_LBP = "recruiting@lbpartners.it"
+# Indirizzo del servizio che riceve il modulo e invia le email (vuoto = invio non ancora attivo).
+CAREERS_FORM_ENDPOINT = ""
+CAREERS_COMPANIES = ["Banca Ifigest", "L&B Partners SpA", "L&B Capital", "Altro (specificare)"]
+CAREERS_MESSAGE_MAX = 250
+
+
+def form_field(fid, label, control, width="1-1", hint=""):
+    hint_html = f'<p class="tm-field-hint" id="{fid}-hint">{hint}</p>' if hint else ""
+    return (
+        f'<div class="uk-width-{width}@s"><div class="tm-field" data-field="{fid}">'
+        f'<label class="tm-label" for="{fid}">{label}</label>{control}{hint_html}'
+        f'<p class="tm-field-error" id="{fid}-error" aria-live="polite"></p></div></div>'
+    )
+
+
+def careers_form():
+    def text(fid, kind="text", extra=""):
+        return f'<input class="uk-input tm-input" id="{fid}" name="{fid}" type="{kind}" required aria-describedby="{fid}-error"{extra}>'
+
+    options = "".join(f'<option value="{escape(c)}">{escape(c)}</option>' for c in CAREERS_COMPANIES)
+    cv = (
+        '<div class="tm-file" uk-form-custom="target: true">'
+        '<input id="cv" name="cv" type="file" accept="application/pdf,.pdf" required aria-describedby="cv-hint cv-error">'
+        '<input class="uk-input tm-input" type="text" placeholder="Nessun file selezionato" tabindex="-1" aria-hidden="true" readonly>'
+        '<span class="uk-button uk-button-default tm-file-button" aria-hidden="true"><span uk-icon="icon: upload; ratio: .9"></span> Scegli file</span>'
+        "</div>"
+    )
+    fields = "".join([
+        form_field("nome", "Nome", text("nome", extra=' autocomplete="given-name"'), "1-2"),
+        form_field("cognome", "Cognome", text("cognome", extra=' autocomplete="family-name"'), "1-2"),
+        form_field("email", "Email", text("email", "email", ' autocomplete="email" inputmode="email"'), "1-2"),
+        form_field("telefono", "Telefono", text("telefono", "tel", ' autocomplete="tel" inputmode="tel" placeholder="+39 333 1234567"'), "1-2"),
+        form_field("cv", "Allega CV (max 5 MB, formato PDF)", cv, hint="Formato PDF, dimensione massima 5 MB"),
+        form_field("societa", "Seleziona la società per la quale si invia la candidatura",
+                   '<select class="uk-select tm-input" id="societa" name="societa" required aria-describedby="societa-error">'
+                   f'<option value="" selected disabled>Seleziona</option>{options}</select>'),
+        '<div class="uk-width-1-1" id="societa-altro-wrap" hidden>'
+        '<div class="tm-field" data-field="societa-altro"><label class="tm-label" for="societa-altro">Specificare la società</label>'
+        '<input class="uk-input tm-input" id="societa-altro" name="societa_altro" type="text" aria-describedby="societa-altro-error" disabled>'
+        '<p class="tm-field-error" id="societa-altro-error" aria-live="polite"></p></div></div>',
+        form_field("messaggio", "Messaggio (facoltativo)",
+                   f'<textarea class="uk-textarea tm-input" id="messaggio" name="messaggio" rows="5" maxlength="{CAREERS_MESSAGE_MAX}" aria-describedby="messaggio-hint messaggio-error"></textarea>',
+                   hint=f'<span id="messaggio-count">0</span>/{CAREERS_MESSAGE_MAX} caratteri'),
+        '<div class="uk-width-1-1"><div class="tm-field" data-field="privacy">'
+        '<label class="tm-check"><input class="uk-checkbox" id="privacy" name="privacy" type="checkbox" value="accettata" required aria-describedby="privacy-error">'
+        '<span>Ho letto e accetto la <a href="privacy-policy.html" target="_blank" rel="noopener">Privacy Policy</a></span></label>'
+        '<p class="tm-field-error" id="privacy-error" aria-live="polite"></p></div></div>',
+    ])
+    return f"""
+<section class="uk-section tm-section-form">
+  <div class="uk-container uk-container-large">
+    <p class="tm-form-intro">Invia la tua candidatura compilando il modulo di seguito.</p>
+    <form class="tm-form" id="tm-careers-form" novalidate data-endpoint="{CAREERS_FORM_ENDPOINT}" data-to="{CAREERS_TO}" data-to-lbp="{CAREERS_TO_LBP}">
+      <div class="uk-grid-medium" uk-grid>{fields}</div>
+      <div class="tm-form-actions">
+        <button class="uk-button uk-button-primary" type="submit">Invia</button>
+      </div>
+      <div class="tm-form-status" id="tm-form-status" role="status" aria-live="polite" hidden></div>
+    </form>
+  </div>
+</section>"""
+
+
+add(
+    "lavora-con-noi.html",
+    "Lavora con noi",
+    "Costruiamo insieme il futuro del Gruppo Bancario Ifigest: invia la tua candidatura.",
+    hero("Lavora con noi", "Costruiamo insieme il futuro del Gruppo Bancario Ifigest") + careers_form(),
+    "lavora con noi candidatura cv carriere risorse umane offerte di lavoro",
+)
+
 add(
     "cerca.html",
     "Cerca",

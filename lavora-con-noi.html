@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lavora con noi – Banca Ifigest</title>
+  <meta name="description" content="Costruiamo insieme il futuro del Gruppo Bancario Ifigest: invia la tua candidatura.">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;500;700&display=swap">
+  <link rel="preload" href="assets/fonts/meghana-webfont.woff2" as="font" type="font/woff2" crossorigin>
+  <!-- Libreria: UIkit (MIT) -->
+  <link rel="stylesheet" href="assets/vendor/uikit/css/uikit.min.css?v=b444d797">
+  <!-- Tema Banca Ifigest -->
+  <link rel="stylesheet" href="assets/css/theme.css?v=b80506f4">
+</head>
+<body class="page-lavora-con-noi tm-brand-banca">
+
+<a class="tm-skip-link" href="#main">Vai al contenuto</a>
+<header class="tm-header uk-visible@l">
+  <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
+    <div class="uk-navbar-container">
+      <div class="uk-container uk-container-expand">
+        <nav class="uk-navbar" aria-label="Navigazione principale" uk-navbar="align: left; dropbar: true; dropbar-anchor: !.uk-navbar-container; target-y: !.uk-navbar-container; delay-hide: 200">
+          <div class="uk-navbar-left">
+            <a href="index.html" class="uk-navbar-item uk-logo" aria-label="Banca Ifigest - Torna alla Home">
+              <img src="assets/img/logo-banca-ifigest.png" width="240" height="22" alt="Banca Ifigest">
+            </a>
+          </div>
+          <div class="uk-navbar-right">
+            <ul class="uk-navbar-nav">
+              <li class="uk-parent"><a href="chi-siamo.html">La Banca <span uk-navbar-parent-icon></span></a><div class="uk-drop uk-navbar-dropdown"><ul class="uk-nav uk-navbar-dropdown-nav"><li><a href="governance.html">Dati e Documenti Societari</a></li><li><a href="info-prodotti.html">Informazioni</a></li><li><a href="sostenibilita.html">Sostenibilità</a></li><li><a href="area-soci.html">Area Soci</a></li><li><a href="collocamento.html">Collocamento</a></li></ul></div></li><li class="uk-parent"><a href="il-gruppo.html">Il Gruppo <span uk-navbar-parent-icon></span></a><div class="uk-drop uk-navbar-dropdown"><ul class="uk-nav uk-navbar-dropdown-nav"><li><a href="il-gruppo.html#private-banking">Private Banking</a></li><li><a href="il-gruppo.html#corporate-investment-banking">Corporate &amp; Investment Banking</a></li><li><a href="il-gruppo.html#asset-management">Asset Management</a></li><li><a href="il-gruppo.html#treasury-alm">Treasury &amp; ALM</a></li></ul></div></li><li class="uk-parent"><a href="investimenti-e-risparmio.html">Prodotti e Servizi <span uk-navbar-parent-icon></span></a><div class="uk-drop uk-navbar-dropdown"><ul class="uk-nav uk-navbar-dropdown-nav"><li><a href="investimenti-e-risparmio.html">Consulenza e Servizi d&#x27;Investimento</a></li><li><a href="servizi-bancari.html">Servizi Bancari</a></li><li><a href="prodotti-assicurativi.html">Prodotti Assicurativi</a></li><li><a href="wealth-management.html">Wealth Management</a></li><li><a href="richiedi-pos.html">Richiedi il tuo POS</a></li></ul></div></li>
+              <li class="uk-active"><a href="lavora-con-noi.html">Lavora con noi</a></li>
+              <li><a href="contatti.html">Contatti</a></li>
+            </ul>
+            <div class="uk-navbar-item">
+              <a class="uk-button tm-button-online" href="https://areariservata.bancaifigest.it/CBL-MITO-WA/" target="_blank" rel="noopener"><span uk-icon="icon: lock; ratio: .8"></span> Banca Online</a>
+            </div>
+            <a class="uk-navbar-toggle tm-search-toggle" href="#" uk-search-icon aria-label="Cerca"></a>
+            <div class="uk-navbar-dropdown tm-search-drop" uk-drop="mode: click; pos: bottom-right; target-y: !.uk-navbar-container">
+              <form class="uk-search uk-search-default uk-width-1-1" action="cerca.html" method="get" role="search">
+                <span uk-search-icon></span>
+                <input class="uk-search-input" type="search" name="q" placeholder="Cerca" aria-label="Cerca nel sito" required autofocus>
+              </form>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<header class="tm-header-mobile uk-hidden@l">
+  <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
+    <div class="uk-navbar-container">
+      <div class="uk-container uk-container-expand">
+        <nav class="uk-navbar" aria-label="Navigazione mobile" uk-navbar>
+          <div class="uk-navbar-left">
+            <a href="index.html" class="uk-navbar-item uk-logo" aria-label="Banca Ifigest - Torna alla Home">
+              <img src="assets/img/logo-banca-ifigest.png" width="190" height="17" alt="Banca Ifigest">
+            </a>
+          </div>
+          <div class="uk-navbar-right">
+            <a class="uk-navbar-toggle" href="#tm-offcanvas" uk-toggle aria-label="Apri il menu"><span uk-navbar-toggle-icon></span></a>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </div>
+  <div id="tm-offcanvas" uk-offcanvas="flip: true; overlay: true">
+    <div class="uk-offcanvas-bar">
+      <button class="uk-offcanvas-close" type="button" uk-close aria-label="Chiudi il menu"></button>
+      <ul class="uk-nav uk-nav-default" uk-nav="multiple: false">
+        <li class="uk-parent"><a href="#">La Banca <span uk-nav-parent-icon></span></a><ul class="uk-nav-sub"><li><a href="chi-siamo.html">Chi Siamo</a></li><li><a href="governance.html">Dati e Documenti Societari</a></li><li><a href="info-prodotti.html">Informazioni</a></li><li><a href="sostenibilita.html">Sostenibilità</a></li><li><a href="area-soci.html">Area Soci</a></li><li><a href="collocamento.html">Collocamento</a></li></ul></li><li class="uk-parent"><a href="#">Il Gruppo <span uk-nav-parent-icon></span></a><ul class="uk-nav-sub"><li><a href="il-gruppo.html">Il Gruppo</a></li><li><a href="il-gruppo.html#private-banking">Private Banking</a></li><li><a href="il-gruppo.html#corporate-investment-banking">Corporate &amp; Investment Banking</a></li><li><a href="il-gruppo.html#asset-management">Asset Management</a></li><li><a href="il-gruppo.html#treasury-alm">Treasury &amp; ALM</a></li></ul></li><li class="uk-parent"><a href="#">Prodotti e Servizi <span uk-nav-parent-icon></span></a><ul class="uk-nav-sub"><li><a href="investimenti-e-risparmio.html">Consulenza e Servizi d&#x27;Investimento</a></li><li><a href="servizi-bancari.html">Servizi Bancari</a></li><li><a href="prodotti-assicurativi.html">Prodotti Assicurativi</a></li><li><a href="wealth-management.html">Wealth Management</a></li><li><a href="richiedi-pos.html">Richiedi il tuo POS</a></li></ul></li>
+        <li class="uk-active"><a href="lavora-con-noi.html">Lavora con noi</a></li>
+        <li><a href="contatti.html">Contatti</a></li>
+      </ul>
+      <a class="uk-button tm-button-online uk-width-1-1 uk-margin-medium-top" href="https://areariservata.bancaifigest.it/CBL-MITO-WA/" target="_blank" rel="noopener"><span uk-icon="icon: lock; ratio: .8"></span> Banca Online</a>
+      <form class="uk-search uk-search-default uk-width-1-1 uk-margin-top" action="cerca.html" method="get" role="search">
+        <span uk-search-icon></span>
+        <input class="uk-search-input" type="search" name="q" placeholder="Cerca" aria-label="Cerca nel sito" required>
+      </form>
+    </div>
+  </div>
+</header>
+
+
+<main id="main">
+
+<section class="tm-hero" uk-height-viewport="offset-top: true">
+  <div class="tm-hero-media"><div class="tm-placeholder tm-placeholder-cover"><img class="tm-photo" src="assets/img/pages/lavora-con-noi-hero.webp" alt="" loading="lazy" decoding="async" onerror="var x=['jpeg','jpg','png','svg','webp'],t=(this.dataset.t||'')+this.src.split('.').pop()+',';this.dataset.t=t;var n=x.filter(function(e){return t.indexOf(e+',')<0})[0];if(n){this.src=this.src.replace(/\.[a-z]+$/,'.'+n)}else{this.remove()}"><span uk-icon="icon: image; ratio: 2"></span></div></div>
+  <div class="tm-hero-title">
+    <div class="uk-container uk-container-large" uk-scrollspy="cls: uk-animation-fade; delay: 150">
+      <h1 class="tm-hero-heading">Lavora con noi</h1>
+      <p class="tm-hero-subtitle">Costruiamo insieme il futuro del Gruppo Bancario Ifigest</p>
+    </div>
+  </div>
+</section>
+<section class="uk-section tm-section-form">
+  <div class="uk-container uk-container-large">
+    <p class="tm-form-intro">Invia la tua candidatura compilando il modulo di seguito.</p>
+    <form class="tm-form" id="tm-careers-form" novalidate data-endpoint="" data-to="risorseumane@bancaifigest.it" data-to-lbp="recruiting@lbpartners.it">
+      <div class="uk-grid-medium" uk-grid><div class="uk-width-1-2@s"><div class="tm-field" data-field="nome"><label class="tm-label" for="nome">Nome</label><input class="uk-input tm-input" id="nome" name="nome" type="text" required aria-describedby="nome-error" autocomplete="given-name"><p class="tm-field-error" id="nome-error" aria-live="polite"></p></div></div><div class="uk-width-1-2@s"><div class="tm-field" data-field="cognome"><label class="tm-label" for="cognome">Cognome</label><input class="uk-input tm-input" id="cognome" name="cognome" type="text" required aria-describedby="cognome-error" autocomplete="family-name"><p class="tm-field-error" id="cognome-error" aria-live="polite"></p></div></div><div class="uk-width-1-2@s"><div class="tm-field" data-field="email"><label class="tm-label" for="email">Email</label><input class="uk-input tm-input" id="email" name="email" type="email" required aria-describedby="email-error" autocomplete="email" inputmode="email"><p class="tm-field-error" id="email-error" aria-live="polite"></p></div></div><div class="uk-width-1-2@s"><div class="tm-field" data-field="telefono"><label class="tm-label" for="telefono">Telefono</label><input class="uk-input tm-input" id="telefono" name="telefono" type="tel" required aria-describedby="telefono-error" autocomplete="tel" inputmode="tel" placeholder="+39 333 1234567"><p class="tm-field-error" id="telefono-error" aria-live="polite"></p></div></div><div class="uk-width-1-1@s"><div class="tm-field" data-field="cv"><label class="tm-label" for="cv">Allega CV (max 5 MB, formato PDF)</label><div class="tm-file" uk-form-custom="target: true"><input id="cv" name="cv" type="file" accept="application/pdf,.pdf" required aria-describedby="cv-hint cv-error"><input class="uk-input tm-input" type="text" placeholder="Nessun file selezionato" tabindex="-1" aria-hidden="true" readonly><span class="uk-button uk-button-default tm-file-button" aria-hidden="true"><span uk-icon="icon: upload; ratio: .9"></span> Scegli file</span></div><p class="tm-field-hint" id="cv-hint">Formato PDF, dimensione massima 5 MB</p><p class="tm-field-error" id="cv-error" aria-live="polite"></p></div></div><div class="uk-width-1-1@s"><div class="tm-field" data-field="societa"><label class="tm-label" for="societa">Seleziona la società per la quale si invia la candidatura</label><select class="uk-select tm-input" id="societa" name="societa" required aria-describedby="societa-error"><option value="" selected disabled>Seleziona</option><option value="Banca Ifigest">Banca Ifigest</option><option value="L&amp;B Partners SpA">L&amp;B Partners SpA</option><option value="L&amp;B Capital">L&amp;B Capital</option><option value="Altro (specificare)">Altro (specificare)</option></select><p class="tm-field-error" id="societa-error" aria-live="polite"></p></div></div><div class="uk-width-1-1" id="societa-altro-wrap" hidden><div class="tm-field" data-field="societa-altro"><label class="tm-label" for="societa-altro">Specificare la società</label><input class="uk-input tm-input" id="societa-altro" name="societa_altro" type="text" aria-describedby="societa-altro-error" disabled><p class="tm-field-error" id="societa-altro-error" aria-live="polite"></p></div></div><div class="uk-width-1-1@s"><div class="tm-field" data-field="messaggio"><label class="tm-label" for="messaggio">Messaggio (facoltativo)</label><textarea class="uk-textarea tm-input" id="messaggio" name="messaggio" rows="5" maxlength="250" aria-describedby="messaggio-hint messaggio-error"></textarea><p class="tm-field-hint" id="messaggio-hint"><span id="messaggio-count">0</span>/250 caratteri</p><p class="tm-field-error" id="messaggio-error" aria-live="polite"></p></div></div><div class="uk-width-1-1"><div class="tm-field" data-field="privacy"><label class="tm-check"><input class="uk-checkbox" id="privacy" name="privacy" type="checkbox" value="accettata" required aria-describedby="privacy-error"><span>Ho letto e accetto la <a href="privacy-policy.html" target="_blank" rel="noopener">Privacy Policy</a></span></label><p class="tm-field-error" id="privacy-error" aria-live="polite"></p></div></div></div>
+      <div class="tm-form-actions">
+        <button class="uk-button uk-button-primary" type="submit">Invia</button>
+      </div>
+      <div class="tm-form-status" id="tm-form-status" role="status" aria-live="polite" hidden></div>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer class="tm-footer">
+  <div class="uk-container uk-container-expand">
+    <div class="uk-grid tm-footer-grid" uk-grid>
+      <div class="uk-width-1-4@m uk-flex uk-flex-middle">
+        <div>
+          <a href="index.html" aria-label="Banca Ifigest - Torna alla Home"><img src="assets/img/logo-banca-ifigest-white.png" width="200" height="18" alt="Banca Ifigest"></a>
+          <p class="tm-footer-small">Banca Ifigest S.p.A.<br>P.za Santa Maria Soprarno, 1 - 50125 Firenze<br>
+            <a href="tel:+3905521631">+39 055 21631</a><br>
+            <a href="mailto:segreteria.ifigest@legalmail.it">segreteria.ifigest@legalmail.it</a></p>
+        </div>
+      </div>
+      <div class="uk-width-1-2@m uk-flex uk-flex-middle">
+        <nav class="tm-footer-small uk-width-1-1" aria-label="Link utili">
+          <ul class="tm-list-horizontal"><li><a href="lavora-con-noi.html">Lavora con noi</a></li><li><a href="info-prodotti.html#schede-prodotto">Schede Prodotto</a></li><li class="no-separator"><a href="trasparenza.html">Trasparenza</a></li><li class="force-break" aria-hidden="true"></li><li><a href="whistleblowing.html">Whistleblowing</a></li><li><a href="dichiarazione-accessibilita.html">Dichiarazione di Accessibilità</a></li><li class="no-separator"><a href="disconoscimento-operazioni.html">Disconoscimento operazioni</a></li></ul>
+          <ul class="tm-list-horizontal tm-footer-secondary"><li class="no-separator"><a href="privacy-policy.html">Privacy Policy</a></li></ul>
+          <p class="tm-footer-legal">Capitale sociale euro 37.554.277,00 i.v. | Albo delle Banche n. 5485 | Albo dei Gruppi Bancari n. 3185</p>
+        </nav>
+      </div>
+      <div class="uk-width-1-4@m uk-flex uk-flex-middle">
+        <div class="uk-width-1-1 uk-text-right@m">
+          <a href="https://www.linkedin.com/company/banca-ifigest/" class="tm-footer-social" target="_blank" rel="noopener" aria-label="Banca Ifigest su LinkedIn"><span uk-icon="icon: linkedin; ratio: 1.6"></span></a>
+          <p class="tm-footer-small">&copy;2026</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- Libreria: UIkit (MIT) -->
+<script src="assets/vendor/uikit/js/uikit.min.js?v=07072884"></script>
+<script src="assets/vendor/uikit/js/uikit-icons.min.js?v=7069ba71"></script>
+<!-- Script del sito -->
+<script src="assets/js/search-index.js?v=71787bee"></script>
+<script src="assets/js/main.js?v=673bb477"></script>
+</body>
+</html>

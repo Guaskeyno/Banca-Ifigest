@@ -35,7 +35,7 @@ Poi apri http://localhost:8000.
 ## Segnaposto da completare
 
 - Immagini: testate caricate in `assets/img/pages/`; i blocchi ancora senza immagine (compresi i 5 loghi del Gruppo) sono elencati in `assets/img/pages/README.md`. Estensioni accettate: `.jpg`, `.jpeg`, `.png`, `.svg`, `.webp`.
-- Link senza destinazione (`#`): Lavora con noi, documenti PDF, segnalazione interna whistleblowing, schede prodotto MIFID II.
+- Link senza destinazione (`#`): documenti PDF, segnalazione interna whistleblowing, schede prodotto MIFID II.
 - Testo provvisorio (Lorem ipsum): Il Gruppo (introduzione); Collocamento (Club Deal, FIA, Certificati, Polizze); Gestioni Patrimoniali (due sezioni); due blocchi ciascuna su Prodotti Assicurativi, Richiedi il tuo POS, Finanza Strutturata, Lombard Loans, Debt Advisory, Sostenibilità, Trasparenza, Dichiarazione di Accessibilità, Disconoscimento operazioni.
 - Area Soci e Informazioni: i documenti puntano ai file su bancaifigest.com.
 - Private Banking, Investment Banking, Finanza Strutturata, Lombard Loans e Debt Advisory restano online ma fuori dal menu.
@@ -43,3 +43,7 @@ Poi apri http://localhost:8000.
 ## Privacy Policy
 
 Il testo di `privacy-policy.html` è copiato dalla privacy policy Iubenda di Banca Ifigest (https://www.iubenda.com/privacy-policy/58439536) e salvato in `content/privacy-policy.html`. Non si aggiorna automaticamente: quando la policy su Iubenda cambia, aggiornare quel file (e la data "Ultima modifica" in `tools/build.py`) e rigenerare le pagine.
+
+## Lavora con noi
+
+Il modulo di candidatura (`lavora-con-noi.html`) è validato in `assets/js/main.js`. Il sito è statico, quindi l'invio delle email richiede un servizio esterno che riceva il modulo (con il CV allegato) e lo inoltri a `risorseumane@bancaifigest.it` e, se è scelta L&B Partners SpA, anche a `recruiting@lbpartners.it` (campo `destinatari`). Finché `CAREERS_FORM_ENDPOINT` in `tools/build.py` è vuoto, il modulo segnala che l'invio non è ancora attivo.

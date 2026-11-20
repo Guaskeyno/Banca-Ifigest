@@ -1117,3 +1117,50 @@ em { color: inherit; }
 .tm-hero-media-video { background: var(--ifg-primary); }
 .tm-hero-video-banca-ifigest { background: var(--ifg-primary-tint); } /* colore del primo fotogramma */
 .tm-hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+/* ==========================================================================
+   MODULI (Lavora con noi)
+   ========================================================================== */
+
+:root { --ifg-error: #c62828; }
+
+.tm-form-intro { margin: 0 0 40px; font-size: 20px; line-height: 1.5; color: var(--ifg-dark); }
+.tm-form { max-width: 900px; }
+.tm-field { position: relative; }
+.tm-label { display: block; margin-bottom: 8px; font-size: 15px; font-weight: 700; color: var(--ifg-dark); }
+.tm-input.uk-input,
+.tm-input.uk-select,
+.tm-input.uk-textarea {
+  height: 48px;
+  padding: 0 16px;
+  border: 1px solid var(--ifg-line);
+  border-radius: 8px;
+  background-color: var(--ifg-white);
+  color: var(--ifg-dark);
+  font-family: var(--ifg-font-body);
+  font-size: 16px;
+}
+.tm-input.uk-textarea { height: auto; padding: 12px 16px; resize: vertical; }
+.tm-input:focus { border-color: var(--ifg-primary); outline: none; box-shadow: 0 0 0 1px var(--ifg-primary); }
+.tm-input::placeholder { color: rgba(0, 59, 76, 0.45); }
+
+/* File: campo con il nome del file + bottone */
+.tm-file { display: flex !important; gap: 12px; align-items: center; }
+.tm-file .tm-input { flex: 1; min-width: 0; }
+.tm-file-button { flex: none; display: inline-flex; align-items: center; gap: 6px; }
+.tm-file:focus-within .tm-file-button { box-shadow: 0 0 0 2px var(--ifg-accent); }
+
+.tm-field-hint { margin: 6px 0 0; font-size: 13px; color: rgba(0, 59, 76, 0.7); }
+.tm-field-error { margin: 6px 0 0; font-size: 14px; font-weight: 700; color: var(--ifg-error); }
+.tm-field-error:empty { display: none; }
+.tm-field.tm-invalid .tm-input { border-color: var(--ifg-error); box-shadow: 0 0 0 1px var(--ifg-error); }
+
+.tm-check { display: flex; gap: 10px; align-items: flex-start; font-size: 16px; color: var(--ifg-dark); cursor: pointer; }
+.tm-check .uk-checkbox { flex: none; margin-top: 3px; width: 18px; height: 18px; border-color: var(--ifg-dark); }
+.tm-check .uk-checkbox:checked { background-color: var(--ifg-dark); }
+.tm-check a { text-decoration: underline; }
+.tm-field.tm-invalid .uk-checkbox { border-color: var(--ifg-error); }
+
+.tm-form-actions { margin-top: 40px; }
+.tm-form-status { margin-top: 24px; padding: 16px 20px; border-radius: 8px; background: var(--ifg-primary-tint); color: var(--ifg-dark); }
+.tm-form-status.tm-status-error { background: #fdecea; color: var(--ifg-error); }
