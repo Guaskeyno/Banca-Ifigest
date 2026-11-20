@@ -1164,3 +1164,28 @@ em { color: inherit; }
 .tm-form-actions { margin-top: 40px; }
 .tm-form-status { margin-top: 24px; padding: 16px 20px; border-radius: 8px; background: var(--ifg-primary-tint); color: var(--ifg-dark); }
 .tm-form-status.tm-status-error { background: #fdecea; color: var(--ifg-error); }
+
+/* Banner promozionale (Home: Apple Pay) */
+.tm-section-promo { padding-top: 0; }
+.tm-promo {
+  display: grid;
+  grid-template-columns: 1fr;
+  background: var(--ifg-primary-tint);
+  color: var(--ifg-dark);
+  overflow: hidden;
+}
+.tm-promo-media { position: relative; aspect-ratio: 3 / 2; }
+.tm-promo-media .tm-placeholder { position: absolute; inset: 0; }
+.tm-promo-content { padding: 32px 24px 40px; align-self: center; }
+@media (min-width: 960px) {
+  .tm-promo { grid-template-columns: 5fr 7fr; }
+  .tm-promo-media { aspect-ratio: auto; min-height: 340px; }
+  .tm-promo-content { padding: 56px 64px; }
+}
+.tm-promo-eyebrow { margin: 0 0 12px; font-size: 16px; font-weight: 700; color: var(--ifg-dark); }
+.tm-promo-title { margin: 0 0 16px; font-size: 32px; line-height: 1.1; color: var(--ifg-dark); }
+@media (min-width: 960px) { .tm-promo-title { font-size: 40px; } }
+.tm-promo-text { margin: 0 0 32px; max-width: 520px; font-size: 18px; line-height: 1.5; }
+.tm-button-arrow { display: inline-flex; align-items: center; gap: 10px; }
+.tm-button-arrow .uk-icon { transition: transform 0.2s ease; }
+.tm-button-arrow:hover .uk-icon { transform: translateX(4px); }

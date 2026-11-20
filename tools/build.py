@@ -545,6 +545,27 @@ def add(slug, title, description, body, keywords=""):
 
 
 # Home ----------------------------------------------------------------------
+APPLE_PAY_URL = "https://bancaifigest.com/LANDINGPAGE/index.html"
+
+
+def promo_banner(eyebrow, title, body, label, href, hint):
+    """Banner promozionale: immagine + testo + bottone verso una pagina esterna (nuova scheda)."""
+    return f"""
+<section class="uk-section tm-section-promo">
+  <div class="uk-container uk-container-large">
+    <div class="tm-promo">
+      <div class="tm-promo-media">{placeholder("tm-placeholder-cover", hint=hint)}</div>
+      <div class="tm-promo-content">
+        <p class="tm-promo-eyebrow">{eyebrow}</p>
+        <h2 class="tm-promo-title">{title}</h2>
+        <p class="tm-promo-text">{body}</p>
+        <a class="uk-button uk-button-primary tm-button-arrow" href="{href}" target="_blank" rel="noopener">{label} <span uk-icon="icon: arrow-right"></span></a>
+      </div>
+    </div>
+  </div>
+</section>"""
+
+
 add(
     "index.html",
     "Home",
@@ -577,8 +598,16 @@ add(
             ("Fundstore", "La nostra piattaforma per investire in oltre 8.000 fondi, con commissioni trasparenti e un approccio costruito sull'autonomia dell'investitore informato", "https://www.fundstore.it", True),
         ],
         " tm-section-cards-home",
+    )
+    + promo_banner(
+        eyebrow="Banca Ifigest e Nexi presentano Apple Pay",
+        title="Apple Pay",
+        body="Un giorno pagare con la tua Carta di Banca Ifigest sarà più facile con Apple Pay. Quel giorno è oggi.",
+        label="Vai ad Apple Pay",
+        href=APPLE_PAY_URL,
+        hint="apple-pay",
     ),
-    "private banking gestioni patrimoniali consulenza family office corporate finance fundstore",
+    "private banking gestioni patrimoniali consulenza family office corporate finance fundstore apple pay nexi carta",
 )
 
 # Private Banking -----------------------------------------------------------
@@ -1542,7 +1571,8 @@ def text_of(html):
 
 
 IMAGE_SPECS = {
-    "hero": ("Testata (hero)", "2880 × 1106 px (circa 2,6:1)"),
+    "hero": ("Testata (hero), occupa lo schermo sotto l'header", "2880 × 1620 px (16:9)"),
+    "promo": ("Banner promozionale", "1200 × 800 px (3:2), soggetto al centro"),
     "tm-placeholder-square": ("Blocco immagine + testo", "1312 × 1312 px (1:1)"),
     "tm-placeholder-square tm-placeholder-logo": ("Logo società del Gruppo (non viene ritagliato)", "800 × 800 px (1:1), sfondo bianco o trasparente"),
 }
@@ -1562,8 +1592,8 @@ def write_image_manifest():
     for slug, title, *_ in PAGES:
         html = (ROOT / slug).read_text(encoding="utf-8")
         found = []
-        for m in re.finditer(r'<div class="(tm-hero-media|tm-split-media|tm-logo-media)">(?:<a [^>]*>)?<div class="tm-placeholder ([^"]+)"><img class="tm-photo" src="assets/img/pages/([^"]+)"', html):
-            kind = "hero" if m.group(1) == "tm-hero-media" else m.group(2).strip()
+        for m in re.finditer(r'<div class="(tm-hero-media|tm-split-media|tm-logo-media|tm-promo-media)">(?:<a [^>]*>)?<div class="tm-placeholder ([^"]+)"><img class="tm-photo" src="assets/img/pages/([^"]+)"', html):
+            kind = {"tm-hero-media": "hero", "tm-promo-media": "promo"}.get(m.group(1), m.group(2).strip())
             found.append((m.group(3), *IMAGE_SPECS[kind]))
         if found:
             lines += [f"## {title} (`{slug}`)", "", "| File | Uso | Dimensioni consigliate |", "|---|---|---|"]

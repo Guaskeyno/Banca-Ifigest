@@ -5,53 +5,59 @@ Generato da `tools/build.py`: non modificare a mano.
 Caricare qui i file con **esattamente** questi nomi (minuscolo). Estensioni accettate: `.jpg`, `.jpeg`, `.png`, `.svg`, `.webp` (per i loghi meglio `.png` o `.svg`). Il nome qui sotto indica l'estensione attesa, ma vanno bene anche le altre.
 Finché un file manca, la pagina mostra il segnaposto; appena caricato, l'immagine compare da sola.
 
+## Home (`index.html`)
+
+| File | Uso | Dimensioni consigliate |
+|---|---|---|
+| `home-apple-pay.jpg` | Banner promozionale | 1200 × 800 px (3:2), soggetto al centro |
+
 ## Private Banking (`private-banking.html`)
 
 | File | Uso | Dimensioni consigliate |
 |---|---|---|
-| `private-banking-hero.jpeg` | Testata (hero) | 2880 × 1106 px (circa 2,6:1) |
+| `private-banking-hero.jpeg` | Testata (hero), occupa lo schermo sotto l'header | 2880 × 1620 px (16:9) |
 
 ## Servizi Bancari (`servizi-bancari.html`)
 
 | File | Uso | Dimensioni consigliate |
 |---|---|---|
-| `servizi-bancari-hero.jpeg` | Testata (hero) | 2880 × 1106 px (circa 2,6:1) |
+| `servizi-bancari-hero.jpeg` | Testata (hero), occupa lo schermo sotto l'header | 2880 × 1620 px (16:9) |
 
 ## Consulenza e Servizi d'Investimento (`investimenti-e-risparmio.html`)
 
 | File | Uso | Dimensioni consigliate |
 |---|---|---|
-| `investimenti-e-risparmio-hero.jpeg` | Testata (hero) | 2880 × 1106 px (circa 2,6:1) |
+| `investimenti-e-risparmio-hero.jpeg` | Testata (hero), occupa lo schermo sotto l'header | 2880 × 1620 px (16:9) |
 
 ## Wealth Management (`wealth-management.html`)
 
 | File | Uso | Dimensioni consigliate |
 |---|---|---|
-| `wealth-management-hero.jpeg` | Testata (hero) | 2880 × 1106 px (circa 2,6:1) |
+| `wealth-management-hero.jpeg` | Testata (hero), occupa lo schermo sotto l'header | 2880 × 1620 px (16:9) |
 
 ## Collocamento (`collocamento.html`)
 
 | File | Uso | Dimensioni consigliate |
 |---|---|---|
-| `collocamento-hero.jpeg` | Testata (hero) | 2880 × 1106 px (circa 2,6:1) |
+| `collocamento-hero.jpeg` | Testata (hero), occupa lo schermo sotto l'header | 2880 × 1620 px (16:9) |
 
 ## Gestioni Patrimoniali (`gestioni-patrimoniali.html`)
 
 | File | Uso | Dimensioni consigliate |
 |---|---|---|
-| `gestioni-patrimoniali-hero.jpeg` | Testata (hero) | 2880 × 1106 px (circa 2,6:1) |
+| `gestioni-patrimoniali-hero.jpeg` | Testata (hero), occupa lo schermo sotto l'header | 2880 × 1620 px (16:9) |
 
 ## Investment Banking (`investment-banking.html`)
 
 | File | Uso | Dimensioni consigliate |
 |---|---|---|
-| `investment-banking-hero.jpeg` | Testata (hero) | 2880 × 1106 px (circa 2,6:1) |
+| `investment-banking-hero.jpeg` | Testata (hero), occupa lo schermo sotto l'header | 2880 × 1620 px (16:9) |
 
 ## Prodotti Assicurativi (`prodotti-assicurativi.html`)
 
 | File | Uso | Dimensioni consigliate |
 |---|---|---|
-| `prodotti-assicurativi-hero.jpg` | Testata (hero) | 2880 × 1106 px (circa 2,6:1) |
+| `prodotti-assicurativi-hero.jpg` | Testata (hero), occupa lo schermo sotto l'header | 2880 × 1620 px (16:9) |
 | `prodotti-assicurativi-blocco-1.jpg` | Blocco immagine + testo | 1312 × 1312 px (1:1) |
 | `prodotti-assicurativi-blocco-2.jpg` | Blocco immagine + testo | 1312 × 1312 px (1:1) |
 
@@ -59,7 +65,7 @@ Finché un file manca, la pagina mostra il segnaposto; appena caricato, l'immagi
 
 | File | Uso | Dimensioni consigliate |
 |---|---|---|
-| `richiedi-pos-hero.jpg` | Testata (hero) | 2880 × 1106 px (circa 2,6:1) |
+| `richiedi-pos-hero.jpg` | Testata (hero), occupa lo schermo sotto l'header | 2880 × 1620 px (16:9) |
 | `richiedi-pos-blocco-1.jpg` | Blocco immagine + testo | 1312 × 1312 px (1:1) |
 | `richiedi-pos-blocco-2.jpg` | Blocco immagine + testo | 1312 × 1312 px (1:1) |
 
@@ -67,7 +73,7 @@ Finché un file manca, la pagina mostra il segnaposto; appena caricato, l'immagi
 
 | File | Uso | Dimensioni consigliate |
 |---|---|---|
-| `finanza-strutturata-hero.jpeg` | Testata (hero) | 2880 × 1106 px (circa 2,6:1) |
+| `finanza-strutturata-hero.jpeg` | Testata (hero), occupa lo schermo sotto l'header | 2880 × 1620 px (16:9) |
 | `finanza-strutturata-blocco-1.jpg` | Blocco immagine + testo | 1312 × 1312 px (1:1) |
 | `finanza-strutturata-blocco-2.jpg` | Blocco immagine + testo | 1312 × 1312 px (1:1) |
 
@@ -75,7 +81,7 @@ Finché un file manca, la pagina mostra il segnaposto; appena caricato, l'immagi
 
 | File | Uso | Dimensioni consigliate |
 |---|---|---|
-| `lombard-loans-hero.jpeg` | Testata (hero) | 2880 × 1106 px (circa 2,6:1) |
+| `lombard-loans-hero.jpeg` | Testata (hero), occupa lo schermo sotto l'header | 2880 × 1620 px (16:9) |
 | `lombard-loans-blocco-1.jpg` | Blocco immagine + testo | 1312 × 1312 px (1:1) |
 | `lombard-loans-blocco-2.jpg` | Blocco immagine + testo | 1312 × 1312 px (1:1) |
 
@@ -83,7 +89,7 @@ Finché un file manca, la pagina mostra il segnaposto; appena caricato, l'immagi
 
 | File | Uso | Dimensioni consigliate |
 |---|---|---|
-| `debt-advisory-hero.jpeg` | Testata (hero) | 2880 × 1106 px (circa 2,6:1) |
+| `debt-advisory-hero.jpeg` | Testata (hero), occupa lo schermo sotto l'header | 2880 × 1620 px (16:9) |
 | `debt-advisory-blocco-1.jpg` | Blocco immagine + testo | 1312 × 1312 px (1:1) |
 | `debt-advisory-blocco-2.jpg` | Blocco immagine + testo | 1312 × 1312 px (1:1) |
 
@@ -101,31 +107,31 @@ Finché un file manca, la pagina mostra il segnaposto; appena caricato, l'immagi
 
 | File | Uso | Dimensioni consigliate |
 |---|---|---|
-| `chi-siamo-hero.jpeg` | Testata (hero) | 2880 × 1106 px (circa 2,6:1) |
+| `chi-siamo-hero.jpeg` | Testata (hero), occupa lo schermo sotto l'header | 2880 × 1620 px (16:9) |
 
 ## Dati e Documenti Societari (`governance.html`)
 
 | File | Uso | Dimensioni consigliate |
 |---|---|---|
-| `governance-hero.jpeg` | Testata (hero) | 2880 × 1106 px (circa 2,6:1) |
+| `governance-hero.jpeg` | Testata (hero), occupa lo schermo sotto l'header | 2880 × 1620 px (16:9) |
 
 ## Informazioni (`info-prodotti.html`)
 
 | File | Uso | Dimensioni consigliate |
 |---|---|---|
-| `info-prodotti-hero.jpeg` | Testata (hero) | 2880 × 1106 px (circa 2,6:1) |
+| `info-prodotti-hero.jpeg` | Testata (hero), occupa lo schermo sotto l'header | 2880 × 1620 px (16:9) |
 
 ## Sostenibilità (`sostenibilita.html`)
 
 | File | Uso | Dimensioni consigliate |
 |---|---|---|
-| `sostenibilita-hero.jpeg` | Testata (hero) | 2880 × 1106 px (circa 2,6:1) |
+| `sostenibilita-hero.jpeg` | Testata (hero), occupa lo schermo sotto l'header | 2880 × 1620 px (16:9) |
 
 ## Area Soci (`area-soci.html`)
 
 | File | Uso | Dimensioni consigliate |
 |---|---|---|
-| `area-soci-hero.jpeg` | Testata (hero) | 2880 × 1106 px (circa 2,6:1) |
+| `area-soci-hero.jpeg` | Testata (hero), occupa lo schermo sotto l'header | 2880 × 1620 px (16:9) |
 
 ## Trasparenza (`trasparenza.html`)
 
@@ -152,10 +158,10 @@ Finché un file manca, la pagina mostra il segnaposto; appena caricato, l'immagi
 
 | File | Uso | Dimensioni consigliate |
 |---|---|---|
-| `contatti-hero.jpeg` | Testata (hero) | 2880 × 1106 px (circa 2,6:1) |
+| `contatti-hero.jpeg` | Testata (hero), occupa lo schermo sotto l'header | 2880 × 1620 px (16:9) |
 
 ## Lavora con noi (`lavora-con-noi.html`)
 
 | File | Uso | Dimensioni consigliate |
 |---|---|---|
-| `lavora-con-noi-hero.webp` | Testata (hero) | 2880 × 1106 px (circa 2,6:1) |
+| `lavora-con-noi-hero.webp` | Testata (hero), occupa lo schermo sotto l'header | 2880 × 1620 px (16:9) |
