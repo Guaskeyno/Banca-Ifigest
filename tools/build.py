@@ -600,7 +600,7 @@ add(
         " tm-section-cards-home",
     )
     + promo_banner(
-        eyebrow="Banca Ifigest e Nexi presentano Apple Pay",
+        eyebrow="Banca Ifigest e Nexi presentano",
         title="Apple Pay",
         body="Un giorno pagare con la tua Carta di Banca Ifigest sarà più facile con Apple Pay. Quel giorno è oggi.",
         label="Vai ad Apple Pay",
