@@ -1189,3 +1189,14 @@ em { color: inherit; }
 .tm-button-arrow { display: inline-flex; align-items: center; gap: 10px; }
 .tm-button-arrow .uk-icon { transition: transform 0.2s ease; }
 .tm-button-arrow:hover .uk-icon { transform: translateX(4px); }
+
+/* Titolo di categoria cliccabile (Il Gruppo) */
+.tm-category-link { display: inline-flex; align-items: center; gap: 12px; color: inherit; text-decoration: none; }
+.tm-category-link .uk-icon { transition: transform 0.2s ease; }
+.tm-category-link:hover,
+.tm-category-link:focus { color: inherit; text-decoration: underline; text-underline-offset: 4px; }
+.tm-category-link:hover .uk-icon { transform: translateX(4px); }
+
+/* Nota sotto il box CTA (Whistleblowing) */
+.tm-cta-note { margin: 24px 0 0; font-size: 16px; line-height: 1.6; }
+.tm-cta-note a { text-decoration: underline; }

@@ -44,14 +44,15 @@ NAV = [
             ("Private Banking", "il-gruppo.html#private-banking"),
             ("Corporate & Investment Banking", "il-gruppo.html#corporate-investment-banking"),
             ("Asset Management", "il-gruppo.html#asset-management"),
-            ("Treasury & ALM", "il-gruppo.html#treasury-alm"),
+            ("Global Capital Markets", "il-gruppo.html#global-capital-markets"),
             ("La nostra storia", "il-gruppo.html#storia"),
         ],
     },
     {
         "label": "Prodotti e Servizi",
-        "href": "investimenti-e-risparmio.html",  # la voce apre la prima pagina della sezione
+        "href": "gestioni-patrimoniali.html",  # la voce apre la prima pagina della sezione
         "children": [
+            ("Gestioni Patrimoniali", "gestioni-patrimoniali.html"),
             ("Consulenza e Servizi d'Investimento", "investimenti-e-risparmio.html"),
             ("Servizi Bancari", "servizi-bancari.html"),
             ("Prodotti Assicurativi", "prodotti-assicurativi.html"),
@@ -60,7 +61,7 @@ NAV = [
         ],
     },
 ]
-# Gestioni Patrimoniali, Private Banking e Investment Banking (con Finanza Strutturata, Lombard Loans, Debt Advisory)
+# Private Banking e Investment Banking (con Finanza Strutturata, Lombard Loans, Debt Advisory)
 # restano online ma fuori dal menu.
 
 LINKEDIN_URL = "https://www.linkedin.com/company/banca-ifigest/"
@@ -630,8 +631,11 @@ add(
 # Layout "prodotti" (come https://www.lbcapitalsgr.it/prodotti/) ----------------
 # Sezioni alternate bianco/grigio: icona + titolo, testo introduttivo, eventuali
 # pilastri numerati, elenchi prodotto con titolo a pillola e righe con bottone ">".
-def category(sid, icon, title, body="", muted=False, extra=""):
+def category(sid, icon, title, body="", muted=False, extra="", href=""):
     intro = f'<div class="tm-category-intro">{body}</div>' if body else ""
+    if href:  # titolo cliccabile verso la pagina dedicata
+        title = f'<a class="tm-category-link" href="{href}">{title}<span uk-icon="icon: arrow-right"></span></a>'
+
     return f"""
 <section class="uk-section tm-category{' tm-category-muted' if muted else ''}" id="{sid}">
   <div class="uk-container uk-container-large">
@@ -820,9 +824,9 @@ add(
 # Investment Banking --------------------------------------------------------
 add(
     "investment-banking.html",
-    "Investment Banking",
+    "Corporate & Investment Banking",
     "Soluzioni finanziarie specializzate per imprese, professionisti e istituzioni.",
-    hero("Investment Banking", "Soluzioni finanziarie specializzate per imprese, professionisti e istituzioni")
+    hero("Corporate &amp; Investment Banking", "Soluzioni finanziarie specializzate per imprese, professionisti e istituzioni")
     + lead(
         "<p>Affianchiamo imprese, professionisti e investitori istituzionali con un'offerta di finanza strutturata, finanziamenti su misura e advisory strategico. Un partner bancario indipendente, capace di combinare competenza tecnica e relazioni di lungo termine.</p>",
         "dark",
@@ -838,6 +842,8 @@ add(
 )
 add("prodotti-assicurativi.html", "Prodotti Assicurativi", "Prodotti assicurativi Banca Ifigest.", hero("Prodotti Assicurativi") + placeholder_blocks("prodotti-assicurativi"), "assicurazioni polizze")
 add("richiedi-pos.html", "Richiedi il tuo POS", "Richiedi il POS di Banca Ifigest per la tua attività.", hero("Richiedi il tuo POS") + placeholder_blocks("richiedi-pos"), "pos esercenti pagamenti")
+add("asset-management.html", "Asset Management", "Asset Management del Gruppo Bancario Ifigest.", hero("Asset Management") + placeholder_blocks("asset-management"), "asset management l&b capital sgr fondi ucits fia")
+add("global-capital-markets.html", "Global Capital Markets", "Global Capital Markets del Gruppo Bancario Ifigest.", hero("Global Capital Markets") + placeholder_blocks("global-capital-markets"), "global capital markets tesoreria alm liquidità portafoglio")
 add("finanza-strutturata.html", "Finanza Strutturata", "Finanza strutturata Banca Ifigest.", hero("Finanza Strutturata") + placeholder_blocks("finanza-strutturata"), "project finance acquisition finance")
 add("lombard-loans.html", "Lombard Loans", "Lombard Loans Banca Ifigest.", hero("Lombard Loans") + placeholder_blocks("lombard-loans"), "finanziamento garantito")
 add("debt-advisory.html", "Debt Advisory", "Debt Advisory Banca Ifigest.", hero("Debt Advisory") + placeholder_blocks("debt-advisory"), "struttura finanziaria")
@@ -925,7 +931,7 @@ add(
 </section>"""
     # Le aree di attività del Gruppo (layout come la pagina Prodotti del riferimento)
     + category(
-        "private-banking", "users", "PRIVATE BANKING", muted=True,
+        "private-banking", "users", "PRIVATE BANKING", muted=True, href="private-banking.html",
         extra=info_columns([
             ("<strong>Banca Ifigest</strong>", "Rete di 82 Private Banker per la gestione patrimoniale, consulenza ad alto contatto e conservazione intergenerazionale del capitale"),
             ("<strong>Fundstore</strong>", "Canale nativo digitale e marketplace in architettura aperta che agisce come motore di Digital Banking a servizio del segmento retail/self-directed e IFA"),
@@ -933,7 +939,7 @@ add(
         ]),
     )
     + category(
-        "corporate-investment-banking", "world", "CORPORATE &amp; INVESTMENT BANKING (CIB)",
+        "corporate-investment-banking", "world", "CORPORATE &amp; INVESTMENT BANKING (CIB)", href="investment-banking.html",
         extra=info_columns([
             ("<strong>L&amp;B Partners SpA</strong>", "Boutique di Financial Advisory per servizi alle imprese (M&amp;A, Debt Advisory, Valuations) e Project Finance"),
             ("<strong>Club Deal</strong>", "Veicoli d'investimento e strutturazione di operazioni in Private Equity / Venture riservate a clienti HNWI e famiglie imprenditoriali"),
@@ -941,21 +947,21 @@ add(
         ]),
     )
     + category(
-        "asset-management", "album", "ASSET MANAGEMENT", muted=True,
+        "asset-management", "album", "ASSET MANAGEMENT", muted=True, href="asset-management.html",
         extra=info_columns([
             ("<strong>L&amp;B Capital SGR SpA</strong>", "La Società di Gestione del Risparmio del Gruppo, nata dall'unione di Soprarno SGR e MIP SGR"),
             ("<strong>Gamma Prodotti</strong>", "Gestione di Fondi Comuni UCITS (azionari, obbligazionari, flessibili), Fondi Alternativi FIA (Italian Renewable Resources) e linee di gestione per la Rete"),
         ]),
     )
     + category(
-        "treasury-alm", "database", "TREASURY &amp; ALM",
+        "global-capital-markets", "database", "GLOBAL CAPITAL MARKETS", href="global-capital-markets.html",
         extra=info_columns([
             ("<strong>Banca Ifigest</strong>", "Gestione integrata dell'Asset &amp; Liability Management del Gruppo"),
             ("<strong>Operatività</strong>", "Ottimizzazione della liquidità di bilancio, gestione del portafoglio titoli di proprietà, copertura dei rischi finanziari e stabilizzazione del margine d'interesse"),
         ]),
     )
     + timeline_section(),
-    "gruppo bancario sevian fundstore soprarno sgr storia 1987 private banking corporate investment banking cib asset management treasury alm l&b partners l&b capital club deal",
+    "gruppo bancario sevian fundstore soprarno sgr storia 1987 private banking corporate investment banking cib asset management global capital markets l&b partners l&b capital club deal",
 )
 
 add(
@@ -1352,9 +1358,10 @@ add(
         <a class="tm-link-light" href="https://whistleblowing.anticorruzione.it/" target="_blank" rel="noopener">Invia una segnalazione all’ANAC <span uk-icon="icon: arrow-right"></span></a>
       </div>
     </div>
+    <p class="tm-cta-note">Per ogni ulteriore informazione in merito al Sistema Interno di Segnalazione delle Violazioni, si rinvia alla Policy di Gruppo scaricabile <a href="https://www.bancaifigest.com/PDF/Documentazione/policy-sistema-whisteblowing-1.pdf" target="_blank" rel="noopener">qui</a></p>
   </div>
 </section>""",
-    "segnalazione violazioni anac d.lgs 24/2023",
+    "segnalazione violazioni anac d.lgs 24/2023 policy di gruppo",
 )
 
 # Footer pages --------------------------------------------------------------

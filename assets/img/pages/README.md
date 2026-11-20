@@ -47,7 +47,7 @@ Finché un file manca, la pagina mostra il segnaposto; appena caricato, l'immagi
 |---|---|---|
 | `gestioni-patrimoniali-hero.jpeg` | Testata (hero), occupa lo schermo sotto l'header | 2880 × 1620 px (16:9) |
 
-## Investment Banking (`investment-banking.html`)
+## Corporate & Investment Banking (`investment-banking.html`)
 
 | File | Uso | Dimensioni consigliate |
 |---|---|---|
@@ -68,6 +68,22 @@ Finché un file manca, la pagina mostra il segnaposto; appena caricato, l'immagi
 | `richiedi-pos-hero.jpg` | Testata (hero), occupa lo schermo sotto l'header | 2880 × 1620 px (16:9) |
 | `richiedi-pos-blocco-1.jpg` | Blocco immagine + testo | 1312 × 1312 px (1:1) |
 | `richiedi-pos-blocco-2.jpg` | Blocco immagine + testo | 1312 × 1312 px (1:1) |
+
+## Asset Management (`asset-management.html`)
+
+| File | Uso | Dimensioni consigliate |
+|---|---|---|
+| `asset-management-hero.jpg` | Testata (hero), occupa lo schermo sotto l'header | 2880 × 1620 px (16:9) |
+| `asset-management-blocco-1.jpg` | Blocco immagine + testo | 1312 × 1312 px (1:1) |
+| `asset-management-blocco-2.jpg` | Blocco immagine + testo | 1312 × 1312 px (1:1) |
+
+## Global Capital Markets (`global-capital-markets.html`)
+
+| File | Uso | Dimensioni consigliate |
+|---|---|---|
+| `global-capital-markets-hero.jpg` | Testata (hero), occupa lo schermo sotto l'header | 2880 × 1620 px (16:9) |
+| `global-capital-markets-blocco-1.jpg` | Blocco immagine + testo | 1312 × 1312 px (1:1) |
+| `global-capital-markets-blocco-2.jpg` | Blocco immagine + testo | 1312 × 1312 px (1:1) |
 
 ## Finanza Strutturata (`finanza-strutturata.html`)
 
