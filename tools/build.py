@@ -40,10 +40,12 @@ NAV = [
         "overview": "Il Gruppo",
         # ancore alle sezioni della pagina Il Gruppo
         "children": [
+            ("Le Società", "il-gruppo.html#societa"),
             ("Private Banking", "il-gruppo.html#private-banking"),
             ("Corporate & Investment Banking", "il-gruppo.html#corporate-investment-banking"),
             ("Asset Management", "il-gruppo.html#asset-management"),
             ("Treasury & ALM", "il-gruppo.html#treasury-alm"),
+            ("La nostra storia", "il-gruppo.html#storia"),
         ],
     },
     {
@@ -261,14 +263,8 @@ def header(slug):
 
 # Barra sotto l'header con ancore alle sezioni della pagina (al posto dei link ad altre pagine)
 PAGE_ANCHORS = {
-    "il-gruppo.html": [
-        ("Le Società", "societa"),
-        ("Private Banking", "private-banking"),
-        ("Corporate & Investment Banking", "corporate-investment-banking"),
-        ("Asset Management", "asset-management"),
-        ("Treasury & ALM", "treasury-alm"),
-        ("La nostra Storia", "storia"),
-    ],
+    # stesse voci del menu Il Gruppo, come ancore della pagina
+    "il-gruppo.html": [(label, href.split("#")[1]) for label, href in NAV[1]["children"]],
 }
 
 
