@@ -1277,8 +1277,8 @@ add(
     "Sostenibilità",
     "Crediamo nella sostenibilità come fattore di creazione di valore nel lungo periodo per clienti, azionisti e comunità.",
     hero("Sostenibilità", "Crediamo nella sostenibilità come fattore di creazione di valore nel lungo periodo per clienti, azionisti e comunità")
-    + placeholder_blocks("sostenibilita", images=False),
-    "esg sostenibilità",
+    + text_section(block("Bilancio di Sostenibilità", "<p>Presto disponibile</p>"), sid="bilancio-di-sostenibilita"),
+    "esg sostenibilità bilancio di sostenibilità",
 )
 # Contenuti da bancaifigest.com/avvisi-per-i-soci/ (schede: Avvisi, Documenti, Aumento di capitale)
 SOCI_DOCS = doc_list([

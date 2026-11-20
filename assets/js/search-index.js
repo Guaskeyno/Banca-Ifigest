@@ -106,7 +106,7 @@ window.IFIGEST_SEARCH_INDEX = [
   "url": "sostenibilita.html",
   "title": "Sostenibilità",
   "description": "Crediamo nella sostenibilità come fattore di creazione di valore nel lungo periodo per clienti, azionisti e comunità.",
-  "text": "esg sostenibilità Sostenibilità Crediamo nella sostenibilità come fattore di creazione di valore nel lungo periodo per clienti, azionisti e comunità Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Richiedi una consulenza"
+  "text": "esg sostenibilità bilancio di sostenibilità Sostenibilità Crediamo nella sostenibilità come fattore di creazione di valore nel lungo periodo per clienti, azionisti e comunità Bilancio di Sostenibilità Presto disponibile"
  },
  {
   "url": "area-soci.html",
